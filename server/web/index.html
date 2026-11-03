@@ -1,0 +1,2320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>性格色彩测试</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FAF7F2'/%3E%3Ccircle cx='22' cy='22' r='10' fill='%23E8837A'/%3E%3Ccircle cx='42' cy='22' r='10' fill='%23E3B04B'/%3E%3Ccircle cx='22' cy='42' r='10' fill='%237FB99A'/%3E%3Ccircle cx='42' cy='42' r='10' fill='%237FA3D1'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#FAF7F2;
+    --card:#FFFFFF;
+    --ink:#3F3A34;
+    --ink-2:#6A625A;
+    --muted:#9A9186;
+    --line:#EFE8DF;
+    --line-2:#E3D9CC;
+    --primary:#4F4A44;
+    --primary-d:#3C3833;
+    --red:#E8837A;   --red-soft:#FDEEEC;
+    --yellow:#E3B04B; --yellow-soft:#FCF3E1;
+    --blue:#7FA3D1;  --blue-soft:#EAF1FA;
+    --green:#7FB99A; --green-soft:#E9F5EE;
+    --radius:18px;
+    --shadow:0 10px 30px rgba(158,138,116,.10);
+    --shadow-s:0 4px 14px rgba(158,138,116,.08);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",
+      "Source Han Sans SC","Noto Sans CJK SC",sans-serif;
+    color:var(--ink);
+    background-color:var(--bg);
+    background-image:
+      radial-gradient(680px 420px at 6% -8%, rgba(232,131,122,.13), transparent 62%),
+      radial-gradient(560px 400px at 98% 0%, rgba(227,176,75,.16), transparent 60%),
+      radial-gradient(620px 460px at 92% 88%, rgba(127,163,209,.13), transparent 62%),
+      radial-gradient(560px 400px at 2% 98%, rgba(127,185,154,.15), transparent 60%);
+    background-attachment:fixed;
+    min-height:100vh;
+    line-height:1.75;
+    font-size:15px;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px;min-height:100vh;display:flex;flex-direction:column}
+  main{flex:1 0 auto;padding-bottom:8px}
+
+  /* ---------- 顶栏 ---------- */
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 2px 10px}
+  .brand{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--muted);letter-spacing:.4px}
+  .brand .dots{display:flex;gap:3px}
+  .brand .dots i{width:7px;height:7px;border-radius:50%;display:block}
+  .adminbtn{
+    border:1px solid var(--line-2);background:rgba(255,255,255,.7);color:var(--ink-2);
+    font-size:12.5px;padding:7px 13px;border-radius:999px;cursor:pointer;font-family:inherit;
+    transition:.2s;backdrop-filter:blur(6px);white-space:nowrap;
+  }
+  .adminbtn:hover{background:#fff;border-color:#CFC3B3;color:var(--ink)}
+
+  /* ---------- 通用 ---------- */
+  .screen{display:none}
+  .screen.on{display:block;animation:fadeUp .42s cubic-bezier(.22,.7,.3,1) both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-s);padding:22px}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-family:inherit;font-size:15px;font-weight:600;line-height:1;
+    padding:14px 22px;border-radius:14px;border:1.5px solid transparent;cursor:pointer;transition:.18s;
+  }
+  .btn.primary{background:var(--primary);color:#fff;box-shadow:0 8px 20px rgba(79,74,68,.20)}
+  .btn.primary:hover{background:var(--primary-d);transform:translateY(-1px);box-shadow:0 10px 24px rgba(79,74,68,.26)}
+  .btn.primary:active{transform:translateY(0)}
+  .btn.ghost{background:#fff;border-color:var(--line-2);color:var(--ink-2)}
+  .btn.ghost:hover{border-color:#CFC3B3;color:var(--ink);background:#FDFBF8}
+  .btn:disabled{opacity:.42;cursor:not-allowed;transform:none!important;box-shadow:none}
+  .btn.block{width:100%}
+  .linkbtn{background:none;border:none;color:var(--muted);font-family:inherit;font-size:13.5px;cursor:pointer;padding:6px 2px}
+  .linkbtn:hover{color:var(--ink)}
+
+  /* ---------- 首页 ---------- */
+  .hero-home{padding:26px 4px 6px;text-align:center}
+  .hero-home .en{font-size:11px;letter-spacing:3px;color:#B9AE9F;text-transform:uppercase;margin-bottom:14px}
+  .hero-home h1{font-size:32px;line-height:1.3;margin:0 0 12px;font-weight:800;letter-spacing:1px}
+  .hero-home h1 em{
+    font-style:normal;white-space:nowrap;
+    background-image:linear-gradient(90deg,rgba(232,131,122,.34),rgba(227,176,75,.34),rgba(127,185,154,.34),rgba(127,163,209,.34));
+    background-repeat:no-repeat;
+    background-size:100% 7px;
+    background-position:0 100%;
+    padding:0 3px;border-radius:2px;
+  }
+  .hero-home .company{font-size:13px;color:var(--muted);letter-spacing:.3px}
+  .hero-home .intro{font-size:14.5px;color:var(--ink-2);max-width:520px;margin:16px auto 0;line-height:1.9}
+  .swatches{display:flex;justify-content:center;gap:14px;margin:26px 0 4px}
+  .sw{width:52px;text-align:center}
+  .sw i{display:block;width:52px;height:52px;border-radius:18px;box-shadow:0 8px 18px rgba(158,138,116,.18);position:relative}
+  .sw i::after{content:"";position:absolute;inset:0;border-radius:18px;border:1px solid rgba(255,255,255,.5)}
+  .sw span{display:block;font-size:11px;color:var(--muted);margin-top:8px;white-space:nowrap;letter-spacing:.2px}
+  .sw:nth-child(1) i{background:linear-gradient(145deg,#F09A92,#E2756B)}
+  .sw:nth-child(2) i{background:linear-gradient(145deg,#EFC36B,#DDA53C)}
+  .sw:nth-child(3) i{background:linear-gradient(145deg,#90B5DC,#6C93C6)}
+  .sw:nth-child(4) i{background:linear-gradient(145deg,#96C9AC,#6BA987)}
+
+  .startcard{margin-top:26px;display:flex;flex-direction:column;gap:12px}
+  .field{display:flex;flex-direction:column;gap:7px}
+  .field label{font-size:12.5px;color:var(--muted);letter-spacing:.4px;padding-left:2px}
+  input[type=text],input[type=password]{
+    width:100%;font-family:inherit;font-size:15px;color:var(--ink);
+    padding:13px 15px;border-radius:13px;border:1.5px solid var(--line);
+    background:#FDFBF8;outline:none;transition:.18s;
+  }
+  input[type=text]:focus,input[type=password]:focus{border-color:#CFC3B3;background:#fff;box-shadow:0 0 0 4px rgba(207,195,179,.18)}
+  input::placeholder{color:#BFB5A8}
+
+  .keyzone{margin-top:18px;background:rgba(255,255,255,.62);border:1px dashed var(--line-2);border-radius:16px;padding:16px}
+  .keyzone .kh{font-size:12.5px;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+  .keyrow{display:flex;gap:9px}
+  .keyrow input{flex:1}
+  .keyrow .btn{padding:13px 16px;font-size:14px;flex:0 0 auto}
+
+  .tips{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:22px}
+  .tip{font-size:12px;color:var(--muted);background:rgba(255,255,255,.7);border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+
+  /* ---------- 答题 ---------- */
+  .qhead{padding:14px 2px 16px}
+  .qmeta{display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;color:var(--muted);margin-bottom:10px;letter-spacing:.4px}
+  .qmeta b{color:var(--ink);font-size:16px;font-weight:800;margin:0 3px}
+  .qbar{height:6px;border-radius:99px;background:#EDE6DC;overflow:hidden}
+  .qbar span{display:block;height:100%;width:0;border-radius:99px;transition:width .34s cubic-bezier(.3,.8,.3,1);
+    background:linear-gradient(90deg,var(--red),var(--yellow) 34%,var(--green) 68%,var(--blue))}
+  .qcard{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:24px 22px 20px}
+  .qtext{font-size:17.5px;font-weight:700;line-height:1.65;margin-bottom:18px;letter-spacing:.2px}
+  .qtext .qi{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--primary);
+    border-radius:8px;padding:2px 8px;margin-right:9px;vertical-align:2px;letter-spacing:1px}
+  .opts{display:flex;flex-direction:column;gap:10px}
+  .opt{
+    display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;
+    background:#FDFBF8;border:1.5px solid var(--line);border-radius:14px;
+    padding:13px 15px;font-family:inherit;font-size:14.5px;line-height:1.7;color:#4E4740;
+    cursor:pointer;transition:.16s;
+  }
+  .opt:hover{border-color:#D9CDBD;background:#fff;transform:translateY(-1px);box-shadow:0 6px 16px rgba(158,138,116,.09)}
+  .opt .k{flex:0 0 25px;height:25px;border-radius:50%;background:#F1EAE0;color:#8E8375;
+    display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:800;transition:.16s;margin-top:1px}
+  .opt.sel{border-color:#9E9081;background:#FBF6EE;box-shadow:0 8px 18px rgba(158,138,116,.14)}
+  .opt.sel .k{background:var(--primary);color:#fff}
+  .navrow{display:flex;gap:10px;margin-top:18px}
+  .navrow .btn{flex:1}
+  .kbdhint{text-align:center;font-size:11.5px;color:#B9AE9F;margin-top:14px}
+
+  /* ---------- 结果 ---------- */
+  .res-top{display:flex;justify-content:space-between;align-items:center;padding:12px 2px 14px;gap:10px}
+  .res-time{font-size:12px;color:var(--muted)}
+  .hero{border-radius:22px;padding:24px 22px;position:relative;overflow:hidden;
+    border:1px solid var(--line);box-shadow:var(--shadow);
+    background:linear-gradient(135deg,var(--soft) 0%,#FFFFFF 72%)}
+  .hero::after{content:"";position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;
+    background:var(--accent);opacity:.13;filter:blur(2px)}
+  .hero .hk{font-size:11.5px;letter-spacing:3px;color:var(--muted);margin-bottom:8px}
+  .hero .ht{font-size:24px;font-weight:800;line-height:1.35;display:flex;align-items:center;gap:10px}
+  .hero .ht i{width:12px;height:12px;border-radius:50%;background:var(--accent);flex:0 0 auto;box-shadow:0 0 0 4px rgba(255,255,255,.8)}
+  .hero .hsub{font-size:13px;color:var(--ink-2);margin-top:10px;line-height:1.8}
+  .tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}
+
+  /* 报告密码卡片 */
+  .keycard{margin-top:12px;background:#FFFDF7;border:1px dashed #E0CFA8;border-radius:16px;
+    padding:13px 16px;display:flex;align-items:center;gap:12px}
+  .keycard .kcol{flex:1;min-width:0}
+  .keycard .klabel{font-size:11.5px;color:#A08A55;letter-spacing:1px}
+  .keycard .kval{font-size:24px;font-weight:800;letter-spacing:7px;color:#8A6D1F;
+    font-family:ui-monospace,Menlo,Consolas,monospace;margin:1px 0 2px}
+  .keycard .khint{font-size:11px;color:#B49A62}
+  .keycard .mini{flex:0 0 auto}
+  .tag{font-size:12px;padding:4px 11px;border-radius:999px;background:rgba(255,255,255,.85);
+    border:1px solid rgba(255,255,255,.9);color:var(--ink-2);box-shadow:0 2px 8px rgba(158,138,116,.08)}
+
+  .card + .card,.hero + .card{margin-top:16px}
+  .h3{display:flex;align-items:center;gap:9px;font-size:15.5px;font-weight:800;margin:0 0 14px;letter-spacing:.3px}
+  .h3::before{content:"";width:4px;height:15px;border-radius:99px;background:var(--accent,#C9BDAC)}
+  .chartbox{position:relative}
+  #chart{display:block;width:100%;height:230px}
+  .score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:14px}
+  .sc{background:#FDFBF8;border:1px solid var(--line);border-radius:13px;padding:11px 6px;text-align:center}
+  .sc .n{font-size:11.5px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:5px}
+  .sc .n i{width:7px;height:7px;border-radius:50%;display:block}
+  .sc .v{font-size:20px;font-weight:800;line-height:1.3;margin-top:2px}
+  .sc .v small{font-size:11px;font-weight:600;color:var(--muted);margin-left:1px}
+  .sc.top{border-color:#DCD0C0;background:#FBF6EE}
+
+  .body p{margin:0 0 12px;font-size:14.5px;color:#4E4740;line-height:1.95;text-align:justify}
+  .body p:last-child{margin-bottom:0}
+  ul.plist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+  ul.plist li{position:relative;padding-left:22px;font-size:14.5px;color:#4E4740;line-height:1.8}
+  ul.plist li::before{content:"";position:absolute;left:4px;top:10px;width:7px;height:7px;border-radius:2px;
+    background:var(--accent,#C9BDAC);opacity:.85;transform:rotate(45deg)}
+
+  .actions{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+  .actions .row{display:flex;gap:10px}
+  .actions .row .btn{flex:1}
+  .actions .minor{display:flex;justify-content:center;gap:18px;margin-top:2px}
+
+  /* ---------- 管理员 ---------- */
+  .adm-head{display:flex;align-items:center;justify-content:space-between;padding:16px 2px 12px;gap:10px}
+  .adm-title{font-size:19px;font-weight:800;letter-spacing:.3px}
+  .adm-title small{font-size:12px;color:var(--muted);font-weight:500;margin-left:8px}
+  .adm-tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .adm-tools .btn{padding:9px 14px;font-size:13px;border-radius:11px}
+  .rlist{display:flex;flex-direction:column;gap:10px}
+  .row-item{background:#fff;border:1px solid var(--line);border-radius:15px;padding:13px 14px;
+    box-shadow:var(--shadow-s);display:flex;align-items:center;gap:12px}
+  .avat{flex:0 0 38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    font-size:15px;font-weight:800;color:#fff;letter-spacing:0}
+  .rmain{flex:1;min-width:0}
+  .rname{font-size:14.5px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .rname .badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;line-height:1.6}
+  .rsub{font-size:11.5px;color:var(--muted);margin-top:2px;letter-spacing:.2px}
+  .rkey{margin-top:6px;font-size:12px;color:#8A6D1F;background:#FFFDF7;border:1px dashed #E0CFA8;
+    border-radius:10px;padding:5px 10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .rkey b{font-family:ui-monospace,Menlo,Consolas,monospace;letter-spacing:2.5px;font-size:14px}
+  .rkey .kcopy{padding:3px 9px;font-size:11px}
+  .racts{display:flex;gap:6px;flex-wrap:wrap}
+  .mini{border:1px solid var(--line-2);background:#fff;color:var(--ink-2);font-family:inherit;
+    font-size:11.5px;padding:6px 10px;border-radius:9px;cursor:pointer;transition:.16s;white-space:nowrap}
+  .mini:hover{background:#FBF6EE;border-color:#CFC3B3;color:var(--ink)}
+  .mini.danger:hover{background:#FDEEEC;border-color:#EFC3BE;color:#C2695F}
+  .empty{text-align:center;padding:56px 20px;color:var(--muted)}
+  .empty .big{font-size:34px;margin-bottom:10px;opacity:.5}
+  .empty p{font-size:13.5px;margin:0}
+
+  /* ---------- 弹窗 / 提示 ---------- */
+  .mask{position:fixed;inset:0;background:rgba(58,52,46,.34);backdrop-filter:blur(4px);
+    display:none;align-items:center;justify-content:center;padding:20px;z-index:60}
+  .mask.on{display:flex;animation:fade .2s ease both}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .modal{background:#fff;border-radius:20px;padding:24px 22px;width:100%;max-width:380px;
+    box-shadow:0 24px 60px rgba(58,52,46,.24);animation:pop .26s cubic-bezier(.2,.9,.3,1.1) both}
+  @keyframes pop{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+  .modal h4{margin:0 0 6px;font-size:17px;font-weight:800}
+  .modal p.sub{margin:0 0 16px;font-size:13px;color:var(--muted);line-height:1.7}
+  .modal .mrow{display:flex;gap:10px;margin-top:16px}
+  .modal .mrow .btn{flex:1;padding:12px 16px;font-size:14px}
+  .shake{animation:shake .38s}
+  @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+
+  .toast{position:fixed;left:50%;top:24px;transform:translate(-50%,-16px);z-index:90;
+    background:rgba(58,52,46,.94);color:#fff;font-size:13.5px;padding:11px 18px;border-radius:12px;
+    box-shadow:0 12px 30px rgba(58,52,46,.28);opacity:0;pointer-events:none;transition:.26s;max-width:86vw;text-align:center}
+  .toast.on{opacity:1;transform:translate(-50%,0)}
+
+  /* ---------- 页脚 ---------- */
+  footer{flex:0 0 auto;padding:32px 0 26px;text-align:center}
+  footer .fline{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;color:#A79C8E;
+    background:rgba(255,255,255,.66);border:1px solid var(--line);padding:7px 14px;border-radius:999px;line-height:1.6}
+  footer .fline svg{flex:0 0 auto;opacity:.7}
+  footer .copy{font-size:11px;color:#C0B6A8;margin-top:10px;letter-spacing:.6px}
+
+  /* ---------- 打印（PDF） ---------- */
+  #printRoot{display:none}
+
+  @media print{
+    @page{size:A4;margin:14mm 13mm}
+    html,body{background:#fff!important;background-image:none!important;min-height:0!important;height:auto!important}
+    .wrap,.toast,.mask{display:none!important}
+    #printRoot{
+      display:block!important;
+      -webkit-print-color-adjust:exact;
+      print-color-adjust:exact;
+    }
+    #printRoot *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+
+  @media (max-width:520px){
+    body{font-size:14.5px}
+    .wrap{padding:0 14px}
+    .hero-home{padding:16px 2px 4px}
+    .hero-home h1{font-size:26px}
+    .hero-home .intro{font-size:13.5px;margin-top:14px}
+    .sw{width:44px}
+    .sw i{width:44px;height:44px;border-radius:15px}
+    .qcard{padding:18px 15px 16px;border-radius:17px}
+    .qtext{font-size:16px;margin-bottom:14px}
+    .opt{padding:12px 13px;font-size:14px;gap:10px}
+    .hero{padding:20px 17px}
+    .hero .ht{font-size:20px}
+    .card{padding:18px 16px;border-radius:16px}
+    #chart{height:200px}
+    .score-grid{gap:7px}
+    .sc .v{font-size:17px}
+    .row-item{flex-wrap:wrap}
+    .racts{width:100%;justify-content:flex-end;margin-top:2px}
+    .actions .row{flex-direction:column}
+    .keyrow{flex-wrap:wrap}
+    .keyrow .btn{width:100%}
+  }
+
+  /* ============ 新版报告样式（含相处与职场建议） ============ */
+  .hero2{position:relative;overflow:hidden;border-radius:22px;padding:24px 22px;display:flex;align-items:center;gap:16px;
+    background:var(--hc-soft,#F3EDE4);border:1px solid rgba(255,255,255,.65);box-shadow:var(--shadow-s)}
+  .hero2::after{content:"";position:absolute;right:-46px;top:-46px;width:150px;height:150px;border-radius:50%;background:var(--hc);opacity:.14}
+  .hero2 .mark{width:54px;height:54px;border-radius:16px;background:var(--hc);color:#fff;display:flex;align-items:center;justify-content:center;
+    font-size:24px;font-weight:800;flex:0 0 auto;box-shadow:0 8px 18px rgba(93,78,60,.16);position:relative;z-index:1}
+  .hero2 .hmain{min-width:0;position:relative;z-index:1}
+  .hero-label{font-size:11.5px;letter-spacing:2px;color:var(--hc-deep,#6A625A);font-weight:700}
+  .hero-title{font-size:22px;font-weight:800;margin-top:3px;letter-spacing:.5px}
+  .hero-desc{font-size:12.5px;color:var(--ink-2);margin-top:5px;line-height:1.65}
+  .hero-score{margin-left:auto;text-align:right;flex:0 0 auto;position:relative;z-index:1}
+  .hero-score b{display:block;font-size:32px;font-weight:800;line-height:1;color:var(--hc-deep,#6A625A)}
+  .hero-score span{font-size:11.5px;color:var(--muted)}
+  .card h3{display:flex;align-items:center;gap:9px;font-size:15.5px;font-weight:800;margin:0 0 14px;letter-spacing:.3px}
+  .card h3::before{content:"";width:5px;height:15px;border-radius:3px;background:var(--hc,#C9BDAC)}
+  .card h3 .sub{margin-left:auto;font-size:11px;color:var(--muted);font-weight:400}
+  .score-list{display:flex;flex-direction:column;gap:11px;margin-top:16px}
+  .score-item{display:flex;align-items:center;gap:10px}
+  .score-item .nm{flex:0 0 52px;display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink);font-weight:600}
+  .score-item .nm i{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+  .score-item .track{flex:1;height:9px;border-radius:6px;background:#F3EDE4;overflow:hidden}
+  .score-item .fill{height:100%;border-radius:6px;width:0;transition:width .9s cubic-bezier(.22,.7,.3,1)}
+  .score-item .v{flex:0 0 30px;text-align:right;font-weight:800;font-size:14px}
+  .score-item .vl{flex:0 0 60px;text-align:right;font-size:11px;color:var(--muted)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .chips span{font-size:12px;padding:5px 12px;border-radius:999px;background:var(--hc-soft,#F3EDE4);color:var(--hc-deep,#6A625A);font-weight:600}
+  .body2{font-size:13.5px;color:#4E4740;line-height:1.85}
+  .body2 p{margin:0 0 10px;text-align:justify}
+  .body2 p:last-child{margin-bottom:0}
+  .body2 b{color:var(--ink)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .grid2 .card{margin-top:0}
+  .ulist{list-style:none;margin:0;padding:0}
+  .ulist li{position:relative;padding-left:18px;margin-bottom:9px;font-size:13px;color:#4E4740;line-height:1.6}
+  .ulist li:last-child{margin-bottom:0}
+  .ulist li::before{content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;border-radius:50%;background:#7FB99A}
+  .ulist.warn li::before{background:#D9A13B}
+  .tieline{margin-top:12px;background:#FFFDF7;border:1px dashed #E0CFA8;border-radius:14px;padding:10px 14px;
+    font-size:12.5px;color:#8A6D1F;line-height:1.7}
+  @media (max-width:560px){
+    .grid2{grid-template-columns:1fr}
+    .score-item .vl{flex-basis:52px}
+    .hero2{flex-wrap:wrap}
+    .hero-score{width:100%;text-align:left;display:flex;align-items:baseline;gap:6px;margin-left:70px}
+    .hero-score b{font-size:24px}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand">
+      <span class="dots">
+        <i style="background:var(--red)"></i><i style="background:var(--yellow)"></i>
+        <i style="background:var(--green)"></i><i style="background:var(--blue)"></i>
+      </span>
+      性格色彩测试
+    </div>
+    <button class="adminbtn" id="btnAdmin">管理员查看</button>
+  </div>
+
+  <main>
+    <!-- ============ 首页 ============ -->
+    <section class="screen on" id="screen-home">
+      <div class="hero-home">
+        <div class="en">COLOR PERSONALITY TEST</div>
+        <h1>看见你的<em>性格色彩</em></h1>
+        <div class="company">XXX公司 · 色彩性格测试</div>
+        <p class="intro">
+          30 道题，约 5 分钟。四种色彩，没有好坏，只有不同——<br>
+          找到自己的天生优势，也看见可以成长的地方。
+        </p>
+        <div class="swatches">
+          <div class="sw"><i></i><span>红 · 热情</span></div>
+          <div class="sw"><i></i><span>黄 · 目标</span></div>
+          <div class="sw"><i></i><span>蓝 · 严谨</span></div>
+          <div class="sw"><i></i><span>绿 · 平和</span></div>
+        </div>
+      </div>
+
+      <div class="card startcard">
+        <div class="field">
+          <label for="inpName">请输入你的姓名（用于生成专属报告）</label>
+          <input type="text" id="inpName" maxlength="20" placeholder="例如：李小澳" autocomplete="off">
+        </div>
+        <button class="btn primary block" id="btnStart">开始测试</button>
+        <div class="tips">
+          <span class="tip">共 30 题</span>
+          <span class="tip">约 5 分钟</span>
+          <span class="tip">完全离线</span>
+        </div>
+      </div>
+
+      <div class="keyzone">
+        <div class="kh">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          输入管理员密码查看全部记录，或输入报告密码查看单份报告
+        </div>
+        <div class="keyrow">
+          <input type="text" id="inpKey" placeholder="管理员密码 / 报告密码" autocomplete="off" spellcheck="false" style="text-transform:uppercase">
+          <button class="btn ghost" id="btnKeyGo">查询</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 答题 ============ -->
+    <section class="screen" id="screen-quiz">
+      <div class="qhead">
+        <div class="qmeta">
+          <div>第 <b id="qnow">1</b> / 30 题</div>
+          <div id="qpct">0%</div>
+        </div>
+        <div class="qbar"><span id="qfill"></span></div>
+      </div>
+      <div class="qcard">
+        <div class="qtext" id="qtext"></div>
+        <div class="opts" id="opts"></div>
+      </div>
+      <div class="navrow">
+        <button class="btn ghost" id="btnPrev">上一题</button>
+        <button class="btn primary" id="btnNext">下一题</button>
+      </div>
+      <div class="kbdhint">选择最符合你真实感受的一项，凭第一直觉作答即可</div>
+    </section>
+
+    <!-- ============ 结果 ============ -->
+    <section class="screen" id="screen-result"></section>
+
+    <!-- ============ 管理员列表 ============ -->
+    <section class="screen" id="screen-admin">
+      <div class="adm-head">
+        <div>
+          <div class="adm-title">历史记录 <small id="admCount"></small></div>
+        </div>
+        <button class="linkbtn" id="btnAdmBack">← 返回首页</button>
+      </div>
+      <div class="adm-tools">
+        <button class="btn ghost" id="btnPwd">修改管理密码</button>
+        <button class="btn ghost" id="btnExportAll">批量导出全部</button>
+        <button class="btn ghost" id="btnClearAll">清空记录</button>
+      </div>
+      <div class="rlist" id="rlist"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="fline">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3l7 3v6c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/></svg>
+      <span id="srvNote">本工具本地离线使用，所有数据仅保存在当前设备，不会上传</span>
+    </div>
+    <div class="copy">XXX公司 · 色彩性格测试</div>
+  </footer>
+</div>
+
+<div class="mask" id="mask"><div class="modal" id="modal"></div></div>
+<div class="toast" id="toast"></div>
+<div id="printRoot"></div>
+
+<script>
+/* =========================================================
+   性格色彩测试 · 纯本地单文件版
+   无任何外部资源、无网络请求
+   ========================================================= */
+
+/* ---------------- 题库（30 题） ---------------- */
+const QUESTIONS = [
+  {q:"关于人生观，我的内心其实是：",o:[
+    "希望能有各种各样的人生体验，所以想法极其多样化。",
+    "在合理的基础上，谨慎确定目标，一旦确定会坚定不移地去做。",
+    "更加在乎取得一切有可能的成就。",
+    "毫不喜欢风险，喜欢享受稳定或现状。"]},
+  {q:"如果爬山旅游，大多数状况下，在下山回来的路线我最可能：",o:[
+    "好玩有趣，所以宁愿新路线回巢。",
+    "安全稳妥，所以宁愿原路线返回。",
+    "挑战困难，所以宁愿新路线回巢。",
+    "方便省心，所以宁愿原路线返回。"]},
+  {q:"说话时，我更看重：",o:[
+    "感觉效果。有时可能会略显得夸张。",
+    "描述精确。有时可能略过冗长。",
+    "达成结果。有时可能过于直接让别人不高兴。",
+    "人际感受。有时可能会不愿讲真话。"]},
+  {q:"在大多数时候，我的内心更想要：",o:[
+    "刺激。经常冒出新点子，想做就做，喜欢与众不同。",
+    "安全。头脑冷静，不易冲动。",
+    "挑战。生命中竞赛随处可见，有强烈的“赢”的欲望。",
+    "稳定。满足自己所拥有的，很少羡慕别人。"]},
+  {q:"我认为自己在情感上的基本特点是：",o:[
+    "情绪多变，经常波动。",
+    "外表自我抑制强，但内心感情起伏大，一旦挫伤难以平复。",
+    "感情不拖泥带水，只是一旦不稳定，容易发怒。",
+    "天性情绪四平八稳。"]},
+  {q:"我认为自己除了工作外，在控制欲上面，我：",o:[
+    "没有控制欲，只有感染带动他人的欲望，但自控能力不算强。",
+    "用规则来保持我对自己的控制和对他人的要求。",
+    "内心是有控制欲和希望别人服从我的。",
+    "没兴趣影响别人，也不愿别人来控制我。"]},
+  {q:"当与情人交往时，我最希望对方：",o:[
+    "经常赞美我，让我享受开心、被关怀且又有一定自由。",
+    "可随时默契到我内心所想，对我的需求极其敏感。",
+    "得到对方的认可，我是正确的并且我对其是有价值的。",
+    "尊重并且相处静谧的。"]},
+  {q:"在人际交往时，我：",o:[
+    "本质上还是认为与人交往比长时间独处是有乐趣的。",
+    "非常审慎缓慢地进入，常会被人认为容易有距离感。",
+    "希望在人际关系中占据主导地位。",
+    "顺其自然，不温不火，相对被动。"]},
+  {q:"我做事情，经常：",o:[
+    "缺少长性，不喜欢长期做相同无变化的事情。",
+    "缺少果断，期待最好的结果但总能先看到事情的不利面。",
+    "缺少耐性，有时行事过于草率。",
+    "缺少紧迫，行动迟缓，难下决心。"]},
+  {q:"通常我完成任务的方式是：",o:[
+    "常赶在最后期限前完成，是临时抱佛脚的高手。",
+    "自己有严格规定的程序，精确地做，不要麻烦别人。",
+    "先做，快速做。",
+    "使用传统的方法按部就班，需要时从他人处得到帮忙。"]},
+  {q:"如果有人深深惹恼我时，我：",o:[
+    "内心感到受伤，认为没有原谅的可能，可最终很多时候还是会原谅对方。",
+    "深深感到愤怒，如此之深怎可忘记？我会牢记，同时未来完全避开那个家伙。",
+    "会火冒三丈，并且内心期望有机会狠狠地回应。",
+    "避免摊牌，因为还不到那个地步或者自己再去找新朋友。"]},
+  {q:"在人际关系中，我最在意的是：",o:[
+    "得到他人的赞美和欢迎。",
+    "得到他人的理解和欣赏。",
+    "得到他人的感激和尊敬。",
+    "得到他人的尊重和接纳。"]},
+  {q:"在工作上，我表现出来更多的是：",o:[
+    "充满热忱，有很多想法且很有灵性。",
+    "心思细腻，完美精确，而且为人可靠。",
+    "坚强而直截了当，而且有推动力。",
+    "有耐心，适应性强而且善于协调。"]},
+  {q:"我过往的老师最有可能对我的评价是：",o:[
+    "情绪起伏大，善于表达和抒发情感。",
+    "严格保护自己的私密，有时会显得孤独或是不合群。",
+    "动作敏捷又独立，并且喜欢自己做事情。",
+    "看起来安稳轻松，反应度偏低，比较温和。"]},
+  {q:"朋友对我的评价最有可能的是：",o:[
+    "喜欢对朋友述说，也有感染别人的力量。",
+    "能够提出很多周全的问题，而且需要许多精细的解说。",
+    "愿意直言想法，有时会直率而犀利地谈论不喜欢的人、事、物。",
+    "通常与他人一起是倾听者。"]},
+  {q:"在帮助他人的问题上，我内心的想法是：",o:[
+    "别人来找我，不太会拒绝，会尽力帮他。",
+    "值得帮助的人应该帮助。",
+    "很少承诺要帮，但我若承诺必兑现。",
+    "虽无英雄打虎胆，常有自告奋勇心。"]},
+  {q:"面对他人对自己的赞美，我内心：",o:[
+    "没有也无所谓，特别欣喜那也不至于。",
+    "我不需无关痛痒的赞美，宁可对方欣赏我的能力。",
+    "思考对方的真实性或立即回避众人的关注。",
+    "赞美多多益善，总是令人愉悦的。"]},
+  {q:"面对生活，我更像：",o:[
+    "随和派——外面的世界我无关，我觉得自己这样还不错。",
+    "行动派——我不进步，别人就会进步，所以我必须不停地前进。",
+    "分析派——在问题未发生之前，就该想好所有的可能。",
+    "无忧派——每天的生活开心快乐最重要。"]},
+  {q:"对于规则，我内心的态度是：",o:[
+    "不愿违反规则，但可能因为松散而无法达到规则的要求。",
+    "打破规则，希望由自己来制定规则而不是遵守规则。",
+    "严格遵守规则，并且竭尽全力做到规则内的最好。",
+    "不喜被规则束缚，不按规则出牌会觉得新鲜有趣。"]},
+  {q:"我认为自己在行为上的基本特点是：",o:[
+    "慢条斯理，办事按部就班，能与周围的人协调一致。",
+    "目标明确，集中精力为实现目标而努力，善于抓住核心要点。",
+    "慎重小心，为做好预防及善后，会不惜一切而尽心操劳。",
+    "丰富跃动，不喜欢制度和约束，倾向于快速反应。"]},
+  {q:"当我做错事时，我倾向于：",o:[
+    "害怕但表面不露声色。",
+    "不承认而且辩驳，但内心其实已经明白。",
+    "愧疚和痛苦，容易停留在自我压抑中。",
+    "难为情，希望逃避别人的批评。"]},
+  {q:"当结束一段刻骨铭心的感情时，我会：",o:[
+    "很难受，可日子总要过，时间会冲淡一切的。",
+    "虽然觉得受伤，但一旦下定决心，就会努力把过去的影子摔掉。",
+    "深陷在悲伤的情绪中，在相当长的时期里难以自拔，也不愿再接受新的人。",
+    "痛不欲生，需要找朋友倾诉或者找到渠道发泄，寻求化解之道。"]},
+  {q:"面对他人的倾诉，我回顾自己大多时候本能上倾向于：",o:[
+    "能够认同并理解对方当时的感受。",
+    "快速做出一些定论或判断。",
+    "给予一些分析或推理，帮助对方理顺思路。",
+    "可能会随着他的情绪起伏而起伏，也会发表一些评论或意见。"]},
+  {q:"我在以下哪个群体中交流较感满足？",o:[
+    "舒服轻松的氛围中，心平气和地最终达成一致结论。",
+    "彼此展开充分激烈的辩论并有收获。",
+    "有意义地详细讨论事情的好坏和影响。",
+    "很开心并且随意无拘束地闲谈。"]},
+  {q:"在内心的真实想法里，我觉得工作：",o:[
+    "不必有太大压力，可以让我做我熟悉的工作就很不错。",
+    "应该以最快的速度完成，且争取去完成更多的任务。",
+    "要么不做，要做就做到最好。",
+    "如果能将好玩融合其中那就太棒了，不过如果不喜欢的工作实在没劲。"]},
+  {q:"如果我是领导，我内心更希望在部属心目中，我是：",o:[
+    "可以亲近的和善于为他们着想的。",
+    "有很强的能力和富有领导力的。",
+    "公平公正且足以信赖的。",
+    "被他们喜欢并且觉得富有感召力的。"]},
+  {q:"我对认同的需求是：",o:[
+    "无论别人是否认同，生活都是要继续的。",
+    "精英群体的认同最重要。",
+    "只要我在乎的那些人认同我就足够了。",
+    "所见之人无论贵贱都对我认同那有多好。"]},
+  {q:"当我还是个孩子的时候，我：",o:[
+    "不太会积极尝试新事物，通常比较喜欢旧有的和熟悉的。",
+    "是孩子王，大家经常听我的决定。",
+    "害羞见生人，有意识地回避。",
+    "调皮可爱，乐观而又热心。"]},
+  {q:"如果我是父母，我也许是：",o:[
+    "容易说服或者宽容的。",
+    "比较严厉、性急及说一不二的。",
+    "坚持自己的想法和比较挑剔的。",
+    "积极参与到子女中一起玩，被小朋友们热烈欢迎的。"]},
+  {q:"以下有四组格言，哪组里整体上最符合我的感觉？",o:[
+    "最深刻的真理是最简单和最平凡的。要在人世间取得成功必须大智若愚。好脾气是一个人在社交中所能穿着的最佳服饰。知足是人生在世最大的幸福。",
+    "走自己的路，让人家去说吧。虽然世界充满了苦难，但苦难总是能战胜的。有所成就是人生唯一的真正的乐趣。对我而言，解决一个问题和享受一个假期一样好。",
+    "一个不注意小事情的人，永远不会成功大事业。理性是灵魂中最高贵的因素。切忌浮夸铺张，与其说得过分，不如说得不全。谨慎比大胆要有力量得多。",
+    "与其在死的时候握着一大把钱，还不如活得丰富多彩。什么时候都要随心所欲。幸福在于对生命的喜悦，而非只是结果。开心一天是一天。"]}
+];
+
+const LETTERS = ["A","B","C","D"];
+
+/* ---------------- 四色配置 ---------------- */
+const DIMS = [
+  {key:"red",    name:"红色", c:"#E8837A", soft:"#FDEEEC", deep:"#C0635A", title:"热情表达型", adj:"热情与感染力"},
+  {key:"yellow", name:"黄色", c:"#E3B04B", soft:"#FCF3E1", deep:"#A9822A", title:"目标主导型", adj:"目标感与行动力"},
+  {key:"blue",   name:"蓝色", c:"#7FA3D1", soft:"#EAF1FA", deep:"#537AAE", title:"严谨完美型", adj:"严谨与思想深度"},
+  {key:"green",  name:"绿色", c:"#7FB99A", soft:"#E9F5EE", deep:"#528B70", title:"温和稳定型", adj:"温和与包容"}
+];
+const DIM_MAP = {red:DIMS[0], yellow:DIMS[1], blue:DIMS[2], green:DIMS[3]};
+
+/* ---------------- 性格文案（新版报告样式版） ---------------- */
+const PROFILES = {
+  red:{
+    label:"红色 · 热情表达型",
+    lead:"红色是四种性格中最像「太阳」的一种。你的能量来自体验、来自人、来自新鲜的可能性——比起「是否正确」，你更在意「是否快乐、是否有趣」。",
+    detail:[
+      "你的情绪是外放的：开心的时候全世界都知道，难过的时候也希望有人看见。这种坦率的表达让你很容易被喜欢，也很容易成为人群里制造气氛的那个人。",
+      "你天生抗拒被规则和重复捆住，脑海里总有新点子冒出来，行动往往先于计划。这让你在需要打开局面、需要创意和感染力的场合，具备别人很难替代的优势。",
+      "但热情来得快、去得也快。当新鲜感消退，你可能会突然失去兴趣，把没做完的事情留在原地。这不是能力问题，而是你对「无聊」的耐受度比较低。"
+    ],
+    keywords:["阳光乐观","感染力强","创意丰富","善于表达","行动迅速"],
+    strengths:[
+      "积极乐观，天生能给身边的人带来阳光和松弛感",
+      "感染力强，善于调动气氛、鼓舞他人",
+      "思维活跃，点子多，常有别人想不到的创意",
+      "表达力好，演讲、沟通、破冰都很擅长",
+      "乐于助人，有错就认，不记仇",
+      "适应变化快，面对陌生场合不怯场"
+    ],
+    improve:[
+      "虎头蛇尾，开头轰轰烈烈，收尾容易半途而废",
+      "情绪起伏大，容易在冲动时做决定",
+      "粗心、缺少条理，细节和计划常常被忽略",
+      "话说得太快，偶尔口无遮拦伤到人",
+      "容易过度承诺，最后难以全部兑现",
+      "不喜欢被约束，纪律性和持久性偏弱"
+    ],
+    work:"在职场中，你最适合需要「打开局面」的角色：市场、销售、活动策划、品牌传播、客户关系。你需要被看见、被肯定，阶段性的挑战比长期重复更能点燃你。给自己配一个擅长收尾的搭档，你的创意才真正落得了地。",
+    relation:"与人相处时，你的热情是最好的礼物，但也请留意对方的节奏——不是所有人都能承受高强度的表达。开玩笑之前停半秒，你会更受欢迎。"
+  },
+  yellow:{
+    label:"黄色 · 目标主导型",
+    lead:"黄色是天生的「目标动物」。你相信结果说明一切，喜欢赢，也享受在压力中把自己逼到更强的位置。",
+    detail:[
+      "你做事讲效率、重结果，讨厌拖泥带水。别人还在讨论的时候，你已经开始推进；别人遇到困难停下来，你会想新的办法绕过去。这种「一定要完成」的劲头，是你最大的资本。",
+      "你抗压能力强，越是有挑战的目标，越能激发你的斗志。你敢于拍板、敢于承担后果，天生适合站在需要做决定的位置上。",
+      "但目标感太强也有另一面：你可能显得强势、急躁，容易忽略别人的感受和节奏。有时候，「赢」并不是唯一重要的事。"
+    ],
+    keywords:["目标导向","果断直接","抗压坚韧","高效推进","敢于冒险"],
+    strengths:[
+      "目标感强，认准方向就全力推进",
+      "抗压能力强，逆境中反而更有斗志",
+      "决策果断，敢于拍板、敢于承担",
+      "执行力高，效率意识刻在骨子里",
+      "意志坚定，不轻言放弃",
+      "敢于冒险，能抓住别人犹豫的机会"
+    ],
+    improve:[
+      "强势急躁，容易忽略别人的感受",
+      "控制欲强，不喜欢被质疑和约束",
+      "缺乏耐心，对慢节奏的人容忍度低",
+      "好胜心过强，有时赢了道理输了关系",
+      "容易忽视过程和细节，只盯结果",
+      "不善表达柔软的情绪，显得冷硬"
+    ],
+    work:"你是天然的推进者和管理者，适合销售目标、项目攻坚、创业带队这类角色。试着把「关心人」也当成一项必须完成的目标，你的领导力会从「让人服」升级为「让人跟」。",
+    relation:"在亲密关系里，你的爱常常藏在「我帮你解决问题」当中。偶尔放下建议，只是听一听、陪一陪，对方会感受到完全不同的温度。"
+  },
+  blue:{
+    label:"蓝色 · 严谨完美型",
+    lead:"蓝色是四种性格中最「向内」的一种。你想得多、感受得深，凡事希望想清楚再行动，也希望对得起自己的标准。",
+    detail:[
+      "你对细节和精确有天然的敏感，做事讲究程序与章法。交到你手上的事，别人通常很放心——因为你不会允许它「差不多就行」。",
+      "你的情感深而不外露。你在意承诺，也在意别人是否同样认真；一旦被辜负，伤口会留得很久。",
+      "高标准是你的铠甲，也是你的负担。你常常在「还没准备好」里错过时机，也容易因为一点瑕疵就否定全部努力。"
+    ],
+    keywords:["思维深邃","计划周详","责任心强","注重细节","忠诚可靠"],
+    strengths:[
+      "思维深邃，独立思考，不盲目从众",
+      "计划周详，条理清晰，做事有章法",
+      "责任心与忠诚度高，是可以托付的人",
+      "注重细节，追求品质，出品稳定",
+      "高度自律，守原则，重承诺",
+      "善于分析，能进行有深度的沟通"
+    ],
+    improve:[
+      "完美主义，容易过度准备、迟迟不开始",
+      "想得多、动得慢，常错过时机",
+      "敏感、容易受伤，内耗较多",
+      "挑剔，不容易妥协",
+      "表达偏少，别人很难真正读懂你",
+      "容易悲观，习惯把风险放大"
+    ],
+    work:"你适合需要专业深度与准确度的岗位：财务、研发、设计、品质管理、数据分析、法务。给自己设一条「完成的截止线」，而不是「完美的截止线」，你的产出会更有影响力。",
+    relation:"你值得被信任，也需要被理解。试着把心里的在意说出来——你不说，别人真的猜不到。"
+  },
+  green:{
+    label:"绿色 · 温和稳定型",
+    lead:"绿色是四种性格中最「稳」的一种。你不争不抢，讲究和气与分寸，和你在一起的人往往觉得放松、没有压力。",
+    detail:[
+      "你情绪稳定，很少大起大落。别人着急上火的时候，你还能心平气和地把事情往中间拉一拉，这是很多团队最缺的那种人。",
+      "你包容度高，能接纳各种不同的人，很少把自己的标准强加给别人。大家愿意跟你说心里话，因为你不会轻易评判。",
+      "但「稳」过头就是被动。机会不会永远等你，需求不说出来，别人真的看不见。适当地主动一点，你的好才会被更多人看见。"
+    ],
+    keywords:["平和稳定","包容度高","善于倾听","协调力强","让人放松"],
+    strengths:[
+      "情绪稳定，抗干扰能力强，很少失控",
+      "包容度高，能接纳各种不同的人",
+      "善于倾听，极具耐心，让人放松",
+      "协调能力强，是团队里天然的缓冲带",
+      "做事踏实，不浮躁，可长期信赖",
+      "知足、不计较，人际关系通常很好"
+    ],
+    improve:[
+      "偏被动，很少主动争取机会",
+      "不懂拒绝，常把压力留给自己",
+      "回避冲突，问题容易积压到最后",
+      "目标感偏弱，容易安于现状",
+      "决策偏慢，行动容易拖延",
+      "害怕改变，对新事物有抗拒"
+    ],
+    work:"你适合需要稳定输出与协作的岗位：行政、人事、客服、后勤、品质协调、团队支持。试着在每个阶段给自己定一个小目标，你的稳定性就会变成别人抢不走的核心竞争力。",
+    relation:"你的温柔很有力量，但请记得：表达需求和照顾别人并不冲突。学会说「不」，不会让你失去关系，反而会让关系更真实。"
+  }
+};
+
+/* ---------------- 状态与存储 ---------------- */
+const STORE_KEY = "fpa_color_test_records_v1";
+/* 管理密码说明：
+   · EXE 服务模式：密码保存在主机 config.json（首次运行自动生成，含默认值），
+     可在管理后台修改，网页 JS 中不保存任何密码；
+   · 离线双击打开：首次进入后台时自行设置密码，仅以 SHA-256 哈希存在本浏览器。 */
+const ADMIN_LS_KEY = "fpa_admin_pwd_sha256";
+const ADMIN_SESSION_KEY = "fpa_admin_session"; // 刷新后自动恢复登录（关闭标签页才失效）
+
+let answers = new Array(QUESTIONS.length).fill(null);
+let cur = 0;
+let curRecord = null;
+let viewerMode = "user"; // user | admin
+
+/* ---------------- 局域网服务模式 ----------------
+   由 EXE 提供服务时自动探测 /api/info：
+   SERVER 存在 => 记录同步保存到主机，管理员可查看所有设备的记录；
+   SERVER 为 null（直接双击打开 HTML）=> 保持原有纯本机行为。 */
+let SERVER = null;       // { mode:"server", url, port, records }
+let adminPwd = "";       // 管理员会话内缓存，用于调用主机接口
+let serverRecords = [];  // 主机记录缓存（管理员视图）
+let currentList = [];    // 当前管理员列表渲染所用的记录
+
+function applyServerMode(){
+  const note = $("#srvNote");
+  if(note) note.textContent = "已连接主机服务 · 所有扫码设备的测试记录都会同步保存到主机，管理员可集中查看";
+  syncPendingLocal(); // 把本机尚未同步的历史记录补传到主机
+}
+
+/* 探测局域网主机（3秒超时，失败1秒后自动重试一次） */
+function probeServer(timeout){
+  return new Promise(resolve => {
+    try{
+      const ctrl = new AbortController();
+      const timer = setTimeout(()=>{ try{ctrl.abort();}catch(e){} resolve(null); }, timeout || 3000);
+      fetch("api/info", {signal: ctrl.signal, cache: "no-store"})
+        .then(r => r.ok ? r.json() : null)
+        .then(info => { clearTimeout(timer); resolve(info && info.mode === "server" ? info : null); })
+        .catch(()=>{ clearTimeout(timer); resolve(null); });
+    }catch(e){ resolve(null); }
+  });
+}
+function detectServerNow(){
+  return probeServer(3000).then(info => {
+    if(info){ SERVER = info; applyServerMode(); return info; }
+    return new Promise(resolve => setTimeout(() => {
+      probeServer(3000).then(info2 => {
+        if(info2){ SERVER = info2; applyServerMode(); }
+        resolve(info2 || null);
+      });
+    }, 1000));
+  });
+}
+(function detectServer(){
+  detectServerNow().then(() => restoreAdminSession()).catch(() => restoreAdminSession());
+})();
+
+/* 把本机未同步过的记录补传到主机（已同步的用标记跳过，避免覆盖主机删除操作） */
+function syncPendingLocal(){
+  if(!SERVER) return;
+  let pending = [];
+  try{ pending = loadRecords().filter(r => !r.synced); }catch(e){ return; }
+  if(!pending.length) return;
+  pending.forEach(rec => {
+    fetch("api/records", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(rec)
+    }).then(r => {
+      if(!r.ok) throw new Error("status " + r.status);
+      return r.json();
+    }).then(resp => {
+      try{
+        const arr = loadRecords().map(r => {
+          if(r.id !== rec.id) return r;
+          const nr = Object.assign({}, r, {synced: true});
+          if(resp && resp.key) nr.key = resp.key;
+          return nr;
+        });
+        saveRecords(arr);
+      }catch(e){}
+    }).catch(()=>{ /* 主机暂不可达，下次再补传 */ });
+  });
+}
+
+/* ---------------- 报告密码 ----------------
+   每份报告对应一个 6 位密码（去掉易混淆字符）。
+   完成测试后展示给本人；管理员可在后台查看并复制发给本人；
+   本人在首页输入报告密码即可随时调出自己的详细报告。 */
+const KEY_CHARS = "23456789ABCDEFGHJKMNPQRSTUVWXYZ";
+function genKey(){
+  let s = "";
+  try{
+    const rnd = new Uint32Array(6);
+    crypto.getRandomValues(rnd);
+    for(let i = 0; i < 6; i++) s += KEY_CHARS[rnd[i] % KEY_CHARS.length];
+  }catch(e){
+    for(let i = 0; i < 6; i++) s += KEY_CHARS[Math.floor(Math.random() * KEY_CHARS.length)];
+  }
+  return s;
+}
+
+function copyText(t){
+  const done = () => toast("已复制");
+  try{
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t).then(done, () => fallbackCopy(t, done));
+      return;
+    }
+  }catch(e){}
+  fallbackCopy(t, done);
+}
+function fallbackCopy(t, done){
+  try{
+    const ta = document.createElement("textarea");
+    ta.value = t;
+    ta.style.cssText = "position:fixed;opacity:0;left:-999px";
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    ta.remove();
+    done();
+  }catch(e){ toast("复制失败，请手动抄写"); }
+}
+
+/* ---------------- 管理员密码校验 ---------------- */
+async function sha256Hex(t){
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+/* 服务模式 => 交由主机 config.json 校验；离线模式 => 与本浏览器保存的哈希比对 */
+async function tryAdminLogin(pwd){
+  if(SERVER){
+    try{
+      const r = await fetch("api/records", {cache: "no-store", headers: {"X-Admin-Pwd": pwd}});
+      return r.ok; // 200=正确；401=错误；其他状态同样视为失败
+    }catch(e){ return false; }
+  }
+  const h = localStorage.getItem(ADMIN_LS_KEY);
+  if(!h) return false;
+  try{ return (await sha256Hex(pwd)) === h; }catch(e){ return false; }
+}
+/* 登录状态记忆：刷新页面自动恢复，关闭标签页才失效 */
+function rememberAdmin(pwd){
+  try{ sessionStorage.setItem(ADMIN_SESSION_KEY, pwd); }catch(e){}
+}
+function forgetAdmin(){
+  try{ sessionStorage.removeItem(ADMIN_SESSION_KEY); }catch(e){}
+}
+function restoreAdminSession(){
+  let saved = "";
+  try{ saved = sessionStorage.getItem(ADMIN_SESSION_KEY) || ""; }catch(e){}
+  if(!saved) return;
+  tryAdminLogin(saved).then(ok => {
+    if(!ok){ forgetAdmin(); return; }
+    adminPwd = saved;
+    viewerMode = "admin";
+    renderAdminList();
+    show("screen-admin");
+    toast("已自动恢复管理员登录");
+  });
+}
+
+/* 首页查询入口：管理员密码 => 后台；报告密码 => 单份报告 */
+function handleHomeKey(){
+  const v = ($("#inpKey").value || "").trim();
+  const up = v.toUpperCase();
+  if(!v){ toast("请先输入密码"); $("#inpKey").focus(); return; }
+  tryAdminLogin(v).then(ok => {
+    if(ok){
+      adminPwd = v;
+      rememberAdmin(v);
+      $("#inpKey").value = "";
+      viewerMode = "admin";
+      renderAdminList();
+      show("screen-admin");
+      return;
+    }
+    if(up.length < 4){ toast("密码位数不足，请检查后重试"); return; }
+    lookupByKey(up);
+  });
+}
+
+function openRecord(rec, label){
+  $("#inpKey").value = "";
+  curRecord = rec;
+  renderResult(rec, "user");
+  show("screen-result");
+}
+
+function lookupByKey(code){
+  const findLocal = () => loadRecords().find(r => String(r.key || "").toUpperCase() === code);
+  const showLocal = () => {
+    const rec = findLocal();
+    if(rec){ openRecord(rec); return true; }
+    return false;
+  };
+  if(SERVER){
+    fetch("api/records/bykey/" + encodeURIComponent(code), {cache: "no-store"})
+      .then(r => {
+        if(r.status === 404) throw new Error("notfound");
+        if(!r.ok) throw new Error("status " + r.status);
+        return r.json();
+      })
+      .then(rec => openRecord(rec))
+      .catch(e => {
+        if(e.message === "notfound"){
+          if(showLocal()) return;
+          toast("未找到该报告密码对应的报告，请核对后重试");
+        }else{
+          if(showLocal()) return;
+          toast("查询失败，无法连接主机");
+        }
+      });
+    return;
+  }
+  if(!showLocal()) toast("未找到该报告密码对应的报告，请核对后重试");
+}
+
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+
+function loadRecords(){
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    const arr = raw ? JSON.parse(raw) : [];
+    return Array.isArray(arr) ? arr : [];
+  }catch(e){ return []; }
+}
+function saveRecords(arr){
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(arr)); return true; }
+  catch(e){ toast("本地存储不可用，记录未能保存"); return false; }
+}
+function esc(s){
+  return String(s == null ? "" : s).replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+}
+function pad2(n){ return n < 10 ? "0" + n : "" + n; }
+function fmtTime(ts){
+  const d = new Date(ts);
+  return d.getFullYear() + "-" + pad2(d.getMonth()+1) + "-" + pad2(d.getDate()) +
+         " " + pad2(d.getHours()) + ":" + pad2(d.getMinutes());
+}
+function fileStamp(ts){
+  const d = new Date(ts);
+  return d.getFullYear() + pad2(d.getMonth()+1) + pad2(d.getDate());
+}
+
+/* ---------------- 视图切换 ---------------- */
+function show(id){
+  $$(".screen").forEach(el => el.classList.remove("on"));
+  const el = document.getElementById(id);
+  if(el) el.classList.add("on");
+  window.scrollTo(0, 0);
+}
+
+/* ---------------- 提示 ---------------- */
+let toastTimer = null;
+function toast(msg){
+  const t = $("#toast");
+  t.textContent = msg;
+  t.classList.add("on");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> t.classList.remove("on"), 2200);
+}
+
+/* ---------------- 弹窗 ---------------- */
+function openModal(html, onMount){
+  const mask = $("#mask"), modal = $("#modal");
+  modal.innerHTML = html;
+  mask.classList.add("on");
+  if(onMount) onMount(modal);
+}
+function closeModal(){
+  $("#mask").classList.remove("on");
+  $("#modal").innerHTML = "";
+}
+$("#mask").addEventListener("click", e => { if(e.target.id === "mask") closeModal(); });
+
+function confirmDialog(title, desc, okText){
+  return new Promise(resolve => {
+    openModal(
+      '<h4>' + esc(title) + '</h4><p class="sub">' + esc(desc) + '</p>' +
+      '<div class="mrow"><button class="btn ghost" data-no>取消</button>' +
+      '<button class="btn primary" data-yes>' + esc(okText || "确定") + '</button></div>',
+      m => {
+        $("[data-no]", m).onclick = () => { closeModal(); resolve(false); };
+        $("[data-yes]", m).onclick = () => { closeModal(); resolve(true); };
+      }
+    );
+  });
+}
+
+/* =========================================================
+   首页
+   ========================================================= */
+$("#btnStart").addEventListener("click", () => {
+  const name = $("#inpName").value.trim();
+  if(!name){ toast("请先输入你的姓名"); $("#inpName").focus(); return; }
+  answers = new Array(QUESTIONS.length).fill(null);
+  cur = 0;
+  viewerMode = "user";
+  $("#inpName").value = name;
+  show("screen-quiz");
+  renderQuestion();
+});
+$("#inpName").addEventListener("keydown", e => { if(e.key === "Enter") $("#btnStart").click(); });
+
+$("#btnAdmin").addEventListener("click", askPassword);
+$("#btnKeyGo").addEventListener("click", handleHomeKey);
+$("#inpKey").addEventListener("keydown", e => { if(e.key === "Enter") handleHomeKey(); });
+
+function askPassword(){
+  /* 离线模式首次使用：无已存密码 => 引导设置 */
+  if(!SERVER && !localStorage.getItem(ADMIN_LS_KEY)){
+    openModal(
+      '<h4>设置管理密码</h4>' +
+      '<p class="sub">首次在本浏览器进入管理后台，请先设置一个至少 4 位的管理密码（仅保存在本设备）。</p>' +
+      '<input type="password" id="pwdNew" placeholder="设置管理密码（至少4位）" autocomplete="new-password">' +
+      '<input type="password" id="pwdNew2" placeholder="再输入一次确认" autocomplete="new-password" style="margin-top:10px">' +
+      '<div class="mrow"><button class="btn ghost" data-no>取消</button>' +
+      '<button class="btn primary" data-yes>保存并进入</button></div>',
+      m => {
+        const a = $("#pwdNew", m), b = $("#pwdNew2", m);
+        setTimeout(()=> a.focus(), 60);
+        const go = async () => {
+          const v = a.value.trim();
+          if(v.length < 4){ toast("密码至少 4 位"); a.select(); return; }
+          if(v !== b.value.trim()){ toast("两次输入不一致"); b.select(); return; }
+          try{
+            localStorage.setItem(ADMIN_LS_KEY, await sha256Hex(v));
+          }catch(e){ toast("本机存储不可用，无法保存密码"); return; }
+          closeModal();
+          adminPwd = v;
+          rememberAdmin(v);
+          $("#inpKey").value = "";
+          viewerMode = "admin";
+          renderAdminList();
+          show("screen-admin");
+          toast("管理密码已设置（仅保存在本设备）");
+        };
+        $("[data-yes]", m).onclick = go;
+        $("[data-no]", m).onclick = closeModal;
+        b.addEventListener("keydown", e => { if(e.key === "Enter") go(); });
+      }
+    );
+    return;
+  }
+  const desc = SERVER
+    ? "输入管理员密码，可查看主机上保存的全部测试记录（含所有扫码设备提交的记录）。"
+    : "输入本设备的管理密码，可查看保存在本浏览器的全部测试记录。";
+  openModal(
+    '<h4>管理员查看</h4>' +
+    '<p class="sub">' + desc + '</p>' +
+    '<input type="password" id="pwdInput" placeholder="请输入管理员密码" autocomplete="off">' +
+    '<div class="mrow"><button class="btn ghost" data-no>取消</button>' +
+    '<button class="btn primary" data-yes>进入</button></div>',
+    m => {
+      const inp = $("#pwdInput", m);
+      setTimeout(()=> inp.focus(), 60);
+      const go = async () => {
+        const v = inp.value.trim();
+        if(!v){ return; }
+        const ok = await tryAdminLogin(v);
+        if(ok){
+          closeModal();
+          adminPwd = v;
+          rememberAdmin(v);
+          $("#inpKey").value = "";
+          viewerMode = "admin";
+          renderAdminList();
+          show("screen-admin");
+        }else{
+          $(".modal", $("#mask")).classList.add("shake");
+          setTimeout(()=> $(".modal", $("#mask")).classList.remove("shake"), 420);
+          toast("密码不正确，请重新输入");
+          inp.select();
+        }
+      };
+      $("[data-yes]", m).onclick = go;
+      $("[data-no]", m).onclick = closeModal;
+      inp.addEventListener("keydown", e => { if(e.key === "Enter") go(); });
+    }
+  );
+}
+
+/* ---------------- 管理后台：修改管理密码 ---------------- */
+function openPwdModal(){
+  if(SERVER){
+    openModal(
+      '<h4>修改管理员密码</h4>' +
+      '<p class="sub">新密码将保存到主机的 config.json，所有设备下次进入后台都需使用新密码。</p>' +
+      '<input type="password" id="pwdOld" placeholder="当前管理员密码" autocomplete="off">' +
+      '<input type="password" id="pwdNewA" placeholder="新密码（至少4位）" autocomplete="new-password" style="margin-top:10px">' +
+      '<input type="password" id="pwdNewB" placeholder="再输入一次确认" autocomplete="new-password" style="margin-top:10px">' +
+      '<div class="mrow"><button class="btn ghost" data-no>取消</button>' +
+      '<button class="btn primary" data-yes>确认修改</button></div>',
+      m => {
+        const o = $("#pwdOld", m), a = $("#pwdNewA", m), b = $("#pwdNewB", m);
+        setTimeout(()=> o.focus(), 60);
+        const go = async () => {
+          const np = a.value.trim();
+          if(!o.value.trim()){ toast("请输入当前密码"); o.focus(); return; }
+          if(np.length < 4){ toast("新密码至少 4 位"); a.select(); return; }
+          if(np !== b.value.trim()){ toast("两次输入的新密码不一致"); b.select(); return; }
+          if(np === o.value.trim()){ toast("新密码不能与当前密码相同"); a.select(); return; }
+          try{
+            const r = await fetch("api/admin/password", {
+              method: "POST",
+              headers: {"Content-Type": "application/json", "X-Admin-Pwd": adminPwd},
+              body: JSON.stringify({oldPwd: o.value.trim(), newPwd: np})
+            });
+            const j = await r.json().catch(() => ({}));
+            if(!r.ok){
+              if(r.status === 401){ toast("会话已过期，请重新进入后台"); closeModal(); return; }
+              toast(j.error || "修改失败");
+              return;
+            }
+            adminPwd = np;
+            rememberAdmin(np);
+            closeModal();
+            toast("管理员密码已修改并保存到主机配置");
+          }catch(e){
+            toast("无法连接主机，修改未生效");
+          }
+        };
+        $("[data-yes]", m).onclick = go;
+        $("[data-no]", m).onclick = closeModal;
+        b.addEventListener("keydown", e => { if(e.key === "Enter") go(); });
+      }
+    );
+    return;
+  }
+  /* 离线模式：校验当前密码后更新本机哈希 */
+  openModal(
+    '<h4>修改管理密码</h4>' +
+    '<p class="sub">密码仅保存在当前浏览器（SHA-256 哈希，不保存明文）。</p>' +
+    '<input type="password" id="pwdOld" placeholder="当前管理密码" autocomplete="off">' +
+    '<input type="password" id="pwdNewA" placeholder="新密码（至少4位）" autocomplete="new-password" style="margin-top:10px">' +
+    '<input type="password" id="pwdNewB" placeholder="再输入一次确认" autocomplete="new-password" style="margin-top:10px">' +
+    '<div class="mrow"><button class="btn ghost" data-no>取消</button>' +
+    '<button class="btn primary" data-yes>确认修改</button></div>',
+    m => {
+      const o = $("#pwdOld", m), a = $("#pwdNewA", m), b = $("#pwdNewB", m);
+      setTimeout(()=> o.focus(), 60);
+      const go = async () => {
+        const cur = o.value.trim();
+        const np = a.value.trim();
+        if(!(await tryAdminLogin(cur))){ toast("当前密码不正确"); o.select(); return; }
+        if(np.length < 4){ toast("新密码至少 4 位"); a.select(); return; }
+        if(np !== b.value.trim()){ toast("两次输入的新密码不一致"); b.select(); return; }
+        try{
+          localStorage.setItem(ADMIN_LS_KEY, await sha256Hex(np));
+        }catch(e){ toast("本机存储不可用，修改未生效"); return; }
+        adminPwd = np;
+        rememberAdmin(np);
+        closeModal();
+        toast("管理密码已修改（仅保存在本设备）");
+      };
+      $("[data-yes]", m).onclick = go;
+      $("[data-no]", m).onclick = closeModal;
+      b.addEventListener("keydown", e => { if(e.key === "Enter") go(); });
+    }
+  );
+}
+
+/* =========================================================
+   答题
+   ========================================================= */
+function renderQuestion(){
+  const q = QUESTIONS[cur];
+  $("#qnow").textContent = cur + 1;
+  const pct = Math.round(((cur + 1) / QUESTIONS.length) * 100);
+  $("#qpct").textContent = pct + "%";
+  $("#qfill").style.width = pct + "%";
+
+  $("#qtext").innerHTML = '<span class="qi">' + pad2(cur + 1) + '</span>' + esc(q.q);
+
+  const box = $("#opts");
+  box.innerHTML = "";
+  q.o.forEach((text, i) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "opt" + (answers[cur] === LETTERS[i] ? " sel" : "");
+    btn.innerHTML = '<span class="k">' + LETTERS[i] + '</span><span class="t">' + esc(text) + '</span>';
+    btn.addEventListener("click", () => {
+      answers[cur] = LETTERS[i];
+      $$(".opt", box).forEach(b => b.classList.remove("sel"));
+      btn.classList.add("sel");
+      // 轻微延迟后自动进入下一题，体验更顺
+      if(cur < QUESTIONS.length - 1){
+        setTimeout(() => { if(answers[cur] === LETTERS[i]){ cur++; renderQuestion(); } }, 220);
+      }
+    });
+    box.appendChild(btn);
+  });
+
+  $("#btnPrev").disabled = cur === 0;
+  const next = $("#btnNext");
+  next.textContent = cur === QUESTIONS.length - 1 ? "提交并查看报告" : "下一题";
+  next.classList.toggle("primary", true);
+
+  window.scrollTo(0, 0);
+}
+
+$("#btnPrev").addEventListener("click", () => {
+  if(cur > 0){ cur--; renderQuestion(); }
+});
+$("#btnNext").addEventListener("click", () => {
+  if(!answers[cur]){ toast("请先选择一个最符合你的选项"); return; }
+  if(cur < QUESTIONS.length - 1){ cur++; renderQuestion(); return; }
+  submitTest();
+});
+
+/* ---------------- 计分 ---------------- */
+function calcScores(ans){
+  const s = {red:0, blue:0, yellow:0, green:0};
+  for(let i = 0; i < ans.length; i++){
+    const a = ans[i];
+    if(i < 15){
+      // 1-15 题：A红 B蓝 C黄 D绿
+      if(a === "A") s.red++;
+      else if(a === "B") s.blue++;
+      else if(a === "C") s.yellow++;
+      else if(a === "D") s.green++;
+    }else{
+      // 16-30 题：D红 C蓝 B黄 A绿
+      if(a === "D") s.red++;
+      else if(a === "C") s.blue++;
+      else if(a === "B") s.yellow++;
+      else if(a === "A") s.green++;
+    }
+  }
+  return s;
+}
+
+/* 主导判定（含并列检测）与得分水平分级 */
+function pickDominant(scores){
+  const sorted = DIMS.map(d => d.key).sort((a,b) => scores[b] - scores[a]);
+  const top = scores[sorted[0]];
+  const tied = DIMS.map(d => d.key).filter(k => scores[k] === top);
+  return { first: sorted[0], second: sorted[1], top: top, tie: tied.length > 1, tiedKeys: tied };
+}
+function levelOf(score){
+  if(score >= 12) return "显著主导";
+  if(score >= 9)  return "明显倾向";
+  if(score >= 5)  return "中等水平";
+  if(score >= 1)  return "相对较弱";
+  return "几乎没有";
+}
+
+function submitTest(){
+  const miss = answers.findIndex(a => !a);
+  if(miss > -1){
+    cur = miss;
+    renderQuestion();
+    toast("还有第 " + (miss + 1) + " 题未作答");
+    return;
+  }
+  const scores = calcScores(answers);
+  const sorted = Object.keys(scores).sort((a,b) => scores[b] - scores[a]);
+  const rec = {
+    id: "r" + Date.now().toString(36) + Math.random().toString(36).slice(2,6),
+    name: $("#inpName").value.trim() || "匿名",
+    time: Date.now(),
+    scores: scores,
+    primary: sorted[0],
+    secondary: sorted[1],
+    answers: answers.slice(),
+    key: genKey()
+  };
+  const all = loadRecords();
+  all.unshift(rec);
+  saveRecords(all);
+
+  // 局域网服务模式：把记录同步到主机（失败不影响本机保存）
+  const markSynced = (resp) => {
+    try{
+      const arr = loadRecords().map(r => {
+        if(r.id !== rec.id) return r;
+        const nr = Object.assign({}, r, {synced: true});
+        if(resp && resp.key) nr.key = resp.key;
+        return nr;
+      });
+      saveRecords(arr);
+    }catch(e){}
+  };
+  if(SERVER){
+    fetch("api/records", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(rec)
+    }).then(r => {
+      if(!r.ok) throw new Error("status " + r.status);
+      return r.json();
+    }).then(resp => {
+      serverRecords = null;
+      markSynced(resp);
+      // 若主机因重复而生成了新密码，更新本机记录与结果页显示
+      if(resp && resp.key && resp.key !== rec.key){
+        rec.key = resp.key;
+        const el = $("#repKeyVal");
+        if(el) el.textContent = rec.key;
+      }
+    }).catch(() => {
+      toast("记录已保存在本机，但同步到主机失败");
+    });
+  }else{
+    // 打开页面时探测失败的设备：提交时再探测一次，成功则连同历史未同步记录一起补传
+    detectServerNow().then(info => {
+      if(info){ toast("已连接主机，本机记录将自动同步"); }
+    }).catch(()=>{});
+  }
+
+  viewerMode = "user";
+  curRecord = rec;
+  renderResult(rec, "user");
+  show("screen-result");
+}
+
+/* =========================================================
+   Canvas 柱状图（内置绘制，无第三方库）
+   ========================================================= */
+const CANVAS_FONT = '"PingFang SC","Microsoft YaHei",-apple-system,BlinkMacSystemFont,sans-serif';
+
+function roundRect(ctx, x, y, w, h, r){
+  r = Math.min(r, w/2, h/2);
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+function paintBars(ctx, x, y, w, h, scores, fs){
+  fs = fs || 1;
+  const MAXV = 30;
+  const padL = 34 * fs, padR = 6 * fs, padT = 22 * fs, padB = 34 * fs;
+  const px = x + padL, py = y + padT;
+  const pw = Math.max(w - padL - padR, 40);
+  const ph = Math.max(h - padT - padB, 40);
+
+  ctx.save();
+  // 网格
+  for(let v = 0; v <= MAXV; v += 5){
+    const gy = py + ph - (v / MAXV) * ph;
+    ctx.beginPath();
+    ctx.strokeStyle = v === 0 ? "#E6DCCF" : "#F2ECE4";
+    ctx.lineWidth = 1 * fs;
+    ctx.moveTo(px, gy + 0.5);
+    ctx.lineTo(px + pw, gy + 0.5);
+    ctx.stroke();
+    ctx.fillStyle = "#B2A899";
+    ctx.font = (10.5 * fs) + "px " + CANVAS_FONT;
+    ctx.textAlign = "right";
+    ctx.textBaseline = "middle";
+    ctx.fillText(String(v), px - 7 * fs, gy);
+  }
+
+  const step = pw / 4;
+  const bw = Math.min(step * 0.46, 62 * fs);
+  DIMS.forEach((d, i) => {
+    const val = scores[d.key] || 0;
+    const bh = Math.max((val / MAXV) * ph, val > 0 ? 3 * fs : 0);
+    const bx = px + step * i + (step - bw) / 2;
+    const by = py + ph - bh;
+
+    if(bh > 0){
+      const g = ctx.createLinearGradient(0, by, 0, py + ph);
+      g.addColorStop(0, d.c);
+      g.addColorStop(1, d.c + "CC");
+      ctx.fillStyle = g;
+      roundRect(ctx, bx, by, bw, bh, Math.min(7 * fs, bw / 2));
+      ctx.fill();
+    }
+
+    ctx.fillStyle = "#4A443E";
+    ctx.font = "700 " + (13 * fs) + "px " + CANVAS_FONT;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "bottom";
+    ctx.fillText(String(val), bx + bw / 2, by - 6 * fs);
+
+    ctx.fillStyle = "#8E8478";
+    ctx.font = (12 * fs) + "px " + CANVAS_FONT;
+    ctx.textBaseline = "top";
+    ctx.fillText(d.name, bx + bw / 2, py + ph + 10 * fs);
+  });
+  ctx.restore();
+}
+
+function drawScreenChart(canvas, scores){
+  const dpr = Math.min(window.devicePixelRatio || 1, 3);
+  const cssW = canvas.getBoundingClientRect().width || 460;
+  const cssH = canvas.getBoundingClientRect().height || 230;
+  canvas.width = Math.round(cssW * dpr);
+  canvas.height = Math.round(cssH * dpr);
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, cssW, cssH);
+  paintBars(ctx, 0, 0, cssW, cssH, scores, 1);
+}
+
+let resizeTimer = null;
+window.addEventListener("resize", () => {
+  if(!curRecord || !$("#screen-result").classList.contains("on")) return;
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    const c = $("#chart");
+    if(c) drawScreenChart(c, curRecord.scores);
+  }, 160);
+});
+
+/* =========================================================
+   结果页
+   ========================================================= */
+function renderResult(rec, mode){
+  const p = PROFILES[rec.primary];
+  const sec = PROFILES[rec.secondary];
+  const dim = DIM_MAP[rec.primary];
+  const secDim = DIM_MAP[rec.secondary];
+  const order = Object.keys(rec.scores).sort((a,b) => rec.scores[b] - rec.scores[a]);
+  const dom = pickDominant(rec.scores);
+
+  const scoreRows = DIMS.map(d => {
+    const k = d.key;
+    const w = Math.max(Math.round((rec.scores[k] / 30) * 100), 2);
+    return '<div class="score-item">' +
+      '<div class="nm"><i style="background:' + d.c + '"></i>' + d.name + '</div>' +
+      '<div class="track"><div class="fill" data-w="' + w + '" style="background:' + d.c + '"></div></div>' +
+      '<div class="v">' + rec.scores[k] + '</div>' +
+      '<div class="vl">' + levelOf(rec.scores[k]) + '</div>' +
+    '</div>';
+  }).join("");
+
+  let tieHtml = "";
+  if(dom.tie){
+    const names = dom.tiedKeys.map(k => DIM_MAP[k].name).join("、");
+    if(dom.tiedKeys.length >= 4){
+      tieHtml = "四种色彩得分完全一致，这在测试中非常少见——你可能是一个高度平衡、适应力极强的人。以下解读以「" +
+        dim.name + "」为代表展开，四种颜色的特质都值得你读一读。";
+    }else if(dom.tiedKeys.length === 3){
+      tieHtml = "「" + names + "」三种色彩得分并列，你属于少见的复合型性格。以下解读以「" + dim.name +
+        "」为主展开，另外两种颜色的特质对你同样重要。";
+    }else{
+      tieHtml = "「" + names + "」两种色彩得分并列，你是两种性格的融合体。以下解读以「" + dim.name +
+        "」为主展开，建议同时参考另一种色彩的特质。";
+    }
+  }
+
+  const backLabel = mode === "admin" ? "← 返回记录列表" : "← 返回首页";
+
+  $("#screen-result").innerHTML =
+    '<div class="res-top">' +
+      '<button class="linkbtn" id="resBack">' + backLabel + '</button>' +
+      '<div class="res-time">' + fmtTime(rec.time) + '</div>' +
+    '</div>' +
+
+    /* 主导性格卡（新版样式） */
+    '<div class="hero2" style="--hc:' + dim.c + ';--hc-soft:' + dim.soft + ';--hc-deep:' + dim.deep + '">' +
+      '<div class="mark">' + dim.name.charAt(0) + '</div>' +
+      '<div class="hmain">' +
+        '<div class="hero-label">主 导 性 格</div>' +
+        '<div class="hero-title">' + esc(dim.name + " · " + dim.title) + '</div>' +
+        '<div class="hero-desc">' + esc(p.lead.split("。")[0]) + '。</div>' +
+      '</div>' +
+      '<div class="hero-score"><b>' + rec.scores[rec.primary] + '</b><span>/ 30 分</span></div>' +
+    '</div>' +
+
+    (tieHtml ? '<div class="tieline">' + esc(tieHtml) + '</div>' : '') +
+
+    (rec.key ?
+    '<div class="keycard">' +
+      '<div class="kcol">' +
+        '<div class="klabel">报告密码</div>' +
+        '<div class="kval" id="repKeyVal">' + esc(String(rec.key).toUpperCase()) + '</div>' +
+        '<div class="khint">凭此密码可在首页随时查看本报告 · 建议截图保存</div>' +
+      '</div>' +
+      '<button class="mini" id="btnCopyKey">复制</button>' +
+    '</div>' : '') +
+
+    '<div class="card" style="--hc:' + dim.c + '">' +
+      '<h3>四维得分<span class="sub">每项满分 30 分</span></h3>' +
+      '<div class="chartbox"><canvas id="chart"></canvas></div>' +
+      '<div class="score-list">' + scoreRows + '</div>' +
+    '</div>' +
+
+    '<div class="card" style="--hc:' + dim.c + ';--hc-soft:' + dim.soft + ';--hc-deep:' + dim.deep + '">' +
+      '<h3>性格解读<span class="sub">' + esc(dim.title) + '</span></h3>' +
+      '<div class="chips">' + p.keywords.map(t => '<span>' + esc(t) + '</span>').join("") + '</div>' +
+      '<div class="body2">' +
+        '<p>' + esc(p.lead) + '</p>' +
+        p.detail.map(t => '<p>' + esc(t) + '</p>').join("") +
+      '</div>' +
+      '<div class="tieline">辅助性格：' + esc(secDim.name + " · " + secDim.title) + '（' +
+        rec.scores[rec.secondary] + ' 分）——它让你的' + esc(dim.adj) + '之外，多了一层' +
+        esc(secDim.adj) + '的底色。两种色彩交织，才是完整的你。</div>' +
+    '</div>' +
+
+    '<div class="grid2">' +
+      '<div class="card" style="--hc:#7FB99A">' +
+        '<h3>你的优势</h3>' +
+        '<ul class="ulist">' + p.strengths.map(t => '<li>' + esc(t) + '</li>').join("") + '</ul>' +
+      '</div>' +
+      '<div class="card" style="--hc:#D9A13B">' +
+        '<h3>待改进点</h3>' +
+        '<ul class="ulist warn">' + p.improve.map(t => '<li>' + esc(t) + '</li>').join("") + '</ul>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="card" style="--hc:' + dim.c + ';--hc-soft:' + dim.soft + ';--hc-deep:' + dim.deep + '">' +
+      '<h3>相处与职场建议<span class="sub">把颜色用起来</span></h3>' +
+      '<div class="body2">' +
+        '<p><b>在团队中：</b>' + esc(p.work) + '</p>' +
+        '<p><b>在关系里：</b>' + esc(p.relation) + '</p>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="actions">' +
+      '<div class="row">' +
+        '<button class="btn primary" id="btnPng">下载报告图片（PNG）</button>' +
+        '<button class="btn ghost" id="btnPdf">下载 PDF 存档</button>' +
+      '</div>' +
+      '<div class="minor">' +
+        '<button class="linkbtn" id="btnTxt">下载文本（TXT）</button>' +
+        '<button class="linkbtn" id="btnAgain">重新测试</button>' +
+      '</div>' +
+    '</div>';
+
+  curRecord = rec;
+
+  $("#resBack").onclick = () => {
+    if(mode === "admin"){ renderAdminList(); show("screen-admin"); }
+    else { show("screen-home"); }
+  };
+  const copyKeyBtn = $("#btnCopyKey");
+  if(copyKeyBtn) copyKeyBtn.onclick = () => copyText(String(rec.key || "").toUpperCase());
+  $("#btnPng").onclick = () => exportPNG(rec);
+  $("#btnPdf").onclick = () => exportPDF(rec);
+  $("#btnTxt").onclick = () => exportTXT(rec);
+  $("#btnAgain").onclick = () => {
+    answers = new Array(QUESTIONS.length).fill(null);
+    cur = 0;
+    $("#inpName").value = "";
+    show("screen-home");
+  };
+
+  // 分数条动画
+  requestAnimationFrame(() => {
+    $$("#screen-result .score-item .fill").forEach((el, k) => {
+      setTimeout(() => { el.style.width = el.getAttribute("data-w") + "%"; }, 140 + k * 90);
+    });
+  });
+
+  // 绘制图表：rAF + 定时兜底，避免容器未完成布局导致画布尺寸为 0
+  const paintChart = (tryCount) => {
+    const c = $("#chart");
+    if(!c) return;
+    const w = c.getBoundingClientRect().width;
+    if(w < 40 && (tryCount || 0) < 8){
+      setTimeout(() => paintChart((tryCount || 0) + 1), 60);
+      return;
+    }
+    drawScreenChart(c, rec.scores);
+  };
+  requestAnimationFrame(() => paintChart(0));
+  setTimeout(() => paintChart(0), 80);
+}
+
+
+/* =========================================================
+   文本内容生成
+   ========================================================= */
+function reportLines(rec){
+  const p = PROFILES[rec.primary];
+  const sec = PROFILES[rec.secondary];
+  const dim = DIM_MAP[rec.primary];
+  const secDim = DIM_MAP[rec.secondary];
+  const order = Object.keys(rec.scores).sort((a,b) => rec.scores[b] - rec.scores[a]);
+  const dom = pickDominant(rec.scores);
+  return {
+    p, sec, dim, secDim, order, dom,
+    head: "主导性格：" + p.label + "（" + dim.name + " " + rec.scores[rec.primary] + " 分）",
+    subs: order.map(k => DIM_MAP[k].name + " " + rec.scores[k] + " 分").join("　|　"),
+    lead: p.lead,
+    detail: p.detail,
+    extra: "辅助性格：" + secDim.name + " · " + secDim.title + "（" + rec.scores[rec.secondary] +
+      " 分）——它让你的" + dim.adj + "之外，多了一层" + secDim.adj + "的底色。"
+  };
+}
+
+
+function buildTXT(rec){
+  const r = reportLines(rec);
+  const L = [];
+  L.push("════════════════════════════════");
+  L.push("      性 格 色 彩 测 试 报 告");
+  L.push("════════════════════════════════");
+  L.push("姓　　名：" + rec.name);
+  L.push("测试时间：" + fmtTime(rec.time));
+  if(rec.key){
+    L.push("报告密码：" + String(rec.key).toUpperCase() + "（凭此密码可在首页查询本报告）");
+  }
+  L.push("生成工具：XXX公司 · 色彩性格测试");
+  L.push("");
+  L.push("—— 四维度得分（每项满分 30 分）——");
+  r.order.forEach(k => {
+    const d = DIM_MAP[k];
+    L.push("  " + d.name + "：" + rec.scores[k] + " 分　" + levelOf(rec.scores[k]) +
+      (k === rec.primary ? "　← 主导" : ""));
+  });
+  L.push("");
+  L.push("—— 主导性格 ——");
+  L.push("  " + r.head);
+  if(r.dom.tie){
+    L.push("  （提示：「" + r.dom.tiedKeys.map(k => DIM_MAP[k].name).join("、") + "」得分并列，以下解读以「" +
+      DIM_MAP[r.dom.first].name + "」为主展开）");
+  }
+  L.push("");
+  L.push("—— 性格解读 ——");
+  L.push("  " + r.lead);
+  r.detail.forEach(t => L.push("  " + t));
+  L.push("  " + r.extra);
+  L.push("");
+  L.push("—— 性格优势 ——");
+  r.p.strengths.forEach((t, i) => L.push("  " + (i+1) + ". " + t));
+  L.push("");
+  L.push("—— 待改进点 ——");
+  r.p.improve.forEach((t, i) => L.push("  " + (i+1) + ". " + t));
+  L.push("");
+  L.push("—— 相处与职场建议 ——");
+  L.push("  · 在团队中：" + r.p.work);
+  L.push("  · 在关系里：" + r.p.relation);
+  L.push("");
+  L.push("────────────────────────────────");
+  L.push("本工具本地离线使用，服务模式下记录保存在主机，离线打开时仅保存在本机。");
+  L.push("════════════════════════════════");
+  return L.join("\r\n");
+}
+
+/* =========================================================
+   下载：TXT
+   ========================================================= */
+function downloadBlob(blob, filename){
+  const a = document.createElement("a");
+  const url = URL.createObjectURL(blob);
+  a.href = url;
+  a.download = filename;
+  a.style.display = "none";
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1600);
+}
+
+function exportTXT(rec){
+  const txt = "\ufeff" + buildTXT(rec);
+  downloadBlob(new Blob([txt], {type:"text/plain;charset=utf-8"}),
+    "性格色彩测试报告_" + rec.name + "_" + fileStamp(rec.time) + ".txt");
+  toast("文本报告已开始下载");
+}
+
+/* =========================================================
+   下载：PNG（纯 Canvas 绘制）
+   ========================================================= */
+function wrapText(ctx, text, maxW){
+  const lines = [];
+  let line = "";
+  const punct = "，。、；：？！）」』】》,.;:?!)]}%";
+  for(let i = 0; i < text.length; i++){
+    const ch = text[i];
+    const test = line + ch;
+    if(ctx.measureText(test).width > maxW && line.length > 0){
+      if(punct.indexOf(ch) > -1){
+        line = test;               // 标点不另起一行
+        lines.push(line);
+        line = "";
+        continue;
+      }
+      lines.push(line);
+      line = ch;
+    }else{
+      line = test;
+    }
+  }
+  if(line) lines.push(line);
+  return lines;
+}
+
+function buildReportCanvas(rec){
+  const SC = 2;                    // 2 倍清晰度
+  const W = 860, HMAX = 3600;
+  const PAD = 52;
+  const cardW = W - PAD * 2;
+  const FONT = CANVAS_FONT;
+  const tmp = document.createElement("canvas");
+  tmp.width = W * SC; tmp.height = HMAX * SC;
+  const ctx = tmp.getContext("2d");
+  ctx.scale(SC, SC);
+
+  const r = reportLines(rec);
+  const p = r.p, dim = r.dim, secDim = r.secDim;
+  const s = rec.scores;
+
+  const card = (x, y0, w, h) => {
+    ctx.save();
+    ctx.shadowColor = "rgba(93,78,60,.08)";
+    ctx.shadowBlur = 16; ctx.shadowOffsetY = 5;
+    ctx.fillStyle = "#FFFFFF";
+    roundRect(ctx, x, y0, w, h, 18); ctx.fill();
+    ctx.restore();
+    ctx.strokeStyle = "#F0E9DF"; ctx.lineWidth = 1;
+    roundRect(ctx, x + .5, y0 + .5, w - 1, h - 1, 18); ctx.stroke();
+  };
+  const cardTitle = (t, sub, color, y0) => {
+    ctx.fillStyle = color;
+    roundRect(ctx, PAD + 24, y0 + 3, 5, 16, 3); ctx.fill();
+    ctx.fillStyle = "#3E3A36";
+    ctx.font = "800 17px " + FONT;
+    ctx.textAlign = "left"; ctx.textBaseline = "top";
+    ctx.fillText(t, PAD + 40, y0);
+    if(sub){
+      ctx.fillStyle = "#A99E90"; ctx.font = "400 12px " + FONT;
+      const tw = ctx.measureText(t).width;
+      ctx.fillText(sub, PAD + 40 + tw + 12, y0 + 4);
+    }
+    return y0 + 38;
+  };
+
+  /* 背景 */
+  ctx.fillStyle = "#FBF8F3";
+  ctx.fillRect(0, 0, W, HMAX);
+
+  /* 顶部渐变带 */
+  const g = ctx.createLinearGradient(0, 0, W, 250);
+  g.addColorStop(0, "#FCEFEA"); g.addColorStop(.45, "#FBF5E6");
+  g.addColorStop(.78, "#EBF4EF"); g.addColorStop(1, "#EDF2FA");
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, W, 232);
+
+  ctx.textAlign = "center"; ctx.textBaseline = "top";
+  ctx.font = "13px " + FONT; ctx.fillStyle = "#8A7F73";
+  ctx.fillText("XXX公司", W / 2, 42);
+  ctx.font = "700 30px " + FONT; ctx.fillStyle = "#3E3A36";
+  ctx.fillText("色彩性格测试报告", W / 2, 70);
+  ctx.font = "13px " + FONT; ctx.fillStyle = "#8A7F73";
+  const meta = rec.name + "　·　" + fmtTime(rec.time) +
+    (rec.key ? "　·　报告密码 " + String(rec.key).toUpperCase() : "");
+  ctx.fillText(meta, W / 2, 116);
+
+  let y = 166;
+
+  /* 主导性格卡 */
+  const heroH = 108;
+  ctx.save();
+  ctx.shadowColor = "rgba(93,78,60,.10)"; ctx.shadowBlur = 18; ctx.shadowOffsetY = 6;
+  ctx.fillStyle = dim.soft;
+  roundRect(ctx, PAD, y, cardW, heroH, 18); ctx.fill();
+  ctx.restore();
+  ctx.fillStyle = dim.c;
+  roundRect(ctx, PAD + 20, y + 27, 54, 54, 14); ctx.fill();
+  ctx.fillStyle = "#FFFFFF"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+  ctx.font = "800 24px " + FONT;
+  ctx.fillText(dim.name.charAt(0), PAD + 47, y + 55);
+  ctx.textAlign = "left"; ctx.textBaseline = "top";
+  ctx.fillStyle = dim.deep; ctx.font = "700 11px " + FONT;
+  ctx.fillText("主 导 性 格", PAD + 92, y + 20);
+  ctx.fillStyle = "#3E3A36"; ctx.font = "800 22px " + FONT;
+  ctx.fillText(dim.name + " · " + dim.title, PAD + 92, y + 35);
+  ctx.textAlign = "right";
+  ctx.fillStyle = dim.deep; ctx.font = "800 32px " + FONT;
+  ctx.fillText(String(s[rec.primary]), W - PAD - 14, y + 24);
+  ctx.fillStyle = "#9A9186"; ctx.font = "400 12px " + FONT;
+  ctx.fillText("/ 30 分", W - PAD - 14, y + 62);
+  ctx.textAlign = "left";
+  y += heroH + 16;
+
+  /* 并列提示 */
+  if(r.dom.tie){
+    const names = r.dom.tiedKeys.map(k => DIM_MAP[k].name).join("、");
+    const tip = "「" + names + "」得分并列——你是复合型性格，以下解读以「" + dim.name + "」为主展开。";
+    ctx.font = "400 13px " + FONT;
+    const lines = wrapText(ctx, tip, cardW - 48);
+    const h = lines.length * 20 + 24;
+    ctx.fillStyle = "#FFFDF7"; ctx.strokeStyle = "#E0CFA8"; ctx.lineWidth = 1;
+    roundRect(ctx, PAD, y, cardW, h, 12); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#8A6D1F"; ctx.textBaseline = "top";
+    lines.forEach((t, i) => ctx.fillText(t, PAD + 24, y + 12 + i * 20));
+    y += h + 16;
+  }
+
+  /* 四维得分卡 */
+  const chartH = 210;
+  const rowsH = DIMS.length * 30 + 10;
+  const c1h = 40 + chartH + rowsH + 22;
+  card(PAD, y, cardW, c1h);
+  let cy = cardTitle("四维得分", "每项满分 30 分", dim.c, y + 22);
+  paintBars(ctx, PAD + 16, cy, cardW - 32, chartH, s, 1);
+  cy += chartH + 14;
+  DIMS.forEach(d => {
+    const k = d.key;
+    const w = Math.max(s[k] / 30, 0.02);
+    const rowX = PAD + 26, rowW = cardW - 52;
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = d.c;
+    ctx.beginPath(); ctx.arc(rowX + 4, cy + 10, 4.5, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#3E3A36"; ctx.font = "600 13px " + FONT; ctx.textAlign = "left";
+    ctx.fillText(d.name, rowX + 15, cy + 10);
+    const trX = rowX + 62, trW = rowW - 62 - 108;
+    ctx.fillStyle = "#F3EDE4";
+    roundRect(ctx, trX, cy + 6, trW, 8, 4); ctx.fill();
+    if(s[k] > 0){
+      ctx.fillStyle = d.c;
+      roundRect(ctx, trX, cy + 6, Math.max(trW * w, 6), 8, 4); ctx.fill();
+    }
+    ctx.fillStyle = "#3E3A36"; ctx.font = "800 13px " + FONT; ctx.textAlign = "right";
+    ctx.fillText(String(s[k]), trX + trW + 34, cy + 10);
+    ctx.fillStyle = "#A99E90"; ctx.font = "400 11px " + FONT;
+    ctx.fillText(levelOf(s[k]), trX + trW + 106, cy + 10);
+    cy += 30;
+  });
+  ctx.textBaseline = "top"; ctx.textAlign = "left";
+  y += c1h + 16;
+
+  /* 性格解读卡 */
+  ctx.font = "400 13.5px " + FONT;
+  let leadLines = wrapText(ctx, p.lead, cardW - 48);
+  let detailLines = [];
+  p.detail.forEach(t => {
+    wrapText(ctx, t, cardW - 48).forEach(l => detailLines.push(l));
+    detailLines.push("");
+  });
+  detailLines.pop();
+  let extraLines = wrapText(ctx, r.extra, cardW - 48);
+  const chipH = 26, chipGap = 8;
+  let chipX = PAD + 24, chipRows = 1;
+  ctx.font = "600 12px " + FONT;
+  p.keywords.forEach(t => {
+    const cw = ctx.measureText(t).width + 24;
+    if(chipX + cw > PAD + cardW - 24){ chipRows++; chipX = PAD + 24; }
+    chipX += cw + chipGap;
+  });
+  const chipsH = chipRows * (chipH + chipGap) - chipGap;
+  const extraBoxH = extraLines.length * 21 + 22;
+  const c2h = 40 + chipsH + 14 + leadLines.length * 24 + detailLines.length * 24 +
+              extraBoxH + 16 + 22;
+  card(PAD, y, cardW, c2h);
+  cy = cardTitle("性格解读", dim.title, dim.c, y + 22);
+  // 关键词
+  ctx.font = "600 12px " + FONT; ctx.textBaseline = "middle"; ctx.textAlign = "center";
+  let cx = PAD + 24;
+  p.keywords.forEach(t => {
+    const cw = ctx.measureText(t).width + 24;
+    if(cx + cw > PAD + cardW - 24){ chipRows--; cx = PAD + 24; cy += chipH + chipGap; }
+    ctx.fillStyle = dim.soft;
+    roundRect(ctx, cx, cy, cw, chipH, 13); ctx.fill();
+    ctx.fillStyle = dim.deep;
+    ctx.fillText(t, cx + cw / 2, cy + chipH / 2 + 1);
+    cx += cw + chipGap;
+  });
+  cy += chipH + chipGap + 6;
+  ctx.textAlign = "left"; ctx.textBaseline = "top";
+  ctx.font = "400 13.5px " + FONT;
+  ctx.fillStyle = "#3E3A36";
+  leadLines.forEach(t => { ctx.fillText(t, PAD + 24, cy); cy += 24; });
+  cy += 6;
+  ctx.fillStyle = "#4E4740";
+  detailLines.forEach(t => { if(t){ ctx.fillText(t, PAD + 24, cy); } cy += 24; });
+  cy += 8;
+  // 辅助性格
+  ctx.fillStyle = "#FFFDF7"; ctx.strokeStyle = "#E0CFA8"; ctx.lineWidth = 1;
+  roundRect(ctx, PAD + 16, cy, cardW - 32, extraBoxH, 12); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = "#8A6D1F"; ctx.font = "400 12.5px " + FONT;
+  extraLines.forEach((t, i) => ctx.fillText(t, PAD + 30, cy + 11 + i * 21));
+  y += c2h + 16;
+
+  /* 优势 / 待改进 双栏 */
+  const colW = (cardW - 16) / 2;
+  const drawList = (x0, w0, title, items, dotColor, color) => {
+    ctx.font = "400 12.5px " + FONT;
+    let ly = 0;
+    const itemLines = items.map(t => wrapText(ctx, "· " + t, w0 - 52));
+    itemLines.forEach(ls => { ly += ls.length * 19 + 9; });
+    const bh = 40 + ly + 14;
+    card(x0, y, w0, bh);
+    cardTitle(title, "", color, y + 22);
+    let iy = y + 40 + 6;
+    ctx.textAlign = "left"; ctx.textBaseline = "top";
+    itemLines.forEach(ls => {
+      ls.forEach((t, i) => {
+        ctx.fillStyle = i === 0 ? dotColor : "#4E4740";
+        ctx.font = (i === 0 ? "600 " : "400 ") + "12.5px " + FONT;
+        ctx.fillText(t, x0 + 24, iy);
+        iy += 19;
+      });
+      iy += 9;
+    });
+    return bh;
+  };
+  const h1 = drawList(PAD, colW, "你的优势", p.strengths, "#528B70", "#7FB99A");
+  const h2 = drawList(PAD + colW + 16, colW, "待改进点", p.improve, "#A9822A", "#D9A13B");
+  y += Math.max(h1, h2) + 16;
+
+  /* 相处与职场建议卡 */
+  ctx.font = "400 13.5px " + FONT;
+  const workLines = wrapText(ctx, p.work, cardW - 110);
+  const relLines = wrapText(ctx, p.relation, cardW - 110);
+  const c4h = 40 + workLines.length * 24 + 34 + relLines.length * 24 + 16 + 22;
+  card(PAD, y, cardW, c4h);
+  cy = cardTitle("相处与职场建议", "把颜色用起来", dim.c, y + 22);
+  ctx.fillStyle = dim.deep; ctx.font = "700 13.5px " + FONT;
+  ctx.fillText("在团队中", PAD + 24, cy); cy += 24;
+  ctx.fillStyle = "#4E4740"; ctx.font = "400 13.5px " + FONT;
+  workLines.forEach(t => { ctx.fillText(t, PAD + 24, cy); cy += 24; });
+  cy += 10;
+  ctx.fillStyle = dim.deep; ctx.font = "700 13.5px " + FONT;
+  ctx.fillText("在关系里", PAD + 24, cy); cy += 24;
+  ctx.fillStyle = "#4E4740"; ctx.font = "400 13.5px " + FONT;
+  relLines.forEach(t => { ctx.fillText(t, PAD + 24, cy); cy += 24; });
+  y += c4h + 24;
+
+  /* 页脚 */
+  ctx.textAlign = "center"; ctx.textBaseline = "top";
+  ctx.fillStyle = "#C0B6A8"; ctx.font = "400 12px " + FONT;
+  ctx.fillText("报告密码可在首页随时查询本报告 · XXX公司 · 色彩性格测试", W / 2, y);
+  y += 30;
+
+  /* 裁剪输出 */
+  const out = document.createElement("canvas");
+  out.width = W * SC;
+  out.height = Math.min(Math.ceil(y + 30), HMAX) * SC;
+  const octx = out.getContext("2d");
+  octx.drawImage(tmp, 0, 0, out.width, out.height, 0, 0, out.width, out.height);
+  return out;
+}
+
+
+function exportPNG(rec){
+  try{
+    const cv = buildReportCanvas(rec);
+    const name = "性格色彩测试报告_" + rec.name + "_" + fileStamp(rec.time) + ".png";
+    if(cv.toBlob){
+      cv.toBlob(b => {
+        if(b){ downloadBlob(b, name); toast("图片报告已开始下载"); }
+        else { toast("图片生成失败，请重试"); }
+      }, "image/png");
+    }else{
+      const data = cv.toDataURL("image/png").split(",")[1];
+      const bin = atob(data);
+      const u8 = new Uint8Array(bin.length);
+      for(let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i);
+      downloadBlob(new Blob([u8], {type:"image/png"}), name);
+      toast("图片报告已开始下载");
+    }
+  }catch(e){
+    toast("当前浏览器不支持图片导出");
+  }
+}
+
+/* =========================================================
+   下载：PDF（本地打印 → 另存为 PDF，全程离线）
+   ========================================================= */
+function buildPrintHTML(rec){
+  const r = reportLines(rec);
+  const dim = r.dim;
+  const secDim = r.secDim;
+  const bar = (k) => {
+    const d = DIM_MAP[k];
+    const pct = Math.round((rec.scores[k] / 30) * 100);
+    return '<tr>' +
+      '<td style="padding:7px 10px;border-bottom:1px solid #EEE7DE;width:70px;font-weight:700;color:#3F3A34">' +
+        '<span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:' + d.c + ';margin-right:6px"></span>' + d.name +
+      '</td>' +
+      '<td style="padding:7px 10px;border-bottom:1px solid #EEE7DE;color:#4E4740">' +
+        '<span style="display:inline-block;height:9px;width:' + Math.max(pct, 2) + '%;max-width:200px;background:' + d.c + ';border-radius:5px;vertical-align:middle"></span>' +
+        '<span style="margin-left:8px;font-weight:700">' + rec.scores[k] + ' 分</span>' +
+        '<span style="margin-left:8px;font-size:10.5px;color:#9A9186">' + levelOf(rec.scores[k]) + '</span>' +
+        (k === rec.primary ? '<span style="margin-left:6px;font-size:11px;color:' + d.c + '">主导</span>' : '') +
+      '</td>' +
+    '</tr>';
+  };
+  const li = (t) => '<li style="margin-bottom:3px">' + esc(t) + '</li>';
+
+  return '' +
+  '<div style="font-family:\'PingFang SC\',\'Microsoft YaHei\',sans-serif;color:#3F3A34;font-size:11.6px;line-height:1.72">' +
+    '<div style="font-size:10px;letter-spacing:3px;color:#A99E90">色 彩 性 格 测 试 报 告</div>' +
+    '<div style="font-size:20px;font-weight:800;margin:5px 0 2px">' + esc(rec.name) +
+      ' <span style="font-size:14px;color:#6A625A;font-weight:600">的性格色彩报告</span></div>' +
+    '<div style="font-size:11px;color:#A99E90">测试时间 ' + fmtTime(rec.time) +
+      (rec.key ? '　·　报告密码 <b style="color:#6A625A">' + esc(String(rec.key).toUpperCase()) + '</b>' : '') +
+      '　·　XXX公司</div>' +
+    '<div style="height:1px;background:#EDE6DC;margin:9px 0 11px"></div>' +
+
+    '<div style="background:' + dim.soft + ';border-radius:10px;padding:10px 14px;margin-bottom:12px">' +
+      '<div style="font-size:10px;letter-spacing:2px;color:#9A9186">主 导 性 格</div>' +
+      '<div style="font-size:16.5px;font-weight:800;margin:2px 0 1px">' + esc(dim.name + ' · ' + dim.title) + '</div>' +
+      '<div style="font-size:11.5px;color:#6A625A">' + esc(r.subs) + '</div>' +
+    '</div>' +
+
+    '<div style="font-size:13px;font-weight:800;margin-bottom:5px">四维度得分（每项满分 30 分）</div>' +
+    '<table style="width:100%;border-collapse:collapse;margin-bottom:12px">' + r.order.map(bar).join("") + '</table>' +
+
+    '<div style="font-size:13px;font-weight:800;margin-bottom:5px">性格解读<span style="font-weight:400;font-size:10.5px;color:#9A9186">　' +
+      esc(r.p.keywords.join(" · ")) + '</span></div>' +
+    '<p style="margin:0 0 6px;text-align:justify;font-weight:600">' + esc(r.lead) + '</p>' +
+    r.detail.map(t => '<p style="margin:0 0 6px;text-align:justify">' + esc(t) + '</p>').join("") +
+    '<p style="margin:6px 0 0;padding:7px 10px;background:#FFFDF7;border:1px dashed #E0CFA8;border-radius:8px;font-size:11px;color:#8A6D1F">' +
+      esc(r.extra) + '</p>' +
+
+    '<div style="display:flex;gap:14px;align-items:flex-start">' +
+      '<div style="flex:1">' +
+        '<div style="font-size:13px;font-weight:800;margin:12px 0 5px">你的优势</div>' +
+        '<ul style="margin:0;padding-left:18px">' + r.p.strengths.map(li).join("") + '</ul>' +
+      '</div>' +
+      '<div style="flex:1">' +
+        '<div style="font-size:13px;font-weight:800;margin:12px 0 5px">待改进点</div>' +
+        '<ul style="margin:0;padding-left:18px">' + r.p.improve.map(li).join("") + '</ul>' +
+      '</div>' +
+    '</div>' +
+
+    '<div style="font-size:13px;font-weight:800;margin:12px 0 5px">相处与职场建议</div>' +
+    '<p style="margin:0 0 6px;text-align:justify"><b>在团队中：</b>' + esc(r.p.work) + '</p>' +
+    '<p style="margin:0 0 6px;text-align:justify"><b>在关系里：</b>' + esc(r.p.relation) + '</p>' +
+
+    '<div style="margin-top:12px;padding-top:6px;border-top:1px solid #EDE6DC;font-size:10px;color:#A99E90">' +
+      '本工具本地离线使用，服务模式下记录保存在主机，离线打开时仅保存在本机。</div>' +
+  '</div>';
+}
+
+
+function exportPDF(rec){
+  const root = $("#printRoot");
+  root.innerHTML = buildPrintHTML(rec);
+  toast("已打开打印窗口，请在「目标打印机」中选择“另存为 PDF”");
+  setTimeout(() => {
+    try{
+      window.print();
+    }catch(e){
+      toast("无法调起打印，请使用浏览器菜单中的“打印”");
+    }
+  }, 420);
+}
+
+/* =========================================================
+   管理员列表
+   ========================================================= */
+function renderAdminList(){
+  const box = $("#rlist");
+
+  // 局域网服务模式：从主机拉取全部记录（含所有扫码设备）
+  if(SERVER){
+    $("#admCount").textContent = "";
+    box.innerHTML = '<div class="empty"><div class="big">◌</div><p>正在从主机读取记录…</p></div>';
+    fetch("api/records", {headers: {"X-Admin-Pwd": adminPwd}, cache: "no-store"})
+      .then(r => {
+        if(r.status === 401) throw new Error("auth");
+        if(!r.ok) throw new Error("status " + r.status);
+        return r.json();
+      })
+      .then(list => {
+        serverRecords = Array.isArray(list) ? list : [];
+        paintAdminList(serverRecords, true);
+        startAdminPoll();
+      })
+      .catch(e => {
+        if(e.message === "auth"){
+          toast("主机校验未通过，请重新输入密码");
+          adminPwd = "";
+          forgetAdmin();
+          viewerMode = "user";
+          show("screen-home");
+          return;
+        }
+        currentList = loadRecords();
+        paintAdminList(currentList, false);
+        toast("无法连接主机服务，已显示本机记录");
+      });
+    return;
+  }
+
+  currentList = loadRecords();
+  paintAdminList(currentList, false);
+}
+
+function paintAdminList(all, fromServer){
+  currentList = Array.isArray(all) ? all : []; // 修复：操作按钮按 id 从 currentList 取记录
+  if(fromServer) admListSig = currentList.map(r => r.id).join(",");
+  const box = $("#rlist");
+  $("#admCount").textContent = "共 " + all.length + " 条" + (fromServer ? " · 来自主机" : " · 本机");
+
+  if(!all.length){
+    box.innerHTML = fromServer
+      ? '<div class="empty"><div class="big">○</div><p>主机上还没有测试记录<br>其他设备扫码完成测试后，记录会自动同步到这里</p></div>'
+      : '<div class="empty"><div class="big">○</div><p>暂无测试记录<br>所有答题记录会保存在本机浏览器中</p></div>';
+    return;
+  }
+
+  box.innerHTML = all.map(rec => {
+    const dim = DIM_MAP[rec.primary];
+    const p = PROFILES[rec.primary];
+    return '<div class="row-item" data-id="' + esc(rec.id) + '">' +
+      '<div class="avat" style="background:linear-gradient(145deg,' + dim.c + ',' + dim.c + 'CC)">' +
+        esc((rec.name || "匿").slice(0,1)) + '</div>' +
+      '<div class="rmain">' +
+        '<div class="rname">' + esc(rec.name) +
+          '<span class="badge" style="background:' + dim.soft + ';color:' + dim.c + '">' +
+            dim.name + ' · ' + rec.scores[rec.primary] + '分</span>' +
+        '</div>' +
+        '<div class="rsub">' + fmtTime(rec.time) + '　·　' + esc(p.label.split(" · ")[1] || "") + '</div>' +
+        (rec.key ?
+        '<div class="rkey">报告密码 <b>' + esc(String(rec.key).toUpperCase()) + '</b>' +
+          '<button class="mini kcopy" data-act="copykey">复制发给本人</button></div>' : '') +
+      '</div>' +
+      '<div class="racts">' +
+        '<button class="mini" data-act="view">完整报告</button>' +
+        '<button class="mini" data-act="png">PNG</button>' +
+        '<button class="mini" data-act="pdf">PDF</button>' +
+        '<button class="mini danger" data-act="del">删除</button>' +
+      '</div>' +
+    '</div>';
+  }).join("");
+
+  box.onclick = (e) => {
+    const btn = e.target.closest("button[data-act]");
+    if(!btn) return;
+    const row = btn.closest(".row-item");
+    const id = row.getAttribute("data-id");
+    const rec = currentList.find(r => r.id === id);
+    if(!rec) return;
+    const act = btn.getAttribute("data-act");
+    if(act === "view"){ renderResult(rec, "admin"); show("screen-result"); }
+    else if(act === "png"){ exportPNG(rec); }
+    else if(act === "pdf"){ exportPDF(rec); }
+    else if(act === "copykey"){ copyText(String(rec.key || "").toUpperCase()); }
+    else if(act === "del"){
+      confirmDialog("删除这条记录？", "将删除「" + rec.name + "」的测试记录，删除后无法恢复。", "删除").then(ok => {
+        if(!ok) return;
+        if(fromServer && SERVER){
+          fetch("api/records/" + encodeURIComponent(id), {
+            method: "DELETE",
+            headers: {"X-Admin-Pwd": adminPwd}
+          }).then(r => {
+            if(!r.ok) throw new Error("status " + r.status);
+            renderAdminList();
+            toast("记录已删除");
+          }).catch(() => toast("删除失败，无法连接主机"));
+        }else{
+          const arr = loadRecords().filter(r => r.id !== id);
+          saveRecords(arr);
+          renderAdminList();
+          toast("记录已删除");
+        }
+      });
+    }
+  };
+}
+
+$("#btnAdmBack").addEventListener("click", () => show("screen-home"));
+$("#btnPwd").addEventListener("click", openPwdModal);
+
+/* 管理后台自动刷新：每5秒拉取主机记录，有变化且停留在列表页时才重绘 */
+let admPollTimer = null;
+let admListSig = "";
+function startAdminPoll(){
+  if(admPollTimer) return;
+  admPollTimer = setInterval(() => {
+    if(!SERVER || !adminPwd) return;
+    if(!$("#screen-admin").classList.contains("on")) return;
+    if($("#mask").classList.contains("on")) return; // 弹窗打开时不刷新，避免打断操作
+    fetch("api/records", {headers: {"X-Admin-Pwd": adminPwd}, cache: "no-store"})
+      .then(r => {
+        if(r.status === 401){ stopAdminPoll(); forgetAdmin(); adminPwd = ""; viewerMode = "user"; return null; }
+        return r.ok ? r.json() : null;
+      })
+      .then(list => {
+        if(!Array.isArray(list)) return;
+        serverRecords = list;
+        const sig = list.map(r => r.id).join(",");
+        if(sig !== admListSig){
+          admListSig = sig;
+          paintAdminList(list, true);
+        }
+      })
+      .catch(()=>{});
+  }, 5000);
+}
+function stopAdminPoll(){
+  if(admPollTimer){ clearInterval(admPollTimer); admPollTimer = null; }
+}
+
+$("#btnExportAll").addEventListener("click", () => {
+  const all = currentList && currentList.length ? currentList : loadRecords();
+  if(!all.length){ toast("暂无可导出的记录"); return; }
+  const scope = SERVER && adminPwd ? "主机全部记录" : "本机记录";
+  const head = "性格色彩测试 · 全部记录导出（" + scope + "）\r\n导出时间：" + fmtTime(Date.now()) +
+    "\r\n记录数量：" + all.length + " 条\r\n\r\n";
+  const body = all.map((rec, i) =>
+    "████████ 第 " + (i + 1) + " 条 / 共 " + all.length + " 条 ████████\r\n\r\n" + buildTXT(rec)
+  ).join("\r\n\r\n\r\n");
+  downloadBlob(new Blob(["\ufeff" + head + body], {type:"text/plain;charset=utf-8"}),
+    "性格色彩测试_全部记录_" + fileStamp(Date.now()) + ".txt");
+  toast("已导出全部 " + all.length + " 条记录");
+});
+
+$("#btnClearAll").addEventListener("click", () => {
+  // 服务模式：清空主机上的全部记录（并清本机缓存）
+  if(SERVER){
+    if(!serverRecords || !serverRecords.length){
+      // 主机记录可能尚未拉取，先确认一次
+      fetch("api/records", {headers: {"X-Admin-Pwd": adminPwd}, cache: "no-store"})
+        .then(r => r.ok ? r.json() : [])
+        .then(list => {
+          serverRecords = Array.isArray(list) ? list : [];
+          if(!serverRecords.length){ toast("暂无记录"); return; }
+          doClearServer(serverRecords.length);
+        })
+        .catch(() => toast("无法连接主机服务"));
+    }else{
+      doClearServer(serverRecords.length);
+    }
+    return;
+  }
+  const all = loadRecords();
+  if(!all.length){ toast("暂无记录"); return; }
+  confirmDialog("清空全部记录？", "将删除本机保存的全部 " + all.length + " 条测试记录，操作不可恢复。建议先导出备份。", "确认清空")
+    .then(ok => {
+      if(!ok) return;
+      try{ localStorage.removeItem(STORE_KEY); }catch(e){}
+      renderAdminList();
+      toast("已清空全部记录");
+    });
+});
+
+function doClearServer(n){
+  confirmDialog("清空全部记录？", "将删除主机上保存的全部 " + n + " 条测试记录（含所有设备），操作不可恢复。建议先导出备份。", "确认清空")
+    .then(ok => {
+      if(!ok) return;
+      fetch("api/records", {method: "DELETE", headers: {"X-Admin-Pwd": adminPwd}})
+        .then(r => {
+          if(!r.ok) throw new Error("status " + r.status);
+          try{ localStorage.removeItem(STORE_KEY); }catch(e){}
+          renderAdminList();
+          toast("已清空主机上的全部记录");
+        })
+        .catch(() => toast("清空失败，无法连接主机"));
+    });
+}
+
+/* =========================================================
+   杂项
+   ========================================================= */
+document.addEventListener("keydown", e => {
+  if(!$("#screen-quiz").classList.contains("on")) return;
+  if($("#mask").classList.contains("on")) return;
+  const tag = (e.target && e.target.tagName) || "";
+  if(tag === "INPUT" || tag === "TEXTAREA") return;
+  const k = e.key.toUpperCase();
+  if(k === "A" || k === "B" || k === "C" || k === "D"){
+    const idx = LETTERS.indexOf(k);
+    const btns = $$("#opts .opt");
+    if(btns[idx]) btns[idx].click();
+  }else if(e.key === "ArrowLeft"){
+    $("#btnPrev").click();
+  }else if(e.key === "ArrowRight"){
+    $("#btnNext").click();
+  }
+});
+
+// 阻止拖拽文件到页面导致的跳转
+window.addEventListener("dragover", e => e.preventDefault());
+window.addEventListener("drop", e => e.preventDefault());
+</script>
+</body>
+</html>
