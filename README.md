@@ -113,4 +113,4 @@ personality-color-test/
 
 ## 开源说明
 
-本仓库未附带 LICENSE 文件，如需公开分发请自行添加开源协议（如 MIT）。欢迎按需魔改题目与文案。
+本仓库开源协议为GPL-3.0 license。欢迎按需魔改题目与文案。
