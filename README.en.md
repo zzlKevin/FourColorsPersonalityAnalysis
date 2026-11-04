@@ -2,6 +2,8 @@
 
 [简体中文](README.md) | English
 
+Try it online: https://zzlkevin.github.io/FourColorsPersonalityAnalysis/%E8%89%B2%E5%BD%A9%E6%80%A7%E6%A0%BC%E6%B5%8B%E8%AF%95.html
+
 A ready-to-use color personality test: 30 situational questions, about 3–5 minutes, measuring your personality across four dimensions — Red / Yellow / Blue / Green — with a dominant color, four-dimension scores, and a detailed interpretation (personality reading, strengths, areas to improve, and teamwork & relationship advice).
 
 **The entire tool is a single HTML file**: open it in a browser and take the test — no installation, no server, no internet connection required.
