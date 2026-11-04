@@ -7,6 +7,7 @@
 <meta name="theme-color" content="#FBF8F3">
 <meta name="format-detection" content="telephone=no,email=no,address=no">
 <meta name="description" content="色彩性格测试：30 道选择题，约 5 分钟，看清自己的性格底色。">
+<div id="translate"></div>
 <title>色彩性格测试</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -2110,12 +2111,14 @@ if(IS_WECHAT) document.body.classList.add("wechat");
 refreshRecHint();
 showView("home");
 </script>
+<script src="https://cdn.staticfile.net/translate.js/3.18.66/translate.js"></script>
+<script>
+  translate.language.setLocal('chinese_simplified');
+  translate.service.use('client.edge');
+  translate.listener.start();
+  translate.request.listener.start();
+  translate.selectLanguageTag.show = true;
+  translate.execute();
+</script>
 </body>
-  <script src="https://cdn.staticfile.net/translate.js/3.18.66/translate.js"></script>
-  <script>
-    translate.language.setLocal('chinese_simplified');
-    translate.service.use('client.edge');
-    translate.listener.start();
-    translate.execute();
-  </script>
 </html>
