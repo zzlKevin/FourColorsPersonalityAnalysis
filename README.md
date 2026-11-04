@@ -114,3 +114,6 @@ personality-color-test/
 ## 开源说明
 
 本仓库开源协议为GPL-3.0 license。欢迎按需魔改题目与文案。
+
+## 感谢
+感谢https://github.com/xnx3/translate 的多语言翻译
