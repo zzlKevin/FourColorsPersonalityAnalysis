@@ -1,4 +1,4 @@
-# Color Personality Test · Local Key Edition (HashCode Branch)
+# Color Personality Test · Local Key Edition (Base64 Branch)
 
 [简体中文](README.md) | English
 
