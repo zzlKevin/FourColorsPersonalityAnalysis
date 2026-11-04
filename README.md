@@ -2,6 +2,8 @@
 
 简体中文 | [English](README.en.md)
 
+在线体验：https://zzlkevin.github.io/FourColorsPersonalityAnalysis/%E8%89%B2%E5%BD%A9%E6%80%A7%E6%A0%BC%E6%B5%8B%E8%AF%95.html
+
 一个开箱即用的性格色彩测评小工具：30 道情境题，约 3–5 分钟，从「红 / 黄 / 蓝 / 绿」四个维度给出主导性格、四维得分与详细解读（性格解读、优势、待改进、相处与职场建议）。
 
 **整个工具就是一个 HTML 文件**：用浏览器打开即可测试，无需安装、无需服务器、无需联网。
