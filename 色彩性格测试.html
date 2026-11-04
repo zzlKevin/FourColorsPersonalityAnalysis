@@ -1,0 +1,2114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#FBF8F3">
+<meta name="format-detection" content="telephone=no,email=no,address=no">
+<meta name="description" content="广东省澳舒健家具制造有限公司 · 色彩性格测试：30 道选择题，约 5 分钟，看清自己的性格底色。">
+<title>色彩性格测试 · 广东省澳舒健家具制造有限公司</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#FBF8F3;
+  --card:#FFFFFF;
+  --ink:#3E3A36;
+  --ink2:#6E655C;
+  --ink3:#9C938A;
+  --line:#EFE9E0;
+  --brand:#C98D7A;
+  --brand-soft:#FBEDE7;
+  --red:#E8847B;    --red-soft:#FDEDEA;
+  --yellow:#E0AC45; --yellow-soft:#FCF4E2;
+  --blue:#7B9FD1;   --blue-soft:#EDF3FB;
+  --green:#7FB89A;  --green-soft:#EDF7F1;
+  --shadow:0 10px 30px rgba(93,78,60,.07);
+  --shadow-lg:0 18px 46px rgba(93,78,60,.10);
+}
+html,body{min-height:100%}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+  overflow-x:hidden;
+  touch-action:manipulation;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(560px 420px at 8% -6%, #FBE7E1 0%, rgba(251,231,225,0) 62%),
+    radial-gradient(520px 400px at 96% 4%, #FBF2DA 0%, rgba(251,242,218,0) 60%),
+    radial-gradient(620px 460px at 88% 92%, #E9F3EE 0%, rgba(233,243,238,0) 62%),
+    radial-gradient(560px 420px at 2% 96%, #EAEFF9 0%, rgba(234,239,249,0) 62%);
+}
+.app{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:26px 18px 46px}
+.view{display:none}
+.view.active{display:block;animation:fadeUp .5s cubic-bezier(.22,.7,.3,1) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---------- 首页 ---------- */
+.home{text-align:center;padding-top:8px}
+.brand-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.78);
+  border:1px solid var(--line);font-size:12.5px;color:var(--ink2);letter-spacing:.2px;
+  box-shadow:0 4px 14px rgba(93,78,60,.05);
+}
+.brand-pill .spark{display:inline-flex;gap:3px}
+.brand-pill .spark i{width:6px;height:6px;border-radius:50%;display:block}
+.home-title{
+  width:-moz-fit-content;width:fit-content;margin:26px auto 0;font-size:40px;line-height:1.28;font-weight:800;letter-spacing:2px;
+  background:linear-gradient(96deg,#E07A6F 0%,#E2A63D 32%,#57A383 66%,#6A92CC 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.home-sub{margin-top:8px;font-size:13px;color:var(--ink3);letter-spacing:3px}
+.home-lead{
+  margin:22px auto 0;max-width:520px;font-size:15px;color:var(--ink2);line-height:1.95;
+}
+.dots-row{display:flex;justify-content:center;gap:10px;margin:26px 0 4px}
+.dots-row span{
+  width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
+  font-size:15px;font-weight:700;color:#fff;box-shadow:0 8px 18px rgba(93,78,60,.12);
+}
+.dots-row span:nth-child(1){background:linear-gradient(145deg,#F0A096,#E8847B)}
+.dots-row span:nth-child(2){background:linear-gradient(145deg,#EEC470,#E0AC45)}
+.dots-row span:nth-child(3){background:linear-gradient(145deg,#8FBFD8,#7FB89A)}
+.dots-row span:nth-child(4){background:linear-gradient(145deg,#93B2DE,#7B9FD1)}
+.home-card{
+  margin-top:26px;background:rgba(255,255,255,.86);border:1px solid var(--line);
+  border-radius:22px;padding:22px 20px;box-shadow:var(--shadow);backdrop-filter:blur(6px);
+}
+.field-label{display:block;text-align:left;font-size:12.5px;color:var(--ink3);margin-bottom:8px;letter-spacing:.5px}
+.input{
+  width:100%;padding:13px 16px;border:1px solid var(--line);border-radius:14px;
+  background:#FDFBF7;font-size:16px;color:var(--ink);font-family:inherit;outline:none;
+  transition:.2s;
+}
+.input::placeholder{color:#BDB3A8}
+.input:focus{border-color:#DCC7B5;background:#fff;box-shadow:0 0 0 4px rgba(201,141,122,.10)}
+.btn{
+  border:none;cursor:pointer;font-family:inherit;font-size:15px;font-weight:600;
+  border-radius:14px;transition:transform .18s,box-shadow .18s,background .18s;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn:active{transform:scale(.985)}
+.btn-primary{
+  width:100%;margin-top:14px;padding:15px 18px;color:#fff;letter-spacing:1px;
+  background:linear-gradient(100deg,#EF9C8B,#DD8672 62%,#DA8F6F);
+  box-shadow:0 12px 26px rgba(214,138,118,.30);
+}
+.btn-primary:hover{box-shadow:0 16px 32px rgba(201,141,122,.34);transform:translateY(-1px)}
+.btn-ghost{
+  padding:13px 18px;background:#fff;border:1px solid var(--line);color:var(--ink2);
+}
+.btn-ghost:hover{background:#FDFBF7;border-color:#E3D9CC}
+.key-box{margin-top:22px;padding-top:20px;border-top:1px dashed var(--line)}
+.key-row{display:flex;gap:10px}
+.key-row .input{flex:1;letter-spacing:.3px;text-align:left;font-size:13px}
+.key-row .btn{white-space:nowrap;padding:0 20px;background:#F4EFE7;color:var(--ink2);border:1px solid var(--line)}
+.key-row .btn:hover{background:#EFE8DC}
+.key-hint{margin-top:10px;font-size:12px;color:var(--ink3);text-align:left}
+.home-note{margin-top:20px;font-size:12px;color:#A69C91;text-align:center;line-height:1.9}
+
+/* ---------- 答题 ---------- */
+.quiz-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.back-link{
+  background:none;border:none;font-family:inherit;font-size:13.5px;color:var(--ink3);
+  cursor:pointer;padding:4px 2px;display:inline-flex;align-items:center;gap:5px
+}
+.back-link:hover{color:var(--ink2)}
+.quiz-count{font-size:13px;color:var(--ink3);letter-spacing:.5px}
+.quiz-count b{color:var(--ink);font-size:16px;font-weight:700}
+.progress-wrap{height:8px;border-radius:999px;background:#F0EAE1;overflow:hidden}
+.progress-bar{
+  height:100%;width:0;border-radius:999px;transition:width .38s cubic-bezier(.3,.8,.4,1);
+  background:linear-gradient(90deg,#E8847B,#E0AC45 34%,#7FB89A 68%,#7B9FD1);
+}
+.q-card{
+  margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:24px;
+  padding:26px 22px 22px;box-shadow:var(--shadow-lg);
+}
+.q-num{
+  display:inline-block;font-size:11.5px;letter-spacing:1.6px;color:var(--brand);
+  background:var(--brand-soft);padding:4px 10px;border-radius:8px;margin-bottom:14px;font-weight:700;
+}
+.q-text{font-size:19px;font-weight:700;line-height:1.62;letter-spacing:.3px;margin-bottom:20px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{
+  display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;
+  padding:14px 16px;border:1px solid var(--line);border-radius:15px;background:#fff;
+  cursor:pointer;font-family:inherit;font-size:15px;line-height:1.65;color:var(--ink);
+  transition:.16s;
+}
+.opt:hover{border-color:#E2D5C6;background:#FDFAF5;transform:translateY(-1px)}
+.opt .k{
+  flex:0 0 auto;width:26px;height:26px;border-radius:9px;background:#F5F0E8;color:#9C8E7E;
+  display:grid;place-items:center;font-size:12.5px;font-weight:700;margin-top:1px;transition:.16s;
+}
+.opt.sel{border-color:var(--brand);background:var(--brand-soft);box-shadow:0 0 0 3px rgba(201,141,122,.10)}
+.opt.sel .k{background:var(--brand);color:#fff}
+.opt.sel .t{font-weight:600}
+.quiz-actions{display:flex;gap:10px;margin-top:22px}
+.quiz-actions .btn{flex:1;padding:14px 10px}
+.quiz-actions .btn-primary{margin-top:0}
+.btn[disabled]{opacity:.42;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+.q-tip{margin-top:12px;font-size:11.5px;color:#B3A99E;text-align:center;letter-spacing:.4px}
+
+/* ---------- 结果 ---------- */
+.report-head{margin-bottom:18px}
+.kicker{font-size:11.5px;letter-spacing:4px;color:var(--brand);font-weight:700}
+.report-head h2{font-size:26px;line-height:1.4;margin-top:8px;font-weight:800;letter-spacing:.5px}
+.report-meta{margin-top:6px;font-size:12.5px;color:var(--ink3)}
+.hist-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  background:#FFF8EE;border:1px solid #F3E6D2;border-radius:14px;padding:10px 14px;
+  font-size:12.5px;color:#A08256;margin-bottom:14px;
+}
+.hist-bar button{background:none;border:none;color:#A08256;font-family:inherit;font-size:12.5px;cursor:pointer;text-decoration:underline}
+.hist-bar .hb-acts{display:flex;gap:12px;flex:0 0 auto}
+.hero-card{
+  border-radius:24px;padding:22px;display:flex;align-items:center;gap:16px;
+  background:var(--hc-soft);border:1px solid rgba(255,255,255,.7);
+  box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.hero-card::after{
+  content:"";position:absolute;right:-40px;top:-50px;width:170px;height:170px;border-radius:50%;
+  background:var(--hc);opacity:.12;
+}
+.hero-card .mark{
+  width:54px;height:54px;border-radius:18px;background:var(--hc);color:#fff;
+  display:grid;place-items:center;font-size:20px;font-weight:800;flex:0 0 auto;
+  box-shadow:0 10px 22px rgba(0,0,0,.10);
+}
+.hero-label{font-size:11.5px;letter-spacing:2px;color:var(--hc-deep);opacity:.9;font-weight:700}
+.hero-title{font-size:23px;font-weight:800;margin-top:3px;letter-spacing:.5px}
+.hero-desc{font-size:13px;color:var(--ink2);margin-top:4px;line-height:1.65}
+.hero-score{margin-left:auto;text-align:right;flex:0 0 auto;position:relative;z-index:1}
+.hero-score b{font-size:34px;font-weight:800;line-height:1;color:var(--hc-deep)}
+.hero-score span{font-size:12px;color:var(--ink3)}
+.card{
+  margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:20px;
+  padding:20px 20px;box-shadow:var(--shadow);
+}
+.card h3{
+  font-size:15px;font-weight:700;display:flex;align-items:center;gap:9px;letter-spacing:.5px;
+}
+.card h3::before{content:"";width:5px;height:15px;border-radius:3px;background:var(--brand)}
+.card h3 .sub{font-size:11.5px;color:var(--ink3);font-weight:400;margin-left:auto;letter-spacing:0}
+.chart-wrap{margin-top:14px}
+#chart{width:100%;height:250px;display:block}
+.score-list{margin-top:8px;display:flex;flex-direction:column;gap:14px}
+.score-item{display:flex;align-items:center;gap:12px}
+.score-item .nm{width:56px;font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:7px;flex:0 0 auto}
+.score-item .nm i{width:9px;height:9px;border-radius:50%;display:block}
+.score-item .track{flex:1;height:9px;border-radius:999px;background:#F4EFE7;overflow:hidden}
+.score-item .fill{height:100%;border-radius:999px;width:0;transition:width .8s cubic-bezier(.3,.8,.4,1)}
+.score-item .vl{width:auto;min-width:82px;text-align:right;font-size:12px;color:var(--ink3);flex:0 0 auto;white-space:nowrap}
+.score-item .vl b{font-size:15px;color:var(--ink);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chips span{
+  font-size:12.5px;padding:5px 12px;border-radius:999px;background:#F7F2EA;color:var(--ink2);
+  border:1px solid #F0E9DE;
+}
+.txt{margin-top:12px;font-size:14.5px;line-height:1.95;color:var(--ink2)}
+.txt p+p{margin-top:10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.grid2 .card{margin-top:0}
+.ulist{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:9px}
+.ulist li{position:relative;padding-left:17px;font-size:14px;line-height:1.72;color:var(--ink2)}
+.ulist li::before{
+  content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--dc,#C98D7A);
+}
+.ulist.good li::before{background:#8CBF9C}
+.ulist.warn li::before{background:#E0A45E}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.actions .btn{flex:1 1 0;min-width:132px;padding:13px 10px;font-size:13.5px}
+.btn-download{background:linear-gradient(100deg,#8FBBA6,#7FB89A);color:#fff;box-shadow:0 10px 22px rgba(127,184,154,.28)}
+.btn-txt{background:linear-gradient(100deg,#93B2DE,#7B9FD1);color:#fff;box-shadow:0 10px 22px rgba(123,159,209,.26)}
+.btn-home{background:#fff;border:1px solid var(--line);color:var(--ink2)}
+.btn-key{background:linear-gradient(100deg,#EAC98E,#DCB16A);color:#fff;box-shadow:0 10px 22px rgba(220,177,106,.26)}
+/* ---------- 报告密钥 ---------- */
+.key-share{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.ks-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.ks-label{font-size:13px;font-weight:700;color:var(--ink2);letter-spacing:.5px}
+.ks-copy{
+  background:#F4EFE7;border:1px solid var(--line);border-radius:10px;padding:6px 14px;
+  font-size:12px;color:var(--ink2);font-family:inherit;cursor:pointer;flex:0 0 auto;
+}
+.ks-copy:hover{background:#EFE8DC}
+.ks-val{
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11.5px;line-height:1.75;
+  color:#6E655C;background:#FBF8F3;border:1px dashed var(--line);border-radius:12px;padding:10px 12px;
+  word-break:break-all;user-select:all;max-height:104px;overflow:auto;
+}
+.ks-tip{margin-top:9px;font-size:11.5px;color:var(--ink3);line-height:1.85}
+.wx-tip{
+  display:none;gap:9px;align-items:flex-start;margin-top:14px;
+  background:#FBF6EC;border:1px solid #F0E5D2;border-radius:14px;padding:12px 14px;
+  font-size:12.5px;color:#9A7B4E;line-height:1.8;
+}
+body.wechat .wx-tip{display:flex}
+.wx-tip .ic{flex:0 0 auto;font-size:14px;line-height:1.5}
+.foot{
+  margin-top:26px;text-align:center;font-size:11.5px;color:#AEA49A;line-height:1.9;
+  padding-top:16px;border-top:1px solid #F1EBE2;letter-spacing:.2px;
+}
+
+/* ---------- 记录弹窗 ---------- */
+.modal{
+  position:fixed;inset:0;z-index:60;display:none;align-items:flex-end;justify-content:center;
+  background:rgba(62,58,54,.34);backdrop-filter:blur(3px);padding:0;
+}
+.modal.show{display:flex}
+.panel{
+  width:100%;max-width:780px;max-height:88vh;background:#FDFBF7;border-radius:24px 24px 0 0;
+  box-shadow:0 -12px 40px rgba(0,0,0,.16);display:flex;flex-direction:column;
+  animation:sheetUp .32s cubic-bezier(.22,.8,.3,1) both;
+}
+@keyframes sheetUp{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
+.panel-head{
+  display:flex;align-items:center;gap:12px;padding:18px 20px 14px;border-bottom:1px solid var(--line);
+}
+.panel-head h3{font-size:16px;font-weight:700;letter-spacing:.5px}
+.panel-head .cnt{font-size:12px;color:var(--ink3)}
+.panel-head .x{
+  margin-left:auto;background:#F2ECE3;border:none;width:30px;height:30px;border-radius:50%;
+  cursor:pointer;color:var(--ink2);font-size:16px;line-height:1;display:grid;place-items:center;font-family:inherit;
+}
+.panel-body{overflow-y:auto;padding:14px 20px 24px;-webkit-overflow-scrolling:touch}
+.rec{
+  display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);
+  border-radius:16px;padding:13px 14px;margin-bottom:10px;cursor:pointer;transition:.16s;
+}
+.rec:hover{border-color:#E2D5C6;transform:translateY(-1px);box-shadow:0 8px 20px rgba(93,78,60,.06)}
+.rec .dm{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:#fff;font-size:13px;font-weight:800;flex:0 0 auto}
+.rec .info{min-width:0;flex:1}
+.rec .nm{font-size:14.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rec .meta{font-size:11.5px;color:var(--ink3);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rec .del{
+  background:none;border:none;color:#C4B9AC;font-size:12px;cursor:pointer;font-family:inherit;
+  padding:6px 8px;border-radius:8px;flex:0 0 auto;
+}
+.rec .del:hover{background:#FBEDE7;color:#C97A6C}
+.empty{text-align:center;padding:46px 10px;color:var(--ink3);font-size:13.5px;line-height:2}
+.panel-foot{padding:12px 20px 18px;border-top:1px solid var(--line);display:flex;gap:10px;align-items:center}
+.panel-foot .btn{padding:11px 16px;font-size:13.5px}
+.panel-foot .danger{color:#C1746A;background:#FCF1EE;border:1px solid #F5E2DC;margin-left:auto}
+.panel-foot.tight{padding-top:0;border-top:none;padding-bottom:16px;gap:8px}
+.panel-foot .btn.sm{padding:8px 12px;font-size:12px;color:var(--ink3);background:transparent;border:1px dashed var(--line);border-radius:10px}
+.panel-foot .btn.sm:hover{background:#FDFBF7;color:var(--ink2)}
+
+/* ---------- toast / loading ---------- */
+.toast{
+  position:fixed;left:50%;bottom:38px;transform:translate(-50%,20px);z-index:90;
+  background:rgba(62,58,54,.92);color:#fff;font-size:13px;padding:11px 20px;border-radius:999px;
+  opacity:0;pointer-events:none;transition:.28s;white-space:nowrap;max-width:88vw;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.loading{
+  position:fixed;inset:0;z-index:80;background:rgba(251,248,243,.94);display:none;
+  flex-direction:column;align-items:center;justify-content:center;gap:18px;
+}
+.loading.show{display:flex}
+.loading .ring{display:flex;gap:9px}
+.loading .ring i{width:12px;height:12px;border-radius:50%;display:block;animation:bounce 1s infinite ease-in-out}
+.loading .ring i:nth-child(1){background:#E8847B}
+.loading .ring i:nth-child(2){background:#E0AC45;animation-delay:.12s}
+.loading .ring i:nth-child(3){background:#7FB89A;animation-delay:.24s}
+.loading .ring i:nth-child(4){background:#7B9FD1;animation-delay:.36s}
+@keyframes bounce{0%,80%,100%{transform:translateY(0);opacity:.6}40%{transform:translateY(-12px);opacity:1}}
+.loading p{font-size:14px;color:var(--ink2);letter-spacing:1px}
+
+@media (max-width:640px){
+  .app{padding:18px 14px 38px}
+  .home-title{font-size:31px;letter-spacing:1px}
+  .home-lead{font-size:14px}
+  .dots-row span{width:38px;height:38px;font-size:13px}
+  .q-card{padding:22px 16px 18px;border-radius:20px}
+  .q-text{font-size:17px;margin-bottom:16px}
+  .opt{font-size:14.5px;padding:13px 14px}
+  .grid2{grid-template-columns:1fr}
+  .hero-card{padding:18px;flex-wrap:wrap}
+  .hero-title{font-size:20px}
+  .hero-score b{font-size:28px}
+  .report-head h2{font-size:22px}
+  #chart{height:220px}
+  .actions .btn{min-width:0;flex:1 1 calc(50% - 5px);padding:13px 8px;font-size:13px}
+  .score-item .nm{width:50px;font-size:12.5px}
+  .score-item .vl{min-width:0;font-size:10.5px;letter-spacing:-.2px}
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============ 首页 ============ -->
+  <section class="view active" id="view-home">
+    <div class="home">
+      <div class="brand-pill">
+        <span class="spark"><i style="background:#E8847B"></i><i style="background:#E0AC45"></i><i style="background:#7FB89A"></i><i style="background:#7B9FD1"></i></span>
+        广东省澳舒健家具制造有限公司
+      </div>
+
+      <h1 class="home-title">色彩性格测试</h1>
+      <div class="home-sub">红 · 黄 · 蓝 · 绿</div>
+      <p class="home-lead">
+        30 道轻松的选择题，帮你看清自己天生的性格底色。<br>
+        无需登录、打开即测——没有对错，只有属于你的那一种色彩。
+      </p>
+
+      <div class="dots-row">
+        <span>红</span><span>黄</span><span>绿</span><span>蓝</span>
+      </div>
+
+      <div class="home-card">
+        <label class="field-label" for="userName">你的名字（可选，用于记录存档）</label>
+        <input id="userName" class="input" type="text" maxlength="16" placeholder="例如：李小明" autocomplete="off">
+
+        <button class="btn btn-primary" id="btnStart">
+          开始测试 <span style="opacity:.8">→</span>
+        </button>
+
+        <div class="key-box">
+          <label class="field-label" for="keyInput">通过密钥查看报告</label>
+          <div class="key-row">
+            <input id="keyInput" class="input" type="text" maxlength="260" placeholder="粘贴报告密钥（CSX1-…）" autocomplete="off" spellcheck="false">
+            <button class="btn" id="btnUnlock">查看报告</button>
+          </div>
+          <div class="key-hint" id="recHint">本机已保存 0 份测试记录，密钥仅供测试发起人使用。</div>
+          <div class="key-hint" style="margin-top:4px">支持两种：① 他人分享的报告密钥；② 发起人密钥，可查看本机全部记录</div>
+        </div>
+      </div>
+
+      <p class="home-note">
+        本工具本地离线使用，所有数据仅保存在当前设备，不会上传
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 答题 ============ -->
+  <section class="view" id="view-quiz">
+    <div class="quiz-top">
+      <button class="back-link" id="btnQuit">← 退出测试</button>
+      <div class="quiz-count">第 <b id="qCur">1</b> / 30 题</div>
+    </div>
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+
+    <div class="q-card">
+      <div class="q-num" id="qNum">QUESTION 01</div>
+      <div class="q-text" id="qText"></div>
+      <div class="opts" id="qOpts"></div>
+      <div class="quiz-actions">
+        <button class="btn btn-ghost" id="btnPrev">上一题</button>
+        <button class="btn btn-primary" id="btnNext">下一题</button>
+      </div>
+      <div class="q-tip">选择最接近你日常反应的一项，凭直觉作答即可</div>
+    </div>
+  </section>
+
+  <!-- ============ 结果 ============ -->
+  <section class="view" id="view-result">
+    <div id="histBar"></div>
+    <div class="report-head">
+      <div class="kicker">色 彩 性 格 报 告</div>
+      <h2 id="repTitle">你的性格画像</h2>
+      <div class="report-meta" id="repMeta"></div>
+    </div>
+
+    <div id="reportBody"></div>
+
+    <div class="wx-tip" id="wxTip"><span class="ic">💡</span><span>当前在微信内打开：如需保存报告图片或文本文件，请点右上角「···」，选择「在浏览器打开」后再下载。文本也可直接一键复制。</span></div>
+
+    <div class="key-share" id="keyShare">
+      <div class="ks-top">
+        <span class="ks-label">报告密钥</span>
+        <button class="ks-copy" type="button" id="btnCopyKey2">复制密钥</button>
+      </div>
+      <div class="ks-val" id="keyVal"></div>
+      <div class="ks-tip">把这串密钥发给对方，对方打开本工具，在首页「通过密钥查看报告」里粘贴即可看到这份报告。密钥只编码本次作答数据，不含任何联网信息。</div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-key" id="btnCopyKey">复制报告密钥</button>
+      <button class="btn btn-download" id="btnPng">下载报告图片（PNG）</button>
+      <button class="btn btn-txt" id="btnTxt">下载文本存档（TXT）</button>
+      <button class="btn btn-home" id="btnHome">返回首页</button>
+    </div>
+
+    <div class="foot">
+      广东省澳舒健家具制造有限公司 · 色彩性格测试<br>
+      本工具本地离线使用，所有数据仅保存在当前设备，不会上传
+    </div>
+  </section>
+</div>
+
+<!-- 记录面板 -->
+<div class="modal" id="historyModal">
+  <div class="panel">
+    <div class="panel-head">
+      <h3>测试记录</h3>
+      <span class="cnt" id="histCount"></span>
+      <button class="x" id="btnCloseHist">✕</button>
+    </div>
+    <div class="panel-body" id="histList"></div>
+    <div class="panel-foot">
+      <button class="btn btn-ghost" id="btnExportAll">导出全部记录</button>
+      <button class="btn danger" id="btnClearAll">清空全部</button>
+    </div>
+    <div class="panel-foot tight">
+      <button class="btn sm" id="btnBackupExport">导出备份(.json)</button>
+      <button class="btn sm" id="btnBackupImport">导入备份并合并</button>
+      <input type="file" id="backupFile" accept=".json,application/json" style="display:none">
+    </div>
+  </div>
+</div>
+
+<div class="loading" id="loading">
+  <div class="ring"><i></i><i></i><i></i><i></i></div>
+  <p id="loadingText">正在生成你的色彩报告…</p>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+
+/* =========================================================
+   1. 题库（30 题，A/B/C/D）
+   ========================================================= */
+var QUESTIONS = [
+  { q:"关于人生观，我的内心其实是：", o:[
+    "希望能有各种各样的人生体验，所以想法极其多样化。",
+    "在合理的基础上，谨慎确定目标，一旦确定会坚定不移地去做。",
+    "更加在乎取得一切有可能的成就。",
+    "毫不喜欢风险，喜欢享受稳定或现状。"]},
+
+  { q:"如果爬山旅游，大多数状况下，在下山回来的路线我最可能：", o:[
+    "好玩有趣，所以宁愿新路线回巢。",
+    "安全稳妥，所以宁愿原路线返回。",
+    "挑战困难，所以宁愿新路线回巢。",
+    "方便省心，所以宁愿原路线返回。"]},
+
+  { q:"说话时，我更看重：", o:[
+    "感觉效果。有时可能会略显得夸张。",
+    "描述精确。有时可能略过冗长。",
+    "达成结果。有时可能过于直接让别人不高兴。",
+    "人际感受。有时可能会不愿讲真话。"]},
+
+  { q:"在大多数时候，我的内心更想要：", o:[
+    "刺激。经常冒出新点子，想做就做，喜欢与众不同。",
+    "安全。头脑冷静，不易冲动。",
+    "挑战。生命中竞赛随处可见，有强烈的“赢”的欲望。",
+    "稳定。满足自己所拥有的，很少羡慕别人。"]},
+
+  { q:"我认为自己在情感上的基本特点是：", o:[
+    "情绪多变，经常波动。",
+    "外表自我抑制强，但内心感情起伏大，一旦挫伤难以平复。",
+    "感情不拖泥带水，只是一旦不稳定，容易发怒。",
+    "天性情绪四平八稳。"]},
+
+  { q:"我认为自己除了工作外，在控制欲上面，我：", o:[
+    "没有控制欲，只有感染带动他人的欲望，但自控能力不算强。",
+    "用规则来保持我对自己的控制和对他人的要求。",
+    "内心是有控制欲和希望别人服从我的。",
+    "没兴趣影响别人，也不愿别人来控制我。"]},
+
+  { q:"当与情人交往时，我最希望对方：", o:[
+    "经常赞美我，让我享受开心、被关怀且又有一定自由。",
+    "可随时默契到我内心所想，对我的需求极其敏感。",
+    "得到对方的认可，我是正确的并且我对其是有价值的。",
+    "尊重并且相处静谧的。"]},
+
+  { q:"在人际交往时，我：", o:[
+    "本质上还是认为与人交往比长时间独处是有乐趣的。",
+    "非常审慎缓慢地进入，常会被人认为容易有距离感。",
+    "希望在人际关系中占据主导地位。",
+    "顺其自然，不温不火，相对被动。"]},
+
+  { q:"我做事情，经常：", o:[
+    "缺少长性，不喜欢长期做相同无变化的事情。",
+    "缺少果断，期待最好的结果但总能先看到事情的不利面。",
+    "缺少耐性，有时行事过于草率。",
+    "缺少紧迫，行动迟缓，难下决心。"]},
+
+  { q:"通常我完成任务的方式是：", o:[
+    "常赶在最后期限前完成，是临时抱佛脚的高手。",
+    "自己有严格规定的程序，精确地做，不要麻烦别人。",
+    "先做，快速做。",
+    "使用传统的方法按部就班，需要时从他人处得到帮忙。"]},
+
+  { q:"如果有人深深惹恼我时，我：", o:[
+    "内心感到受伤，认为没有原谅的可能，可最终很多时候还是会原谅对方。",
+    "深深感到愤怒，如此之深怎可忘记？我会牢记，同时未来完全避开那个家伙。",
+    "会火冒三丈，并且内心期望有机会狠狠地回应。",
+    "避免摊牌，因为还不到那个地步或者自己再去找新朋友。"]},
+
+  { q:"在人际关系中，我最在意的是：", o:[
+    "得到他人的赞美和欢迎。",
+    "得到他人的理解和欣赏。",
+    "得到他人的感激和尊敬。",
+    "得到他人的尊重和接纳。"]},
+
+  { q:"在工作上，我表现出来更多的是：", o:[
+    "充满热忱，有很多想法且很有灵性。",
+    "心思细腻，完美精确，而且为人可靠。",
+    "坚强而直截了当，而且有推动力。",
+    "有耐心，适应性强而且善于协调。"]},
+
+  { q:"我过往的老师最有可能对我的评价是：", o:[
+    "情绪起伏大，善于表达和抒发情感。",
+    "严格保护自己的私密，有时会显得孤独或是不合群。",
+    "动作敏捷又独立，并且喜欢自己做事情。",
+    "看起来安稳轻松，反应度偏低，比较温和。"]},
+
+  { q:"朋友对我的评价最有可能的是：", o:[
+    "喜欢对朋友述说，也有感染别人的力量。",
+    "能够提出很多周全的问题，而且需要许多精细的解说。",
+    "愿意直言想法，有时会直率而犀利地谈论不喜欢的人、事、物。",
+    "通常与他人一起是倾听者。"]},
+
+  { q:"在帮助他人的问题上，我内心的想法是：", o:[
+    "别人来找我，不太会拒绝，会尽力帮他。",
+    "值得帮助的人应该帮助。",
+    "很少承诺要帮，但我若承诺必兑现。",
+    "虽无英雄打虎胆，常有自告奋勇心。"]},
+
+  { q:"面对他人对自己的赞美，我内心：", o:[
+    "没有也无所谓，特别欣喜那也不至于。",
+    "我不需无关痛痒的赞美，宁可对方欣赏我的能力。",
+    "思考对方的真实性或立即回避众人的关注。",
+    "赞美多多益善，总是令人愉悦的。"]},
+
+  { q:"面对生活，我更像：", o:[
+    "随和派——外面的世界我无关，我觉得自己这样还不错。",
+    "行动派——我不进步，别人就会进步，所以我必须不停地前进。",
+    "分析派——在问题未发生之前，就该想好所有的可能。",
+    "无忧派——每天的生活开心快乐最重要。"]},
+
+  { q:"对于规则，我内心的态度是：", o:[
+    "不愿违反规则，但可能因为松散而无法达到规则的要求。",
+    "打破规则，希望由自己来制定规则而不是遵守规则。",
+    "严格遵守规则，并且竭尽全力做到规则内的最好。",
+    "不喜被规则束缚，不按规则出牌会觉得新鲜有趣。"]},
+
+  { q:"我认为自己在行为上的基本特点是：", o:[
+    "慢条斯理，办事按部就班，能与周围的人协调一致。",
+    "目标明确，集中精力为实现目标而努力，善于抓住核心要点。",
+    "慎重小心，为做好预防及善后，会不惜一切而尽心操劳。",
+    "丰富跃动，不喜欢制度和约束，倾向于快速反应。"]},
+
+  { q:"当我做错事时，我倾向于：", o:[
+    "害怕但表面不露声色。",
+    "不承认而且辩驳，但内心其实已经明白。",
+    "愧疚和痛苦，容易停留在自我压抑中。",
+    "难为情，希望逃避别人的批评。"]},
+
+  { q:"当结束一段刻骨铭心的感情时，我会：", o:[
+    "很难受，可日子总要过，时间会冲淡一切的。",
+    "虽然觉得受伤，但一旦下定决心，就会努力把过去的影子摔掉。",
+    "深陷在悲伤的情绪中，在相当长的时期里难以自拔，也不愿再接受新的人。",
+    "痛不欲生，需要找朋友倾诉或者找到渠道发泄，寻求化解之道。"]},
+
+  { q:"面对他人的倾诉，我回顾自己大多时候本能上倾向于：", o:[
+    "能够认同并理解对方当时的感受。",
+    "快速做出一些定论或判断。",
+    "给予一些分析或推理，帮助对方理顺思路。",
+    "可能会随着他的情绪起伏而起伏，也会发表一些评论或意见。"]},
+
+  { q:"我在以下哪个群体中交流较感满足？", o:[
+    "舒服轻松的氛围中，心平气和地最终达成一致结论。",
+    "彼此展开充分激烈的辩论并有收获。",
+    "有意义地详细讨论事情的好坏和影响。",
+    "很开心并且随意无拘束地闲谈。"]},
+
+  { q:"在内心的真实想法里，我觉得工作：", o:[
+    "不必有太大压力，可以让我做我熟悉的工作就很不错。",
+    "应该以最快的速度完成，且争取去完成更多的任务。",
+    "要么不做，要做就做到最好。",
+    "如果能将好玩融合其中那就太棒了，不过如果不喜欢的工作实在没劲。"]},
+
+  { q:"如果我是领导，我内心更希望在部属心目中，我是：", o:[
+    "可以亲近的和善于为他们着想的。",
+    "有很强的能力和富有领导力的。",
+    "公平公正且足以信赖的。",
+    "被他们喜欢并且觉得富有感召力的。"]},
+
+  { q:"我对认同的需求是：", o:[
+    "无论别人是否认同，生活都是要继续的。",
+    "精英群体的认同最重要。",
+    "只要我在乎的那些人认同我就足够了。",
+    "所见之人无论贵贱都对我认同那有多好。"]},
+
+  { q:"当我还是个孩子的时候，我：", o:[
+    "不太会积极尝试新事物，通常比较喜欢旧有的和熟悉的。",
+    "是孩子王，大家经常听我的决定。",
+    "害羞见生人，有意识地回避。",
+    "调皮可爱，乐观而又热心。"]},
+
+  { q:"如果我是父母，我也许是：", o:[
+    "容易说服或者宽容的。",
+    "比较严厉、性急及说一不二的。",
+    "坚持自己的想法和比较挑剔的。",
+    "积极参与到子女中一起玩，被小朋友们热烈欢迎的。"]},
+
+  { q:"以下有四组格言，哪组里整体上最符合我的感觉？", o:[
+    "最深刻的真理是最简单和最平凡的。要在人世间取得成功必须大智若愚。好脾气是一个人在社交中所能穿着的最佳服饰。知足是人生在世最大的幸福。",
+    "走自己的路，让人家去说吧。虽然世界充满了苦难，但是苦难总是能战胜的。有所成就是人生唯一的真正的乐趣。对我而言解决一个问题和享受一个假期一样好。",
+    "一个不注意小事情的人，永远不会成功大事业。理性是灵魂中最高贵的因素。切忌浮夸铺张。与其说得过分，不如说得不全。谨慎比大胆要有力量得多。",
+    "幸福在于对生命的喜悦和激情。任何时候都要最真实地对待你自己，这比什么都重要。使生活变成幻想，再把幻想化为现实。幸福不在于拥有金钱，而在于获得成就时的喜悦以及产生创造力的激情。"]}
+];
+
+/* =========================================================
+   2. 四色档案
+   ========================================================= */
+var DIMS = {
+  red:   { key:"red",   name:"红色", color:"#E8847B", soft:"#FDEDEA", deep:"#C0635A", title:"热情表达型", adj:"热情与感染力" },
+  yellow:{ key:"yellow",name:"黄色", color:"#E0AC45", soft:"#FCF4E2", deep:"#A9822A", title:"目标主导型", adj:"目标感与行动力" },
+  blue:  { key:"blue",  name:"蓝色", color:"#7B9FD1", soft:"#EDF3FB", deep:"#537AAE", title:"严谨完美型", adj:"严谨与思想深度" },
+  green: { key:"green", name:"绿色", color:"#7FB89A", soft:"#EDF7F1", deep:"#528B70", title:"温和稳定型", adj:"温和与包容" }
+};
+var ORDER = ["red","yellow","blue","green"];
+
+var PROFILE = {
+  red: {
+    lead:"红色是四种性格中最像「太阳」的一种。你的能量来自体验、来自人、来自新鲜的可能性——比起「是否正确」，你更在意「是否快乐、是否有趣」。",
+    detail:[
+      "你的情绪是外放的：开心的时候全世界都知道，难过的时候也希望有人看见。这种坦率的表达让你很容易被喜欢，也很容易成为人群里制造气氛的那个人。",
+      "你天生抗拒被规则和重复捆住，脑海里总有新点子冒出来，行动往往先于计划。这让你在需要打开局面、需要创意和感染力的场合，具备别人很难替代的优势。",
+      "但热情来得快、去得也快。当新鲜感消退，你可能会突然失去兴趣，把没做完的事情留在原地。这不是能力问题，而是你对「无聊」的耐受度比较低。"
+    ],
+    keywords:["阳光乐观","感染力强","创意丰富","善于表达","行动迅速"],
+    strengths:[
+      "积极乐观，天生能给身边的人带来阳光和松弛感",
+      "感染力强，善于调动气氛、鼓舞他人",
+      "思维活跃，点子多，常有别人想不到的创意",
+      "表达力好，演讲、沟通、破冰都很擅长",
+      "乐于助人，有错就认，不记仇",
+      "适应变化快，面对陌生场合不怯场"
+    ],
+    improve:[
+      "虎头蛇尾，开头轰轰烈烈，收尾容易半途而废",
+      "情绪起伏大，容易在冲动时做决定",
+      "粗心、缺少条理，细节和计划常常被忽略",
+      "话说得太快，偶尔口无遮拦伤到人",
+      "容易过度承诺，最后难以全部兑现",
+      "不喜欢被约束，纪律性和持久性偏弱"
+    ],
+    work:"在职场中，你最适合需要「打开局面」的角色：市场、销售、活动策划、品牌传播、客户关系。你需要被看见、被肯定，阶段性的挑战比长期重复更能点燃你。给自己配一个擅长收尾的搭档，你的创意才真正落得了地。",
+    relation:"与人相处时，你的热情是最好的礼物，但也请留意对方的节奏——不是所有人都能承受高强度的表达。开玩笑之前停半秒，你会更受欢迎。"
+  },
+  yellow: {
+    lead:"黄色是天生的「目标动物」。你相信结果说明一切，喜欢赢，也享受在压力中把自己逼到更强的位置。",
+    detail:[
+      "你行动快、决断快，很少在犹豫里消耗时间。别人还在讨论方案，你已经跑完了第一轮试验。",
+      "你不太需要外界的肯定，因为心里自有一把尺子——是否达成、是否有效、是否比昨天更强。这让你抗压能力惊人，也让你在关键时刻格外靠得住。",
+      "问题是，你可能会不知不觉把人当成「达成目标的条件」。直率是优点，但如果只剩直率，团队会服从你，却不一定愿意靠近你。"
+    ],
+    keywords:["目标清晰","决策果断","高效执行","抗压耐挫","敢于担当"],
+    strengths:[
+      "目标清晰，不达目的不罢休，自驱力强",
+      "决策果断，行动迅速，不拖延",
+      "抗压能力强，越挫越勇",
+      "善于抓重点、讲效率，执行力突出",
+      "有领导力，关键时刻敢于承担责任",
+      "坦率直接，不绕弯子，沟通成本低"
+    ],
+    improve:[
+      "强势固执，不容易听取不同意见",
+      "缺乏耐心，容易对节奏慢的人发火",
+      "过于关注结果，忽视他人的感受",
+      "工作狂倾向，很难真正放松",
+      "不轻易认错，习惯硬撑",
+      "控制欲强，容易替别人做决定"
+    ],
+    work:"你是天然的推进者和管理者，适合销售目标、项目攻坚、创业带队这类角色。试着把「关心人」也当成一项必须完成的目标，你的领导力会从「让人服」升级为「让人跟」。",
+    relation:"在亲密关系里，你的爱常常藏在「我帮你解决问题」当中。偶尔放下建议，只是听一听、陪一陪，对方会感受到完全不同的温度。"
+  },
+  blue: {
+    lead:"蓝色是四种性格中最「向内」的一种。你想得多、感受得深，凡事希望想清楚再行动，也希望对得起自己的标准。",
+    detail:[
+      "你对细节和精确有天然的敏感，做事讲究程序与章法。交到你手上的事，别人通常很放心——因为你不会允许它「差不多就行」。",
+      "你的情感深而不外露。你在意承诺，也在意别人是否同样认真；一旦被辜负，伤口会留得很久。",
+      "高标准是你的铠甲，也是你的负担。你常常在「还没准备好」里错过时机，也容易因为一点瑕疵就否定全部努力。"
+    ],
+    keywords:["思维深邃","计划周详","责任心强","注重细节","忠诚可靠"],
+    strengths:[
+      "思维深邃，独立思考，不盲目从众",
+      "计划周详，条理清晰，做事有章法",
+      "责任心与忠诚度高，是可以托付的人",
+      "注重细节，追求品质，出品稳定",
+      "高度自律，守原则，重承诺",
+      "善于分析，能进行有深度的沟通"
+    ],
+    improve:[
+      "完美主义，容易过度准备、迟迟不开始",
+      "想得多、动得慢，常错过时机",
+      "敏感、容易受伤，内耗较多",
+      "挑剔，不容易妥协",
+      "表达偏少，别人很难真正读懂你",
+      "容易悲观，习惯把风险放大"
+    ],
+    work:"你适合需要专业深度与准确度的岗位：财务、研发、设计、品质管理、数据分析、法务。给自己设一条「完成的截止线」，而不是「完美的截止线」，你的产出会更有影响力。",
+    relation:"你值得被信任，也需要被理解。试着把心里的在意说出来——你不说，别人真的猜不到。"
+  },
+  green: {
+    lead:"绿色是四种性格中最「稳」的一种。你不争不抢，讲究和气与分寸，和你在一起的人往往觉得放松、没有压力。",
+    detail:[
+      "你的情绪稳定，很少大起大落。冲突来临的时候，你更愿意绕开而不是硬碰，这让你成为团队里的缓冲带。",
+      "你是极好的倾听者：耐心、不评判、能接住别人的情绪。很多人愿意把心事说给你听。",
+      "但「不争」的另一面是「不动」。你容易顺着惯性走，害怕改变、害怕拒绝别人，最后常常把自己的需求排在最后。"
+    ],
+    keywords:["平和稳定","包容度高","善于倾听","协调力强","让人放松"],
+    strengths:[
+      "情绪稳定，抗干扰能力强，很少失控",
+      "包容度高，能接纳各种不同的人",
+      "善于倾听，极具耐心，让人放松",
+      "协调能力强，是团队里天然的缓冲带",
+      "做事踏实，不浮躁，可长期信赖",
+      "知足、不计较，人际关系通常很好"
+    ],
+    improve:[
+      "偏被动，很少主动争取机会",
+      "不懂拒绝，常把压力留给自己",
+      "回避冲突，问题容易积压到最后",
+      "目标感偏弱，容易安于现状",
+      "决策偏慢，行动容易拖延",
+      "害怕改变，对新事物有抗拒"
+    ],
+    work:"你适合需要稳定输出与协作的岗位：行政、人事、客服、后勤、品质协调、团队支持。试着在每个阶段给自己定一个小目标，你的稳定性就会变成别人抢不走的核心竞争力。",
+    relation:"你的温柔很有力量，但请记得：表达需求和照顾别人并不冲突。学会说「不」，不会让你失去关系，反而会让关系更真实。"
+  }
+};
+
+/* =========================================================
+   3. 全局状态
+   ========================================================= */
+var STORE_KEY = "csx_records_v1";
+var MASTER_KEY = "86517686";
+var KEY_PREFIX = "CSX1-";
+var TOTAL = QUESTIONS.length;
+
+var UA = navigator.userAgent || "";
+var IS_WECHAT = /MicroMessenger/i.test(UA);
+var IS_MOBILE = /Android|iPhone|iPad|iPod|Mobile|HarmonyOS/i.test(UA);
+
+var state = {
+  idx: 0,
+  answers: new Array(TOTAL).fill(null),
+  userName: "",
+  current: null,       // 当前展示的报告数据
+  fromHistory: false,
+  fromKey: false,      // 由分享密钥解析出来的报告
+  unlocked: false,
+  view: "home"
+};
+
+/* =========================================================
+   4. 工具函数
+   ========================================================= */
+function $(id){ return document.getElementById(id); }
+function pad(n){ return n < 10 ? "0" + n : "" + n; }
+function fmtDate(ts){
+  var d = new Date(ts);
+  return d.getFullYear() + "-" + pad(d.getMonth()+1) + "-" + pad(d.getDate()) + " " + pad(d.getHours()) + ":" + pad(d.getMinutes());
+}
+function esc(s){
+  return String(s).replace(/[&<>"']/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];
+  });
+}
+var toastTimer = null;
+function toast(msg){
+  var t = $("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.classList.remove("show"); }, 2400);
+}
+
+/* 微信内置浏览器不支持 a[download]，下载前做一次拦截提示 */
+function canDownload(){
+  if(IS_WECHAT){
+    toast("微信内不支持直接下载，请点右上角「···」→「在浏览器打开」");
+    return false;
+  }
+  return true;
+}
+
+function copyText(text){
+  function fallback(){
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.cssText = "position:fixed;top:-2000px;left:-2000px;opacity:0";
+    document.body.appendChild(ta);
+    ta.select();
+    try{ ta.setSelectionRange(0, text.length); }catch(e){}
+    try{ document.execCommand("copy"); }catch(e){}
+    document.body.removeChild(ta);
+  }
+  try{
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text)["catch"](fallback);
+      return true;
+    }
+  }catch(e){}
+  fallback();
+  return true;
+}
+
+function showView(name){
+  state.view = name;
+  ["home","quiz","result"].forEach(function(v){
+    var el = $("view-" + v);
+    if(!el) return;
+    el.classList.toggle("active", v === name);
+  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* ---------- 本地存储 ----------
+   纯浏览器存储：不依赖任何账号、不联网、不上传。
+   若浏览器禁用 localStorage（隐私模式/极严设置），自动退回内存存储，
+   本次打开期间仍可正常答题、看报告、导出文件。 */
+var MEM_RECORDS = [];
+var STORE_OK = (function(){
+  try{
+    var k = "__csx_probe__";
+    localStorage.setItem(k, "1");
+    var ok = localStorage.getItem(k) === "1";
+    localStorage.removeItem(k);
+    return ok;
+  }catch(e){ return false; }
+})();
+
+function loadRecords(){
+  if(STORE_OK){
+    try{
+      var raw = localStorage.getItem(STORE_KEY);
+      if(raw){
+        var arr = JSON.parse(raw);
+        if(Array.isArray(arr)) return arr;
+      }
+      return [];
+    }catch(e){ /* 落回内存 */ }
+  }
+  return MEM_RECORDS.slice();
+}
+function saveRecords(arr){
+  MEM_RECORDS = arr.slice();
+  if(!STORE_OK) return false;
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(arr)); return true; }
+  catch(e){ toast("本地存储空间不足，本次记录可能未保存"); return false; }
+}
+function clearRecords(){
+  MEM_RECORDS = [];
+  try{ localStorage.removeItem(STORE_KEY); }catch(e){}
+}
+function refreshRecHint(){
+  var n = loadRecords().length;
+  var el = $("recHint");
+  if(!el) return;
+  el.textContent = STORE_OK
+    ? "本机浏览器已保存 " + n + " 份记录 · 报告密钥可分享给他人查看"
+    : "当前浏览器禁用了本地存储，记录仅本次打开有效（可导出备份留存）";
+}
+
+/* ---------- 报告密钥（Base64 编码，纯本地生成，不含任何网络请求） ----------
+   密钥里编码了：姓名、时间、30 题作答、四维得分。
+   任何人拿到这串密钥，在首页粘贴即可还原同一份报告（无需联网、无需账号）。 */
+function b64encodeUtf8(str){
+  var bin = encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(m, p){
+    return String.fromCharCode(parseInt(p, 16));
+  });
+  return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+function b64decodeUtf8(str){
+  var s = String(str).replace(/-/g, "+").replace(/_/g, "/");
+  while(s.length % 4) s += "=";
+  var bin = atob(s);
+  var out = "";
+  for(var i = 0; i < bin.length; i++){
+    var h = bin.charCodeAt(i).toString(16);
+    out += "%" + (h.length < 2 ? "0" + h : h);
+  }
+  return decodeURIComponent(out);
+}
+var LETTERS = ["A", "B", "C", "D"];
+function makeReportKey(rec){
+  if(!rec) return "";
+  var a = (rec.answers || []).map(function(x){
+    return (x === null || x === undefined) ? "-" : LETTERS[x];
+  }).join("");
+  var payload = { v: 1, n: rec.name || "匿名伙伴", t: rec.ts || Date.now(), a: a, s: rec.scores };
+  try{
+    return KEY_PREFIX + b64encodeUtf8(JSON.stringify(payload));
+  }catch(e){ return ""; }
+}
+function parseReportKey(key){
+  var k = String(key || "").replace(/\s+/g, "");
+  if(k.toUpperCase().indexOf(KEY_PREFIX) !== 0) return null;
+  try{
+    var obj = JSON.parse(b64decodeUtf8(k.slice(KEY_PREFIX.length)));
+    if(!obj || !obj.s) return null;
+    var s = obj.s;
+    if(typeof s.red !== "number" || typeof s.yellow !== "number" ||
+       typeof s.blue !== "number" || typeof s.green !== "number") return null;
+    var txt = String(obj.a || "");
+    var ans = [];
+    for(var i = 0; i < TOTAL; i++){
+      var idx = LETTERS.indexOf(txt.charAt(i).toUpperCase());
+      ans.push(idx > -1 ? idx : null);
+    }
+    return {
+      id: "k" + (Number(obj.t) || Date.now()),
+      name: String(obj.n || "匿名伙伴").slice(0, 16),
+      ts: Number(obj.t) || Date.now(),
+      answers: ans,
+      scores: { red: s.red, yellow: s.yellow, blue: s.blue, green: s.green }
+    };
+  }catch(e){ return null; }
+}
+function copyReportKey(){
+  var rec = state.current;
+  if(!rec){ toast("还没有可分享的报告"); return; }
+  var key = makeReportKey(rec);
+  if(!key){ toast("密钥生成失败，请重试"); return; }
+  copyText(key);
+  toast("报告密钥已复制，发给对方即可查看");
+}
+
+/* =========================================================
+   5. 计分
+   规则：红 = 1-15题A + 16-30题D
+        蓝 = 1-15题B + 16-30题C
+        黄 = 1-15题C + 16-30题B
+        绿 = 1-15题D + 16-30题A
+   ========================================================= */
+function computeScores(answers){
+  var s = { red:0, yellow:0, blue:0, green:0 };
+  var first  = ["red","blue","yellow","green"];   // 1-15 题 A/B/C/D
+  var second = ["green","yellow","blue","red"];   // 16-30 题 A/B/C/D
+  for(var i = 0; i < TOTAL; i++){
+    var a = answers[i];
+    if(a === null || a === undefined) continue;
+    var map = i < 15 ? first : second;
+    var key = map[a];
+    if(key) s[key]++;
+  }
+  return s;
+}
+function pickDominant(scores){
+  var sorted = ORDER.slice().sort(function(a,b){ return scores[b] - scores[a]; });
+  var top = scores[sorted[0]];
+  var tied = ORDER.filter(function(k){ return scores[k] === top; });
+  return { first: sorted[0], second: sorted[1], top: top, tie: tied.length > 1, tiedKeys: tied };
+}
+function levelOf(score){
+  if(score >= 12) return "显著主导";
+  if(score >= 9)  return "明显倾向";
+  if(score >= 5)  return "中等水平";
+  if(score >= 1)  return "相对较弱";
+  return "几乎没有";
+}
+
+/* =========================================================
+   6. 首页交互
+   ========================================================= */
+$("btnStart").addEventListener("click", function(){
+  var n = $("userName").value.trim();
+  state.userName = n || "匿名伙伴";
+  state.answers = new Array(TOTAL).fill(null);
+  state.idx = 0;
+  state.fromHistory = false;
+  state.fromKey = false;
+  renderQuestion();
+  showView("quiz");
+});
+
+$("keyInput").addEventListener("keydown", function(e){
+  if(e.key === "Enter") $("btnUnlock").click();
+});
+
+$("btnUnlock").addEventListener("click", function(){
+  var v = $("keyInput").value.trim();
+  if(!v){ toast("请输入查看密钥"); return; }
+
+  /* 1) 发起人密钥：打开本机记录中心 */
+  if(v === MASTER_KEY){
+    state.unlocked = true;
+    $("keyInput").value = "";
+    openHistory();
+    return;
+  }
+
+  /* 2) 报告密钥：直接还原对方分享的报告 */
+  var rec = parseReportKey(v);
+  if(rec){
+    state.current = rec;
+    state.fromHistory = false;
+    state.fromKey = true;
+    $("keyInput").value = "";
+    renderResult();
+    showView("result");
+    return;
+  }
+
+  toast("密钥不正确，请检查是否复制完整");
+});
+
+/* =========================================================
+   7. 答题
+   ========================================================= */
+function renderQuestion(){
+  var i = state.idx;
+  var q = QUESTIONS[i];
+
+  $("qCur").textContent = i + 1;
+  $("qNum").textContent = "QUESTION " + pad(i + 1);
+  $("qText").textContent = q.q;
+  $("progressBar").style.width = ((i + 1) / TOTAL * 100) + "%";
+
+  var box = $("qOpts");
+  box.innerHTML = "";
+  var letters = ["A","B","C","D"];
+  q.o.forEach(function(text, k){
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "opt" + (state.answers[i] === k ? " sel" : "");
+    btn.innerHTML = '<span class="k">' + letters[k] + '</span><span class="t">' + esc(text) + '</span>';
+    btn.addEventListener("click", function(){
+      state.answers[i] = k;
+      var all = box.querySelectorAll(".opt");
+      for(var m = 0; m < all.length; m++) all[m].classList.remove("sel");
+      btn.classList.add("sel");
+      if(i < TOTAL - 1){
+        setTimeout(function(){
+          if(state.view === "quiz" && state.idx === i && state.answers[i] === k){
+            state.idx = i + 1;
+            renderQuestion();
+          }
+        }, 260);
+      }
+    });
+    box.appendChild(btn);
+  });
+
+  $("btnPrev").disabled = (i === 0);
+  var next = $("btnNext");
+  if(i === TOTAL - 1){
+    next.textContent = "提交报告 ✓";
+  }else{
+    next.textContent = "下一题";
+  }
+}
+
+$("btnPrev").addEventListener("click", function(){
+  if(state.idx > 0){ state.idx--; renderQuestion(); }
+});
+
+$("btnNext").addEventListener("click", function(){
+  if(state.idx < TOTAL - 1){
+    state.idx++;
+    renderQuestion();
+    return;
+  }
+  submitQuiz();
+});
+
+$("btnQuit").addEventListener("click", function(){
+  var answered = state.answers.filter(function(a){ return a !== null; }).length;
+  if(answered > 0 && !confirm("退出后本次作答不会保存，确定退出吗？")) return;
+  state.answers = new Array(TOTAL).fill(null);
+  state.idx = 0;
+  refreshRecHint();
+  showView("home");
+});
+
+document.addEventListener("keydown", function(e){
+  if(state.view !== "quiz") return;
+  if(e.key === "ArrowLeft"){ if(state.idx > 0){ state.idx--; renderQuestion(); } }
+  else if(e.key === "ArrowRight"){ $("btnNext").click(); }
+  else if(["1","2","3","4"].indexOf(e.key) > -1){
+    var k = parseInt(e.key, 10) - 1;
+    var opts = $("qOpts").querySelectorAll(".opt");
+    if(opts[k]) opts[k].click();
+  }
+  else if(["a","b","c","d"].indexOf(e.key.toLowerCase()) > -1){
+    var k2 = ["a","b","c","d"].indexOf(e.key.toLowerCase());
+    var opts2 = $("qOpts").querySelectorAll(".opt");
+    if(opts2[k2]) opts2[k2].click();
+  }
+});
+
+function submitQuiz(){
+  var missing = [];
+  for(var i = 0; i < TOTAL; i++){ if(state.answers[i] === null) missing.push(i + 1); }
+  if(missing.length){
+    toast("还有 " + missing.length + " 题未作答，已跳转到第 " + missing[0] + " 题");
+    state.idx = missing[0] - 1;
+    renderQuestion();
+    return;
+  }
+
+  var loading = $("loading");
+  loading.classList.add("show");
+  setTimeout(function(){
+    var scores = computeScores(state.answers);
+    var rec = {
+      id: "r" + Date.now(),
+      name: state.userName || "匿名伙伴",
+      ts: Date.now(),
+      answers: state.answers.slice(),
+      scores: scores
+    };
+    var arr = loadRecords();
+    arr.unshift(rec);
+    if(arr.length > 300) arr = arr.slice(0, 300);
+    saveRecords(arr);
+    refreshRecHint();
+
+    state.current = rec;
+    state.fromHistory = false;
+    state.fromKey = false;
+    loading.classList.remove("show");
+    renderResult();
+    showView("result");
+  }, 760);
+}
+
+/* =========================================================
+   8. 结果页渲染
+   ========================================================= */
+function buildResultHTML(rec){
+  var s = rec.scores;
+  var dom = pickDominant(s);
+  var main = DIMS[dom.first];
+  var sec = DIMS[dom.second];
+  var p = PROFILE[dom.first];
+
+  var maxScore = Math.max(s.red, s.yellow, s.blue, s.green, 1);
+
+  var html = "";
+
+  /* 主导性格卡 */
+  html += '<div class="hero-card" style="--hc:' + main.color + ';--hc-soft:' + main.soft + ';--hc-deep:' + main.deep + '">';
+  html +=   '<div class="mark">' + main.name.charAt(0) + '</div>';
+  html +=   '<div style="min-width:0">';
+  html +=     '<div class="hero-label">主 导 性 格</div>';
+  html +=     '<div class="hero-title">' + main.name + ' · ' + main.title + '</div>';
+  html +=     '<div class="hero-desc">' + esc(p.lead.split("。")[0]) + '。</div>';
+  html +=   '</div>';
+  html +=   '<div class="hero-score"><b>' + s[dom.first] + '</b><span> / 30 分</span></div>';
+  html += '</div>';
+
+  if(dom.tie){
+    var names = dom.tiedKeys.map(function(k){ return DIMS[k].name; }).join("、");
+    var tieN = dom.tiedKeys.length;
+    var tieTxt;
+    if(tieN >= 4){
+      tieTxt = "四种色彩得分完全均衡，属于「四色平衡」型——你的表现会随场合灵活切换，适应力很强。";
+    }else if(tieN === 3){
+      tieTxt = "你的" + names + "得分并列最高，属于「三色并列」型，不同场合下会呈现不同的色彩特质。";
+    }else{
+      tieTxt = "你的" + names + "得分并列最高，属于「双色主导」型，两种特质会交替出现。";
+    }
+    html += '<div class="hist-bar" style="margin-top:12px;margin-bottom:0;background:#FBF5E9;border-color:#F1E4CD;color:#A08256">' + tieTxt + '</div>';
+  }
+
+  /* 图表 */
+  html += '<div class="card">';
+  html +=   '<h3>四维得分<span class="sub">满分 30 分</span></h3>';
+  html +=   '<div class="chart-wrap"><canvas id="chart"></canvas></div>';
+  html +=   '<div class="score-list" id="scoreList"></div>';
+  html += '</div>';
+
+  /* 解读 */
+  html += '<div class="card">';
+  html +=   '<h3>性格解读<span class="sub">' + main.name + ' · ' + main.title + '</span></h3>';
+  html +=   '<div class="chips">' + p.keywords.map(function(k){ return "<span>" + k + "</span>"; }).join("") + '</div>';
+  html +=   '<div class="txt">';
+  html +=     "<p style='color:#4A453F'>" + esc(p.lead) + "</p>";
+  p.detail.forEach(function(t){ html += "<p>" + esc(t) + "</p>"; });
+  html +=   "</div>";
+  html +=   '<div class="txt" style="font-size:13.5px;color:#8C8279;background:#FBF7F1;border-radius:12px;padding:12px 14px;margin-top:14px">';
+  html +=     "辅助性格：<b style='color:" + sec.deep + "'>" + sec.name + " · " + sec.title + "</b>（" + s[dom.second] + " 分）。它让你的" + main.adj + "之外，多了一层" + sec.adj + "的底色。";
+  html +=   "</div>";
+  html += '</div>';
+
+  /* 优势 / 待改进 */
+  html += '<div class="grid2">';
+  html +=   '<div class="card" style="--dc:' + main.color + '">';
+  html +=     '<h3>你的优势</h3><ul class="ulist good">';
+  p.strengths.forEach(function(t){ html += "<li>" + esc(t) + "</li>"; });
+  html +=     "</ul></div>";
+  html +=   '<div class="card" style="--dc:' + main.color + '">';
+  html +=     '<h3>待改进点</h3><ul class="ulist warn">';
+  p.improve.forEach(function(t){ html += "<li>" + esc(t) + "</li>"; });
+  html +=     "</ul></div>";
+  html += "</div>";
+
+  /* 建议 */
+  html += '<div class="card"><h3>相处与职场建议</h3><div class="txt">';
+  html +=   "<p><b>在团队中：</b>" + esc(p.work) + "</p>";
+  html +=   "<p><b>在关系里：</b>" + esc(p.relation) + "</p>";
+  html += "</div></div>";
+
+  return { html: html, dom: dom, main: main, sec: sec, profile: p, maxScore: maxScore, s: s };
+}
+
+function renderResult(){
+  var rec = state.current;
+  if(!rec) return;
+
+  $("repTitle").textContent = rec.name + " 的色彩画像";
+  $("repMeta").textContent = "测试时间 " + fmtDate(rec.ts) + " · 共 " + TOTAL + " 题 · 报告编号 " + rec.id.slice(-6);
+
+  var bar = $("histBar");
+  if(state.fromKey){
+    bar.innerHTML = '<div class="hist-bar"><span>该报告由分享密钥解析，本机暂未保存</span>' +
+      '<span class="hb-acts"><button type="button" id="btnSaveKeyRec">保存到本机</button>' +
+      '<button type="button" id="btnKeyHome">← 返回首页</button></span></div>';
+  }else if(state.fromHistory){
+    bar.innerHTML = '<div class="hist-bar"><span>正在查看历史记录（只读）</span><button type="button" id="btnBackHist">← 返回记录列表</button></div>';
+  }else{
+    bar.innerHTML = '';
+  }
+
+  var built = buildResultHTML(rec);
+  $("reportBody").innerHTML = built.html;
+  currentBuilt = built;
+
+  var btns = $("btnBackHist");
+  if(btns) btns.addEventListener("click", openHistory);
+
+  var saveBtn = $("btnSaveKeyRec");
+  if(saveBtn){
+    saveBtn.addEventListener("click", function(){
+      var arr = loadRecords();
+      var exists = arr.some(function(r){ return r.id === rec.id; });
+      if(exists){ toast("这份报告已在本机记录里"); return; }
+      arr.unshift(rec);
+      saveRecords(arr);
+      refreshRecHint();
+      toast("已保存到本机记录");
+    });
+  }
+  var keyHome = $("btnKeyHome");
+  if(keyHome){
+    keyHome.addEventListener("click", function(){
+      state.fromKey = false;
+      state.current = null;
+      showView("home");
+    });
+  }
+
+  drawScoreList(built);
+  animateChart(built);
+
+  var kv = $("keyVal");
+  if(kv) kv.textContent = makeReportKey(rec);
+}
+
+function drawScoreList(built){
+  var box = $("scoreList");
+  if(!box) return;
+  var s = built.s;
+  box.innerHTML = ORDER.map(function(k){
+    var d = DIMS[k];
+    var pct = Math.round(s[k] / 30 * 100);
+    return '<div class="score-item">' +
+      '<div class="nm"><i style="background:' + d.color + '"></i>' + d.name + '</div>' +
+      '<div class="track"><div class="fill" data-w="' + pct + '" style="background:linear-gradient(90deg,' + d.color + ',' + d.color + 'cc)"></div></div>' +
+      '<div class="vl"><b>' + s[k] + '</b> 分 · ' + levelOf(s[k]) + '</div>' +
+    '</div>';
+  }).join("");
+  var fills = box.querySelectorAll(".fill");
+  for(var i = 0; i < fills.length; i++){
+    (function(el, k){
+      setTimeout(function(){ el.style.width = el.getAttribute("data-w") + "%"; }, 120 + k * 90);
+    })(fills[i], i);
+  }
+}
+
+/* =========================================================
+   9. 内置 Canvas 柱状图（无任何第三方库）
+   ========================================================= */
+var chartAnim = null;
+var currentBuilt = null;
+
+function animateChart(built){
+  if(!built) return;
+  if(chartAnim){ clearInterval(chartAnim); chartAnim = null; }
+  var t0 = Date.now();
+  drawChart(built, 0.001);
+  chartAnim = setInterval(function(){
+    var t = Math.min(1, (Date.now() - t0) / 650);
+    var e = 1 - Math.pow(1 - t, 3);
+    drawChart(built, e);
+    if(t >= 1){ clearInterval(chartAnim); chartAnim = null; }
+  }, 16);
+}
+
+var resizeTimer = null;
+window.addEventListener("resize", function(){
+  if(!currentBuilt) return;
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(function(){ drawChart(currentBuilt, 1); }, 160);
+});
+
+function drawChart(built, progress){
+  var canvas = $("chart");
+  if(!canvas) return;
+  var dpr = window.devicePixelRatio || 1;
+  var cssW = canvas.clientWidth || 600;
+  var cssH = canvas.clientHeight || 250;
+  canvas.width = Math.round(cssW * dpr);
+  canvas.height = Math.round(cssH * dpr);
+  var c = canvas.getContext("2d");
+  c.setTransform(dpr, 0, 0, dpr, 0, 0);
+  c.clearRect(0, 0, cssW, cssH);
+
+  var s = built.s;
+  var maxV = Math.max(s.red, s.yellow, s.blue, s.green, 8);
+  var niceMax = Math.ceil(maxV / 4) * 4;
+  if(niceMax < 8) niceMax = 8;
+
+  var padL = 34, padR = 12, padT = 26, padB = 42;
+  var plotW = cssW - padL - padR;
+  var plotH = cssH - padT - padB;
+  var baseY = padT + plotH;
+
+  /* 网格与刻度 */
+  var steps = 4;
+  c.font = "11px 'PingFang SC','Microsoft YaHei',sans-serif";
+  c.textAlign = "right";
+  c.textBaseline = "middle";
+  for(var i = 0; i <= steps; i++){
+    var v = niceMax / steps * i;
+    var y = baseY - plotH / steps * i;
+    c.beginPath();
+    c.moveTo(padL, y);
+    c.lineTo(cssW - padR, y);
+    c.strokeStyle = i === 0 ? "#E8E0D4" : "#F2ECE2";
+    c.lineWidth = 1;
+    c.stroke();
+    c.fillStyle = "#B6ACA1";
+    c.fillText(String(Math.round(v)), padL - 9, y);
+  }
+
+  /* 柱子 */
+  var gap = 26;
+  var slot = plotW / 4;
+  var barW = Math.min(52, slot - gap);
+  if(barW < 22) barW = Math.max(16, slot - 12);
+  var p = progress === undefined ? 1 : progress;
+
+  ORDER.forEach(function(k, idx){
+    var d = DIMS[k];
+    var val = s[k];
+    var cx = padL + slot * idx + slot / 2;
+    var h = (val / niceMax) * plotH * p;
+    if(h < 0) h = 0;
+    var x = cx - barW / 2;
+    var y = baseY - h;
+
+    var g = c.createLinearGradient(0, y, 0, baseY);
+    g.addColorStop(0, d.color);
+    g.addColorStop(1, hexA(d.color, .55));
+
+    if(h > 1){
+      roundRectPath(c, x, y, barW, h, Math.min(10, barW / 2));
+      c.fillStyle = g;
+      c.fill();
+    }
+
+    /* 底座圆点，0 分时也有视觉锚点 */
+    c.beginPath();
+    c.arc(cx, baseY, 3, 0, Math.PI * 2);
+    c.fillStyle = hexA(d.color, .35);
+    c.fill();
+
+    /* 数值 */
+    c.textAlign = "center";
+    c.textBaseline = "bottom";
+    c.font = "700 16px 'PingFang SC','Microsoft YaHei',sans-serif";
+    c.fillStyle = d.deep;
+    c.fillText(String(Math.round(val * p)), cx, y - 8);
+
+    /* 维度名 */
+    c.textBaseline = "top";
+    c.font = "13px 'PingFang SC','Microsoft YaHei',sans-serif";
+    c.fillStyle = "#6E655C";
+    c.fillText(d.name, cx, baseY + 12);
+  });
+}
+
+function hexA(hex, a){
+  var h = hex.replace("#", "");
+  if(h.length === 3) h = h[0]+h[0]+h[1]+h[1]+h[2]+h[2];
+  var r = parseInt(h.substring(0,2), 16);
+  var g = parseInt(h.substring(2,4), 16);
+  var b = parseInt(h.substring(4,6), 16);
+  return "rgba(" + r + "," + g + "," + b + "," + a + ")";
+}
+
+function roundRectPath(c, x, y, w, h, r){
+  if(w <= 0 || h <= 0) return;
+  r = Math.min(r, w / 2, h / 2);
+  c.beginPath();
+  c.moveTo(x + r, y);
+  c.lineTo(x + w - r, y);
+  c.quadraticCurveTo(x + w, y, x + w, y + r);
+  c.lineTo(x + w, y + h);
+  c.lineTo(x, y + h);
+  c.lineTo(x, y + r);
+  c.quadraticCurveTo(x, y, x + r, y);
+  c.closePath();
+}
+
+/* =========================================================
+   10. 导出 PNG
+   ========================================================= */
+var FONT = "'PingFang SC','Microsoft YaHei','Hiragino Sans GB',sans-serif";
+
+function wrapLines(c, text, maxW){
+  var lines = [], line = "";
+  for(var i = 0; i < text.length; i++){
+    var ch = text.charAt(i);
+    if(ch === "\n"){ lines.push(line); line = ""; continue; }
+    var test = line + ch;
+    if(c.measureText(test).width > maxW && line.length){
+      lines.push(line);
+      line = ch;
+    }else{
+      line = test;
+    }
+  }
+  if(line.length) lines.push(line);
+  /* 避免标点出现在行首 */
+  var NO_START = "。，、；：？！）》」』】”’,.;:!?)]}%";
+  for(var n = 1; n < lines.length; n++){
+    while(lines[n].length && NO_START.indexOf(lines[n].charAt(0)) > -1){
+      lines[n - 1] += lines[n].charAt(0);
+      lines[n] = lines[n].substring(1);
+    }
+  }
+  return lines.filter(function(l){ return l.length > 0; });
+}
+
+function drawPara(c, text, x, y, maxW, lineH, font, color){
+  c.font = font;
+  c.fillStyle = color;
+  c.textAlign = "left";
+  c.textBaseline = "top";
+  var lines = wrapLines(c, text, maxW);
+  for(var i = 0; i < lines.length; i++) c.fillText(lines[i], x, y + i * lineH);
+  return y + lines.length * lineH;
+}
+
+function sectionTitle(c, text, x, y, color){
+  c.fillStyle = color;
+  roundRectPath(c, x, y + 3, 4, 14, 2);
+  c.fill();
+  c.font = "700 15px " + FONT;
+  c.fillStyle = "#3E3A36";
+  c.textAlign = "left";
+  c.textBaseline = "top";
+  c.fillText(text, x + 12, y);
+  return y + 26;
+}
+
+function paintReport(c, W, rec){
+  var PAD = 52;
+  var innerW = W - PAD * 2;
+  var s = rec.scores;
+  var dom = pickDominant(s);
+  var main = DIMS[dom.first];
+  var sec = DIMS[dom.second];
+  var p = PROFILE[dom.first];
+
+  /* 背景 */
+  c.fillStyle = "#FBF8F3";
+  c.fillRect(0, 0, W, 4200);
+
+  /* 顶部色带 */
+  var g = c.createLinearGradient(0, 0, W, 250);
+  g.addColorStop(0, "#FCEFEA");
+  g.addColorStop(.45, "#FBF5E6");
+  g.addColorStop(.78, "#EBF4EF");
+  g.addColorStop(1, "#EDF2FA");
+  c.fillStyle = g;
+  c.fillRect(0, 0, W, 232);
+
+  c.textAlign = "center";
+  c.textBaseline = "top";
+  c.font = "13px " + FONT;
+  c.fillStyle = "#8A7F73";
+  c.fillText("广东省澳舒健家具制造有限公司", W / 2, 44);
+
+  c.font = "700 30px " + FONT;
+  c.fillStyle = "#3E3A36";
+  c.fillText("色彩性格测试报告", W / 2, 72);
+
+  c.font = "13px " + FONT;
+  c.fillStyle = "#8A7F73";
+  c.fillText(rec.name + "   ·   " + fmtDate(rec.ts), W / 2, 118);
+
+  var y = 168;
+
+  /* 主导卡 */
+  var heroH = 108;
+  c.save();
+  c.shadowColor = "rgba(93,78,60,.08)";
+  c.shadowBlur = 18;
+  c.shadowOffsetY = 6;
+  roundRectPath(c, PAD, y, innerW, heroH, 20);
+  c.fillStyle = main.soft;
+  c.fill();
+  c.restore();
+
+  roundRectPath(c, PAD + 22, y + 26, 56, 56, 18);
+  c.fillStyle = main.color;
+  c.fill();
+  c.font = "700 24px " + FONT;
+  c.fillStyle = "#FFFFFF";
+  c.textAlign = "center";
+  c.textBaseline = "middle";
+  c.fillText(main.name.charAt(0), PAD + 22 + 28, y + 26 + 29);
+
+  c.textAlign = "left";
+  c.textBaseline = "top";
+  c.font = "11px " + FONT;
+  c.fillStyle = main.deep;
+  c.fillText("主 导 性 格", PAD + 96, y + 28);
+
+  c.font = "700 22px " + FONT;
+  c.fillStyle = "#3E3A36";
+  c.fillText(main.name + " · " + main.title, PAD + 96, y + 46);
+
+  c.font = "12.5px " + FONT;
+  c.fillStyle = "#6E655C";
+  c.fillText("辅助性格：" + sec.name + " · " + sec.title + "（" + s[dom.second] + " 分）", PAD + 96, y + 78);
+
+  c.textAlign = "right";
+  c.font = "700 34px " + FONT;
+  c.fillStyle = main.deep;
+  c.fillText(String(s[dom.first]), W - PAD - 58, y + 34);
+  c.font = "12px " + FONT;
+  c.fillStyle = "#9C938A";
+  c.fillText("/ 30 分", W - PAD - 20, y + 46);
+
+  y += heroH + 26;
+
+  /* 图表 */
+  var chartCardH = 250;
+  c.save();
+  c.shadowColor = "rgba(93,78,60,.06)";
+  c.shadowBlur = 14;
+  c.shadowOffsetY = 5;
+  roundRectPath(c, PAD, y, innerW, chartCardH, 18);
+  c.fillStyle = "#FFFFFF";
+  c.fill();
+  c.restore();
+
+  sectionTitle(c, "四维得分", PAD + 22, y + 18, main.color);
+
+  var cx0 = PAD + 62, cy0 = y + 62, cw = innerW - 100, chH = 118;
+  var niceMax = Math.ceil(Math.max(s.red, s.yellow, s.blue, s.green, 8) / 4) * 4;
+  if(niceMax < 8) niceMax = 8;
+
+  for(var i = 0; i <= 4; i++){
+    var gy = cy0 + chH - (chH / 4 * i);
+    c.beginPath();
+    c.moveTo(cx0, gy);
+    c.lineTo(cx0 + cw, gy);
+    c.strokeStyle = i === 0 ? "#E8E0D4" : "#F2ECE2";
+    c.lineWidth = 1;
+    c.stroke();
+    c.textAlign = "right";
+    c.textBaseline = "middle";
+    c.font = "10px " + FONT;
+    c.fillStyle = "#B6ACA1";
+    c.fillText(String(Math.round(niceMax / 4 * i)), cx0 - 10, gy);
+  }
+
+  var slot = cw / 4;
+  ORDER.forEach(function(k, idx){
+    var d = DIMS[k];
+    var val = s[k];
+    var bx = cx0 + slot * idx + slot / 2;
+    var bh = val / niceMax * chH;
+    var bw = Math.min(44, slot - 30);
+    var by = cy0 + chH - bh;
+
+    if(bh > 2){
+      var bg = c.createLinearGradient(0, by, 0, cy0 + chH);
+      bg.addColorStop(0, d.color);
+      bg.addColorStop(1, hexA(d.color, .55));
+      roundRectPath(c, bx - bw / 2, by, bw, bh, 8);
+      c.fillStyle = bg;
+      c.fill();
+    }
+
+    c.textAlign = "center";
+    c.textBaseline = "bottom";
+    c.font = "700 14px " + FONT;
+    c.fillStyle = d.deep;
+    c.fillText(String(val), bx, by - 7);
+
+    c.textBaseline = "top";
+    c.font = "12.5px " + FONT;
+    c.fillStyle = "#6E655C";
+    c.fillText(d.name, bx, cy0 + chH + 12);
+  });
+
+  y += chartCardH + 26;
+
+  /* 性格解读 */
+  var detailArr = [p.lead].concat(p.detail);
+  var detailText = 0;
+  c.font = "14px " + FONT;
+  detailArr.forEach(function(t){
+    detailText += wrapLines(c, t, innerW - 44).length * 25 + 10;
+  });
+  var detailH = 82 + detailText + 20;
+
+  c.save();
+  c.shadowColor = "rgba(93,78,60,.06)";
+  c.shadowBlur = 14;
+  c.shadowOffsetY = 5;
+  roundRectPath(c, PAD, y, innerW, detailH, 18);
+  c.fillStyle = "#FFFFFF";
+  c.fill();
+  c.restore();
+
+  var ty = sectionTitle(c, "性格解读", PAD + 22, y + 18, main.color);
+
+  /* 关键词 */
+  var kx = PAD + 22;
+  var kyy = ty;
+  c.font = "12px " + FONT;
+  p.keywords.forEach(function(kw){
+    var w = c.measureText(kw).width + 22;
+    if(kx + w > PAD + innerW - 22){ kx = PAD + 22; kyy += 30; }
+    roundRectPath(c, kx, kyy, w, 24, 12);
+    c.fillStyle = "#F7F2EA";
+    c.fill();
+    c.fillStyle = "#6E655C";
+    c.textAlign = "center";
+    c.textBaseline = "middle";
+    c.fillText(kw, kx + w / 2, kyy + 12);
+    kx += w + 8;
+  });
+
+  var py = kyy + 38;
+  detailArr.forEach(function(t, ti){
+    py = drawPara(c, t, PAD + 22, py, innerW - 44, 25, "14px " + FONT, ti === 0 ? "#4A453F" : "#6E655C");
+    py += 10;
+  });
+
+  y += detailH + 26;
+
+  /* 优势 / 待改进 两列 */
+  var colGap = 18;
+  var colW = (innerW - colGap) / 2;
+  var listFont = "12.5px " + FONT;
+  c.font = listFont;
+  var maxLines = 0;
+  p.strengths.forEach(function(t){ maxLines = Math.max(maxLines, wrapLines(c, t, colW - 46).length); });
+  p.improve.forEach(function(t){ maxLines = Math.max(maxLines, wrapLines(c, t, colW - 46).length); });
+  var listCount = Math.max(p.strengths.length, p.improve.length);
+  var colH = 46 + listCount * (Math.max(maxLines, 1) * 20 + 8) + 18;
+
+  [[PAD, "你的优势", p.strengths, "#8CBF9C"], [PAD + colW + colGap, "待改进点", p.improve, "#E0A45E"]].forEach(function(col){
+    var bx = col[0];
+    c.save();
+    c.shadowColor = "rgba(93,78,60,.06)";
+    c.shadowBlur = 14;
+    c.shadowOffsetY = 5;
+    roundRectPath(c, bx, y, colW, colH, 18);
+    c.fillStyle = "#FFFFFF";
+    c.fill();
+    c.restore();
+
+    var hy = sectionTitle(c, col[1], bx + 20, y + 18, col[3]);
+    var ly = hy + 2;
+    col[2].forEach(function(t){
+      c.beginPath();
+      c.arc(bx + 27, ly + 8, 3, 0, Math.PI * 2);
+      c.fillStyle = col[3];
+      c.fill();
+      var end = drawPara(c, t, bx + 38, ly, colW - 58, 20, listFont, "#6E655C");
+      ly = end + 8;
+    });
+  });
+
+  y += colH + 26;
+
+  /* 建议 */
+  c.font = "14px " + FONT;
+  var linesA = wrapLines(c, "在团队中：" + p.work, innerW - 44).length;
+  var linesB = wrapLines(c, "在关系里：" + p.relation, innerW - 44).length;
+  var advH = 46 + linesA * 25 + 10 + linesB * 25 + 22;
+
+  c.save();
+  c.shadowColor = "rgba(93,78,60,.06)";
+  c.shadowBlur = 14;
+  c.shadowOffsetY = 5;
+  roundRectPath(c, PAD, y, innerW, advH, 18);
+  c.fillStyle = "#FFFFFF";
+  c.fill();
+  c.restore();
+
+  var ay = sectionTitle(c, "相处与职场建议", PAD + 22, y + 18, main.color) + 2;
+  ay = drawPara(c, "在团队中：" + p.work, PAD + 22, ay, innerW - 44, 25, "14px " + FONT, "#6E655C") + 10;
+  ay = drawPara(c, "在关系里：" + p.relation, PAD + 22, ay, innerW - 44, 25, "14px " + FONT, "#6E655C");
+
+  y += advH + 24;
+
+  /* 页脚 */
+  c.textAlign = "center";
+  c.textBaseline = "top";
+  c.font = "11.5px " + FONT;
+  c.fillStyle = "#AEA49A";
+  c.fillText("广东省澳舒健家具制造有限公司 · 色彩性格测试", W / 2, y + 8);
+  c.fillText("本工具本地离线使用，所有数据仅保存在当前设备，不会上传", W / 2, y + 28);
+
+  y += 62;
+
+  return y;
+}
+
+function exportPNG(){
+  var rec = state.current;
+  if(!rec) return;
+  if(!canDownload()) return;
+  try{
+    var W = 860;
+    var SCALE = 2;
+
+    /* 第一次：1 倍尺寸量出真实高度 */
+    var tmp = document.createElement("canvas");
+    tmp.width = W;
+    tmp.height = 4200;
+    var tc = tmp.getContext("2d");
+    var endY = paintReport(tc, W, rec);
+
+    var H = Math.ceil(endY) + 10;
+
+    /* 第二次：按 2 倍清晰度正式绘制 */
+    var out = document.createElement("canvas");
+    out.width = W * SCALE;
+    out.height = H * SCALE;
+    var oc = out.getContext("2d");
+    oc.scale(SCALE, SCALE);
+    paintReport(oc, W, rec);
+
+    var url = out.toDataURL("image/png");
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "色彩性格测试报告_" + rec.name + "_" + fmtDate(rec.ts).replace(/[-: ]/g, "") + ".png";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    toast("报告图片已开始下载");
+  }catch(e){
+    console.error(e);
+    toast("图片生成失败，请改用文本导出");
+  }
+}
+
+/* =========================================================
+   11. 导出 TXT
+   ========================================================= */
+function buildTxt(rec){
+  var s = rec.scores;
+  var dom = pickDominant(s);
+  var main = DIMS[dom.first];
+  var sec = DIMS[dom.second];
+  var p = PROFILE[dom.first];
+
+  var L = [];
+  L.push("色彩性格测试 · 个人报告");
+  L.push("广东省澳舒健家具制造有限公司");
+  L.push("========================================");
+  L.push("姓名：" + rec.name);
+  L.push("测试时间：" + fmtDate(rec.ts));
+  L.push("报告编号：" + rec.id.slice(-6));
+  L.push("");
+  L.push("【四维得分】（每项满分 30 分）");
+  ORDER.forEach(function(k){
+    var d = DIMS[k];
+    var bars = new Array(Math.max(1, Math.round(s[k] / 30 * 20)) + 1).join("■");
+    L.push("  " + d.name + "  " + (s[k] < 10 ? " " : "") + s[k] + " 分  " + bars + "  " + levelOf(s[k]));
+  });
+  L.push("  合计：" + (s.red + s.yellow + s.blue + s.green) + " 分");
+  L.push("");
+  L.push("【主导性格】" + main.name + " · " + main.title + "（" + s[dom.first] + " 分）");
+  L.push("【辅助性格】" + sec.name + " · " + sec.title + "（" + s[dom.second] + " 分）");
+  L.push("【性格标签】" + p.keywords.join("、"));
+  L.push("");
+  L.push("【性格解读】");
+  L.push("  " + p.lead);
+  p.detail.forEach(function(t){ L.push("  " + t); });
+  L.push("");
+  L.push("【你的优势】");
+  p.strengths.forEach(function(t, i){ L.push("  " + (i+1) + ". " + t); });
+  L.push("");
+  L.push("【待改进点】");
+  p.improve.forEach(function(t, i){ L.push("  " + (i+1) + ". " + t); });
+  L.push("");
+  L.push("【相处与职场建议】");
+  L.push("  · 在团队中：" + p.work);
+  L.push("  · 在关系里：" + p.relation);
+  L.push("");
+  L.push("----------------------------------------");
+  L.push("报告密钥（他人可凭此密钥在本工具中查看本报告）：");
+  L.push(makeReportKey(rec));
+  L.push("");
+  L.push("本工具本地离线使用，所有数据仅保存在当前设备，不会上传");
+  return L.join("\r\n");
+}
+
+function exportTXT(){
+  var rec = state.current;
+  if(!rec) return;
+  var text = buildTxt(rec);
+  if(IS_WECHAT){
+    copyText(text);
+    toast("微信内已复制报告全文，可直接粘贴到聊天或备忘录");
+    return;
+  }
+  var blob = new Blob(["\ufeff" + text], { type: "text/plain;charset=utf-8" });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = "色彩性格测试_" + rec.name + "_" + fmtDate(rec.ts).replace(/[-: ]/g, "") + ".txt";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 1500);
+  toast("文本存档已开始下载");
+}
+
+/* =========================================================
+   12. 记录中心（密钥保护）
+   ========================================================= */
+function openHistory(){
+  if(!state.unlocked){
+    showView("home");
+    toast("请先输入查看密钥");
+    var k = $("keyInput");
+    if(k) k.focus();
+    return;
+  }
+  renderHistory();
+  $("historyModal").classList.add("show");
+}
+function closeHistory(){
+  $("historyModal").classList.remove("show");
+}
+
+function renderHistory(){
+  var arr = loadRecords();
+  $("histCount").textContent = arr.length ? "共 " + arr.length + " 份" : "";
+  var list = $("histList");
+
+  if(!arr.length){
+    list.innerHTML = '<div class="empty">本机还没有测试记录<br><span style="font-size:12px">完成一次测试后，记录会自动保存在这里</span></div>';
+    return;
+  }
+
+  list.innerHTML = arr.map(function(r){
+    var dom = pickDominant(r.scores);
+    var d = DIMS[dom.first];
+    var sum = r.scores.red + r.scores.yellow + r.scores.blue + r.scores.green;
+    return '<div class="rec" data-id="' + r.id + '">' +
+      '<div class="dm" style="background:' + d.color + '">' + d.name.charAt(0) + '</div>' +
+      '<div class="info">' +
+        '<div class="nm">' + esc(r.name) + '</div>' +
+        '<div class="meta">' + fmtDate(r.ts) + ' · ' + d.name + ' ' + d.title + ' · 已答 ' + sum + ' 题</div>' +
+      '</div>' +
+      '<button class="del" data-del="' + r.id + '" type="button">删除</button>' +
+    '</div>';
+  }).join("");
+
+  var items = list.querySelectorAll(".rec");
+  for(var i = 0; i < items.length; i++){
+    items[i].addEventListener("click", function(e){
+      if(e.target && e.target.getAttribute("data-del")) return;
+      var id = this.getAttribute("data-id");
+      var arr2 = loadRecords();
+      var target = null;
+      for(var j = 0; j < arr2.length; j++){ if(arr2[j].id === id){ target = arr2[j]; break; } }
+      if(!target){ toast("记录不存在"); return; }
+      state.current = target;
+      state.fromHistory = true;
+      state.fromKey = false;
+      closeHistory();
+      renderResult();
+      showView("result");
+    });
+  }
+
+  var dels = list.querySelectorAll(".del");
+  for(var k = 0; k < dels.length; k++){
+    dels[k].addEventListener("click", function(e){
+      e.stopPropagation();
+      var id = this.getAttribute("data-del");
+      if(!confirm("确定删除这条记录吗？删除后无法恢复。")) return;
+      var arr3 = loadRecords().filter(function(r){ return r.id !== id; });
+      saveRecords(arr3);
+      renderHistory();
+      refreshRecHint();
+      toast("已删除");
+    });
+  }
+}
+
+$("btnCloseHist").addEventListener("click", closeHistory);
+$("historyModal").addEventListener("click", function(e){
+  if(e.target === this) closeHistory();
+});
+
+$("btnClearAll").addEventListener("click", function(){
+  var arr = loadRecords();
+  if(!arr.length){ toast("暂无记录"); return; }
+  if(!confirm("将清空本机保存的 " + arr.length + " 份测试记录，且无法恢复，确定继续吗？")) return;
+  clearRecords();
+  renderHistory();
+  refreshRecHint();
+  toast("已清空全部记录");
+});
+
+$("btnExportAll").addEventListener("click", function(){
+  var arr = loadRecords();
+  if(!arr.length){ toast("暂无记录可导出"); return; }
+  if(!canDownload()) return;
+  var L = ["色彩性格测试 · 全部记录汇总", "导出时间：" + fmtDate(Date.now()), "共 " + arr.length + " 份", "========================================", ""];
+  arr.forEach(function(r, i){
+    var dom = pickDominant(r.scores);
+    var d = DIMS[dom.first];
+    L.push((i + 1) + ". " + r.name + "  |  " + fmtDate(r.ts) + "  |  主导：" + d.name + "·" + d.title);
+    L.push("   红 " + r.scores.red + " / 黄 " + r.scores.yellow + " / 蓝 " + r.scores.blue + " / 绿 " + r.scores.green);
+    L.push("");
+  });
+  L.push("----------------------------------------");
+  L.push("本工具本地离线使用，所有数据仅保存在当前设备，不会上传");
+
+  var blob = new Blob(["\ufeff" + L.join("\r\n")], { type: "text/plain;charset=utf-8" });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = "色彩性格测试_全部记录_" + fmtDate(Date.now()).replace(/[-: ]/g, "") + ".txt";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 1500);
+  toast("已导出 " + arr.length + " 份记录");
+});
+
+/* ---------- 备份文件（.json）：换电脑/换浏览器也能把记录带过去 ---------- */
+$("btnBackupExport").addEventListener("click", function(){
+  var arr = loadRecords();
+  if(!arr.length){ toast("暂无记录可备份"); return; }
+  if(!canDownload()) return;
+  var pack = { app: "color-personality-test", v: 1, exportedAt: new Date().toISOString(), count: arr.length, records: arr };
+  var blob = new Blob([JSON.stringify(pack)], { type: "application/json;charset=utf-8" });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = "色彩性格测试_记录备份_" + fmtDate(Date.now()).replace(/[-: ]/g, "") + ".json";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 1500);
+  toast("已导出备份文件，可拷贝到其他电脑导入");
+});
+
+$("btnBackupImport").addEventListener("click", function(){
+  $("backupFile").click();
+});
+
+$("backupFile").addEventListener("change", function(){
+  var f = this.files && this.files[0];
+  if(!f) return;
+  var reader = new FileReader();
+  reader.onload = function(){
+    var list = null;
+    try{
+      var data = JSON.parse(String(reader.result));
+      if(Array.isArray(data)) list = data;
+      else if(data && Array.isArray(data.records)) list = data.records;
+      else if(data && data.scores) list = [data];
+    }catch(e){}
+    if(!list){ toast("不是有效的备份文件，请选择本工具导出的 .json"); return; }
+
+    var arr = loadRecords();
+    var exist = {};
+    arr.forEach(function(r){ exist[r.id] = 1; });
+    var added = 0;
+    list.forEach(function(r){
+      if(!r || !r.scores) return;
+      var s = r.scores;
+      if(typeof s.red !== "number" || typeof s.yellow !== "number" ||
+         typeof s.blue !== "number" || typeof s.green !== "number") return;
+      var id = r.id || ("r" + (Number(r.ts) || Date.now()) + Math.floor(Math.random() * 9000 + 1000));
+      if(exist[id]) return;
+      exist[id] = 1;
+      arr.push({
+        id: id,
+        name: String(r.name || "匿名伙伴").slice(0, 16),
+        ts: Number(r.ts) || Date.now(),
+        answers: Array.isArray(r.answers) ? r.answers : [],
+        scores: { red: s.red, yellow: s.yellow, blue: s.blue, green: s.green }
+      });
+      added++;
+    });
+
+    if(!added){ toast("没有新增记录（可能已经存在）"); return; }
+    arr.sort(function(a, b){ return b.ts - a.ts; });
+    if(arr.length > 300) arr = arr.slice(0, 300);
+    saveRecords(arr);
+    renderHistory();
+    refreshRecHint();
+    toast("已合并 " + added + " 份记录");
+  };
+  reader.onerror = function(){ toast("读取文件失败"); };
+  reader.readAsText(f, "utf-8");
+  this.value = "";
+});
+
+/* =========================================================
+   13. 结果页按钮
+   ========================================================= */
+$("btnPng").addEventListener("click", exportPNG);
+$("btnCopyKey").addEventListener("click", copyReportKey);
+$("btnCopyKey2").addEventListener("click", copyReportKey);
+$("btnTxt").addEventListener("click", exportTXT);
+$("btnHome").addEventListener("click", function(){
+  state.answers = new Array(TOTAL).fill(null);
+  state.idx = 0;
+  state.current = null;
+  state.fromHistory = false;
+  state.fromKey = false;
+  $("userName").value = "";
+  refreshRecHint();
+  showView("home");
+});
+
+/* =========================================================
+   14. 初始化
+   ========================================================= */
+if(IS_WECHAT) document.body.classList.add("wechat");
+refreshRecHint();
+showView("home");
+</script>
+</body>
+</html>
