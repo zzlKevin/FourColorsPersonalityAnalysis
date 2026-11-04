@@ -126,6 +126,10 @@ Open `色彩性格测试.html` and edit as needed:
 - **Can't download images / text inside WeChat?** Tap "···" in the top-right corner → "Open in browser", then download; TXT content can also be copied with one tap.
 - **Want it fully offline?** Remove the two scripts referencing translate.js at the end of the file — translation is an optional UI feature; the test and the key mechanism never touch the network.
 
+## Thanks
+
+Thanks to https://github.com/xnx3/translate for the multilingual translation
+
 ## License
 
 This project is open-sourced under the [GPL-3.0 License](../../blob/HashCode/LICENSE). Feel free to adapt the questions and copy to your needs.
