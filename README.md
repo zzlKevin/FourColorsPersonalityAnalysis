@@ -1,4 +1,4 @@
-# 色彩性格测试 · 本地密钥版（HashCode 分支）
+# 色彩性格测试 · 本地密钥版（Base64 分支）
 
 简体中文 | [English](README.en.md)
 
